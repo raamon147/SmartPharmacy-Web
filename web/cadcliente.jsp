@@ -1,97 +1,53 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="menu.jsp" %>
 ﻿<!doctype html>
 <html>
-
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>SmartPharmacy</title>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.jsp"><strong><font COLOR="red">Smart</strong>Pharmacy</font></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Administrador
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="caditem.jsp">Adicionar Produtos</a>
-                        <a class="dropdown-item " href="edititem.jsp">Listar/Editar Produtos</a>
-                        <a class="dropdown-item disabled" href="#">Alterar Status</a>
-                        <a class="dropdown-item" href="cadconvenio.jsp">Cadastrar Convênios</a>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <title>SmartPharmacy</title>
 
 
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Serviços
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="cadcliente.jsp">Cadastrar Cliente</a>
-                        <a class="dropdown-item" href="formaplicacao.jsp">Cadastrar Aplicação</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Relatórios
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item disabled" href="#">Relatórios Gerenciais</a>
-                    </div>
-                </li>
-            </div>
-        </div>
-    </nav>
+    </head>
 
-</head>
-
-<body><br />
-    <h2>Cadastrar Cliente</h2><br/>
-    <form>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputName4">Nome</label>
-                <input type="text" class="form-control" id="inputnome">
-            </div>
-            <div class="form-group col-md-6">
+    <body><br/>
+        <h2>Cadastrar Cliente</h2><br/>
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputName4">Nome</label>
+                    <input type="text" class="form-control" id="inputnome">
+                </div>
+                <div class="form-group col-md-6">
                     <label for="inputCPF">CPF</label>
                     <input type="text" id="inputCPF" class="form-control" onkeypress="$(this).mask('000.000.000-00');">
                 </div>
-            <div class="form-group col-md-2">
+                <div class="form-group col-md-2">
                     <label for="inputDtNasc">Data de Nascimento</label>
                     <input type="text" id="inputDtNasc" class="form-control" onkeypress="$(this).mask('00/00/0000')">
                 </div>
-        </div>
-        <div class="form-group">
-            <label for="inputEnd">Endereço</label>
-            <input type="text" class="form-control" id="inputEnd">
-        </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEnd">Endereço</label>
+                <input type="text" class="form-control" id="inputEnd">
+            </div>
 
 
-        <button type="submit" class="btn btn-primary" id="btnCadCliente">Cadastrar</button>
-    </form>
+            <button type="submit" class="btn btn-primary" id="btnCadCliente">Cadastrar</button>
+        </form>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-</body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    </body>
 
 </html>

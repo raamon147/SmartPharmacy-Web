@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 ﻿<!doctype html>
 <html>
     <head>
@@ -55,7 +56,7 @@
 <br/>
 <body>
 
-<div id="list" class="row">
+    <div id="list" class="row">
 
         <div class="table-responsive col-md-12">
             <table class="table table-striped" cellspacing="0" cellpadding="0">
@@ -70,7 +71,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                
+
                     <tr>
                         <td>1001</td>
                         <td>Dipirona Gotas</td>
@@ -89,9 +90,9 @@
     <div class="float-right">
         <h1 class="display-4"><div class="p-2">Total: R$: 5,99 </div></h1><br/>
         <div class="p-1"> <a class="btn btn-success disabled" href="carrinho.jsp">Finalizar Compra</a>
-    <a class="btn btn-warning " href="index.jsp">Voltar</a></div>
-</div>
-    
+            <a class="btn btn-warning " href="index.jsp">Voltar</a></div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous">
