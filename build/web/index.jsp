@@ -1,16 +1,28 @@
 ﻿<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="Classes.Connectta"%>
 <%@include file="menu.jsp" %>
+<%@include file="funcoes.jsp"%>
 <!doctype html>
 <html>
     <body>
-        <br />
+
+<br/>
+
+<form method="post" action="buscaritem.jsp">
         <div class="input-group md-form form-sm form-2 pl-0">
             <input class="form-control my-0 py-1 red-border" type="text" placeholder="Digite o nome do produto"
-                   aria-label="Search">
+                   aria-label="Search" name="item">
             <div class="input-group-append">
-                <button type="button" class="btn btn-primary" id="btnBuscarProd">Buscar</button>
+                <input type="submit" class="btn btn-primary" id="btnBuscarProd" value="Buscar">
             </div>
         </div>
+    </form>
         <div id="list" class="row">
 
             <div class="table-responsive col-md-12">
@@ -26,18 +38,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1001</td>
-                            <td>Dipirona Gotas</td>
-                            <td>Medicamento</td>
-                            <td>Disponivel</td>
-                            <td>R$ 5,99</td>
-                            <td class="actions">
-                                <a class="btn btn-success btn-xs disabled" href="view.jsp">Adicionar no Carrinho</a>
-                                <a class="btn btn-warning btn-xs disabled" href="edit.jsp">Editar</a>
-                                <a class="btn btn-danger btn-xs disabled"  href="#" data-toggle="modal" data-target="#delete-modal">Excluir</a>
-                            </td>
-                        </tr>
+                        <%
+                        String produto = request.getParameter("resp");
+                        ResultSet rs = buscartexto(produto);
+                        while (rs.next()) {
+                                out.print("<tr>");
+                                out.print("<td>"+rs.getString("codigo")+"</td>");
+                                out.print("<td>"+rs.getString("produto")+"</td>");
+                                out.print("<td>"+rs.getString("preco")+"</td>");
+                                out.print("<td>"+rs.getString("status")+"</td>");
+                                out.print("<td>"+rs.getString("id_categoria")+"</td>");
+                                out.print("<td class='actions'>");
+                                out.print("<a class='btn btn-success btn-xs disabled' p-3 href='view.jsp'>Adicionar no Carrinho</a> ");
+                                out.print("<a class='btn btn-warning btn-xs disabled' href='edit.jsp'>Editar</a> ");
+                                out.print("<a class='btn btn-danger btn-xs disabled'  href='#' data-toggle='modal' data-target='delete-modal'>Excluir</a> ");
+                                out.print("</td>");
+                                out.print("</tr>");
+                            }
+                        
+                        %>
                     </tbody>
                 </table>
 
@@ -64,6 +83,7 @@
                                         <th>Preço</th>
                                         <th class="actions"></th>
                                     </tr>
+                                    
                                 </thead>
                                 <tbody>
 
@@ -77,6 +97,7 @@
                                             <a class="btn btn-danger btn-xs disabled"  href="#" data-toggle="modal" data-target="#delete-modal">X</a>
                                         </td>
                                     </tr>
+                                    
                                 </tbody>
                             </table>
 

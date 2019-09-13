@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="menu.jsp" %>
+<%@include file="funcoes.jsp"%>
 ﻿<!doctype html>
 <html>
     <head>
@@ -15,40 +16,49 @@
             <h2 style="color: red"><b>Cadastrar</b> Produtos</h2>
             <br/>
 
-            <form method="POST">
+            <form method="POST" action="cadastraritem.jsp">
                 <div class="form-row">
                     <div class="form-group col-md-2">
                         <label for="inputCod">Codigo</label>
-                        <input type="text" class="form-control" id="inputCod" required>
+                        <input type="text" class="form-control" id="inputCod" name="codigo" required
+                               >
                     </div>
                     <div class="form-group col-md-5">
                         <label for="inputNomeProd">Produto</label>
-                        <input type="text" class="form-control" id="inputNomeProd" required>
+                        <input type="text" class="form-control" id="inputNomeProd" name="produto" required>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="inputPreco">Quantidade</label>
-                        <input type="number" class="form-control" id="inputPreco" required min="10"  />
+                        <input type="number" class="form-control" id="inputPreco" min="10" name="idcateg" required>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="inputPreco">Preço</label>
-                        <input type="number" class="form-control" id="inputPreco" required>
+                        <input type="number" class="form-control" id="inputPreco" name="preco" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label for="inputPreco">Fabricante</label>
-                        <input type="text" class="form-control" id="inputPreco" required>
+                        <input type="text" class="form-control" id="inputPreco" name="status" required >
                     </div>
                     <div class="form-group col-md-4">
                         <label for="inputPreco">Principio Ativo</label>
-                        <input type="text" class="form-control" id="inputPreco" required>
+                        <input type="text" class="form-control" id="inputPreco"  required>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="inputDosagem">Dosagem</label>
-                        <input type="search" class="form-control" id="inputDosagem" required/>
+                        <input type="search" class="form-control" id="inputDosagem" required>
                     </div>
                 </div>
-
+                <% 
+                if(request.getParameter("ok").equals("true")){
+                out.println("<div class='alert alert-success' role='alert'> Cadastrado com success</div>");
+                }else if(request.getParameter("ok").equals("false")){
+                out.println("<div class='alert alert-danger' role='alert'> Deu erro, parça</div>");
+                }else{
+                    
+                }
+                %>
                 <button type="submit" class="btn btn-primary" id="btnCadProd">Cadastrar</button>
             </form>
         </div>

@@ -1,3 +1,10 @@
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="Classes.Connectta"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="menu.jsp" %>
 ﻿<!doctype html>
@@ -58,26 +65,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>123</td>
-                        <td>Remedio</td>
-                        <td>R$ 0.00</td>
-                        <td>Fabricante</td>
-                        <td>Principio</td>
-                        <td>Dosagem mg</td>
-                        <td><input type="number" min="10" value="10"></td>
-                        <td><input type="button" value="Alterar"></td>
-                    </tr>
-                    <tr>
-                        <td>321</td>
-                        <td>Remedio 2</td>
-                        <td>R$ 0.00</td>
-                        <td>Fabricante</td>
-                        <td>Principio</td>
-                        <td>Dosagem mg</td>
-                        <td><input type="number" min="10" value="10"></td>
-                        <td><input type="button" value="Alterar"></td>
-                    </tr>
+                    
+                    <%
+                        try {
+                            Class.forName("com.mysql.jdbc.Driver");
+                            String url = "jdbc:mysql://localhost:3306/farmacia?allowPublicKeyRetrieval=true&useSSL=false";
+                            String username = "root";
+                            String password = "root";
+                            Connection conn = DriverManager.getConnection(url, username, password);
+                            PreparedStatement ps = conn.prepareStatement("select * from produto");
+                            ResultSet rs;
+                            rs = ps.executeQuery();
+                            while (rs.next()) {
+                                out.print("<tr>");
+                                out.print("<td>"+rs.getString("codigo")+"</td>");
+                                out.print("<td>"+rs.getString("produto")+"</td>");
+                                out.print("<td>"+rs.getString("preco")+"</td>");
+                                out.print("<td>"+rs.getString("status")+"</td>");
+                                out.print("<td>"+rs.getString("id_categoria")+"</td>");
+                                out.print("</tr>");
+                            }
+                        } catch (Exception e) {
+                            out.print(e.getMessage());
+                        }
+
+                    %>
+
                 </tbody>
             </table>
         </div>
