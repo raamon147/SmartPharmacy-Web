@@ -11,7 +11,12 @@
 <!doctype html>
 <html>
     <body>
-
+<%
+String usuario = (String)session.getAttribute("usuario");
+if(usuario == null){
+    response.sendRedirect("login.jsp");
+}
+%>
 <br/>
 
 <form method="post" action="buscaritem.jsp">

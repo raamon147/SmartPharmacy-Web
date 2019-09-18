@@ -47,6 +47,9 @@
                         <a class="dropdown-item disabled" href="#">Relatórios Gerenciais</a>
                     </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link active" href="logout.jsp">Sair</a>
+                </li>
             </div>
         </div>
     </nav>

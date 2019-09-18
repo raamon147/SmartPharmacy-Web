@@ -154,6 +154,9 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <a class=\"dropdown-item disabled\" href=\"#\">Relatórios Gerenciais</a>\n");
       out.write("                    </div>\n");
       out.write("                </li>\n");
+      out.write("                <li class=\"nav-item dropdown\">\n");
+      out.write("                    <a class=\"nav-link active\" href=\"logout.jsp\">Sair</a>\n");
+      out.write("                </li>\n");
       out.write("            </div>\n");
       out.write("        </div>\n");
       out.write("    </nav>\n");
@@ -172,6 +175,12 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<!doctype html>\r\n");
       out.write("<html>\r\n");
       out.write("    <body>\r\n");
+
+String usuario = (String)session.getAttribute("usuario");
+if(usuario == null){
+    response.sendRedirect("login.jsp");
+}
+
       out.write("\r\n");
       out.write("<br/>\r\n");
       out.write("\r\n");

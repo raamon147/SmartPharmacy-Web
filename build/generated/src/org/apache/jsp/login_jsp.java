@@ -56,14 +56,29 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <strong><font COLOR=\"red\">Smart</strong>Pharmacy<br/>\n");
       out.write("        </div><br/>\n");
       out.write("\n");
-      out.write("        <form>\n");
+      out.write("        <form method=\"post\" action=\"login.jsp\">\n");
       out.write("            <input type=\"text\" id=\"login\" class=\"fadeIn second\" name=\"login\" placeholder=\"Usuario\">\n");
-      out.write("            <input type=\"text\" id=\"password\" class=\"fadeIn third\" name=\"login\" placeholder=\"Senha\">\n");
-      out.write("            <input type=\"submit\" class=\"fadeIn fourth\" value=\"Acessar\">\n");
+      out.write("            <input type=\"password\" id=\"password\" class=\"fadeIn third\" name=\"senha\" placeholder=\"Senha\">\n");
+      out.write("            <input type=\"submit\" class=\"fadeIn fourth\" value=\"Acessar\" name=\"btnlogin\">\n");
+      out.write("            \n");
       out.write("        </form>\n");
+
+String usuario = request.getParameter("login");
+String senha = request.getParameter("senha");
+if(usuario != null && senha!= null && !usuario.isEmpty() && !senha.isEmpty()){
+    session.setAttribute("usuario", usuario);
+    session.setAttribute("senha", senha);
+    response.sendRedirect("index.jsp");
+}else if((String)session.getAttribute("usuario") != null){
+    response.sendRedirect("index.jsp");
+    
+}
+
+
+
       out.write("\n");
       out.write("        <div id=\"formFooter\">\n");
-      out.write("            <a class=\"underlineHover\" href=\"index.jsp\">Esqueci a senha</a>\n");
+      out.write("            <a class=\"underlineHover\" href=\"\">Esqueci a senha</a>\n");
       out.write("        </div>\n");
       out.write("\n");
       out.write("    </div>\n");

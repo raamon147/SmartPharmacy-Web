@@ -13,14 +13,28 @@
             <strong><font COLOR="red">Smart</strong>Pharmacy<br/>
         </div><br/>
 
-        <form>
+        <form method="post" action="login.jsp">
             <input type="text" id="login" class="fadeIn second" name="login" placeholder="Usuario">
-            <input type="text" id="password" class="fadeIn third" name="senha" placeholder="Senha">
+            <input type="password" id="password" class="fadeIn third" name="senha" placeholder="Senha">
             <input type="submit" class="fadeIn fourth" value="Acessar" name="btnlogin">
+            
         </form>
+<%
+String usuario = request.getParameter("login");
+String senha = request.getParameter("senha");
+if(usuario != null && senha!= null && !usuario.isEmpty() && !senha.isEmpty()){
+    session.setAttribute("usuario", usuario);
+    session.setAttribute("senha", senha);
+    response.sendRedirect("index.jsp");
+}else if((String)session.getAttribute("usuario") != null){
+    response.sendRedirect("index.jsp");
+    
+}
 
+
+%>
         <div id="formFooter">
-            <a class="underlineHover" href="index.jsp">Esqueci a senha</a>
+            <a class="underlineHover" href="">Esqueci a senha</a>
         </div>
 
     </div>
