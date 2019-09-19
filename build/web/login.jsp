@@ -1,3 +1,5 @@
+<%@page import="DAO.UsuarioDAO"%>
+<%@page import="Classes.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -17,22 +19,39 @@
             <input type="text" id="login" class="fadeIn second" name="login" placeholder="Usuario">
             <input type="password" id="password" class="fadeIn third" name="senha" placeholder="Senha">
             <input type="submit" class="fadeIn fourth" value="Acessar" name="btnlogin">
-            
+
         </form>
-<%
-String usuario = request.getParameter("login");
-String senha = request.getParameter("senha");
-if(usuario != null && senha!= null && !usuario.isEmpty() && !senha.isEmpty()){
-    session.setAttribute("usuario", usuario);
-    session.setAttribute("senha", senha);
-    response.sendRedirect("index.jsp");
-}else if((String)session.getAttribute("usuario") != null){
-    response.sendRedirect("index.jsp");
-    
-}
+        <%
+            String usuario = request.getParameter("login");
+            String senha = request.getParameter("senha");
+            if (usuario != null && senha != null && !usuario.isEmpty() && !senha.isEmpty()) {
+                Usuario user = new Usuario();
+                user.setUsuario(usuario);
+                user.setSenha(senha);
+
+                String resp = new UsuarioDAO().logar(user);
+                String key ="";
+                if (resp.equalsIgnoreCase("conectado")) {
+                    
+                    key = new UsuarioDAO().getKey(user);
+                    
+                    session.setAttribute("usuario", usuario);
+                    session.setAttribute("senha", senha);
+                    session.setAttribute("key", key);
+                    response.sendRedirect("index.jsp");
+                } else if(resp.equalsIgnoreCase("nconectado")){
+                    out.println("Usuario não encontrado!");
+                } else {
+                    out.println(resp);
+                }
+
+            } else if ((String) session.getAttribute("usuario") != null) {
+                response.sendRedirect("index.jsp");
+
+            }
 
 
-%>
+        %>
         <div id="formFooter">
             <a class="underlineHover" href="">Esqueci a senha</a>
         </div>

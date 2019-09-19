@@ -19,44 +19,44 @@
             <form method="POST" action="cadastraritem.jsp">
                 <div class="form-row">
                     <div class="form-group col-md-2">
-                        <label for="inputCod">Codigo</label>
-                        <input type="text" class="form-control" id="inputCod" name="codigo" required
+                        <label for="cadCod">Codigo</label>
+                        <input type="text" class="form-control" id="inputCod" name="cadCod" required
                                >
                     </div>
                     <div class="form-group col-md-5">
-                        <label for="inputNomeProd">Produto</label>
-                        <input type="text" class="form-control" id="inputNomeProd" name="produto" required>
+                        <label for="cadNome">Produto</label>
+                        <input type="text" class="form-control" id="inputNomeProd" name="cadNome" required>
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="inputPreco">Quantidade</label>
-                        <input type="number" class="form-control" id="inputPreco" min="10" name="idcateg" required>
+                        <label for="cadQtd">Quantidade</label>
+                        <input type="number" class="form-control" id="inputPreco" min="10" name="cadQtd" required>
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="inputPreco">Preço</label>
-                        <input type="number" class="form-control" id="inputPreco" name="preco" required>
+                        <label for="cadPreco">Preço</label>
+                        <input type="text" class="form-control" id="inputPreco" name="cadPreco" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-3">
-                        <label for="inputPreco">Fabricante</label>
-                        <input type="text" class="form-control" id="inputPreco" name="status" required >
+                        <label for="cadFab">Fabricante</label>
+                        <input type="text" class="form-control" id="inputPreco" name="cadFab" required >
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="inputPreco">Principio Ativo</label>
-                        <input type="text" class="form-control" id="inputPreco"  required>
+                        <label for="cadPrin">Principio Ativo</label>
+                        <input type="text" class="form-control" id="inputPreco" name="cadPrin"  required>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="inputDosagem">Dosagem</label>
-                        <input type="search" class="form-control" id="inputDosagem" required>
+                        <label for="cadDos">Dosagem</label>
+                        <input type="search" class="form-control" id="inputDosagem" name="cadDos" required>
                     </div>
                 </div>
                 <% 
-                if(request.getParameter("ok").equals("true")){
-                out.println("<div class='alert alert-success' role='alert'> Cadastrado com success</div>");
-                }else if(request.getParameter("ok").equals("false")){
-                out.println("<div class='alert alert-danger' role='alert'> Deu erro, parça</div>");
-                }else{
-                    
+                if(request.getParameter("status").equals("ok")){
+                out.println("<div class='alert alert-success' role='alert'> Cadastrado com sucesso</div>");
+                }else if(request.getParameter("status").equals("none")){
+                out.println("<div class='alert alert-danger' role='alert'> Erro ao Cadastrar</div>");
+                }else if(request.getParameter("status").equals("exist")){
+                    out.println("<div class='alert alert-danger' role='alert'>Já existe um registro com esse codigo</div>");
                 }
                 %>
                 <button type="submit" class="btn btn-primary" id="btnCadProd">Cadastrar</button>

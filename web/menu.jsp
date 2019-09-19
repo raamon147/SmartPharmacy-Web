@@ -1,3 +1,4 @@
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -13,21 +14,43 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-
+                <%
+                    String key = (String) session.getAttribute("key");
+                  
+                %>
+                <%if(key.equals("2")){%>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink"
+                    
+                    <a class="nav-link dropdown-toggle active"  href="#" id="navbarDropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Administrador
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="caditem.jsp?ok=none">Adicionar Produtos</a>
+                    
+                    <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item disabled"  href="caditem.jsp?status">Adicionar Produtos</a>
                         <a class="dropdown-item " href="edititem.jsp">Listar/Editar Produtos</a>
-                        <a class="dropdown-item disabled" href="#">Alterar Status</a>
-                        <a class="dropdown-item" href="cadconvenio.jsp">Cadastrar Convênios</a>
+                        <a class="dropdown-item disabled"  href="cadconvenio.jsp">Cadastrar Convênios</a>
 
 
                     </div>
                 </li>
+                <%} else {%>
+                <li class="nav-item dropdown">
+                    
+                    <a class="nav-link dropdown-toggle active"  href="#" id="navbarDropdownMenuLink"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Administrador
+                    </a>
+                    
+                    <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item "  href="caditem.jsp?status">Adicionar Produtos</a>
+                        <a class="dropdown-item " href="edititem.jsp">Listar/Editar Produtos</a>
+                        <a class="dropdown-item "  href="cadconvenio.jsp">Cadastrar Convênios</a>
+
+
+                    </div>
+                </li>
+                <%}%>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

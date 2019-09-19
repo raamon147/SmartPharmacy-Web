@@ -1,59 +1,77 @@
 package Classes;
 
-public class Produto {
+public class Produto{
+    
+    private String cod_prod;
+    private String nome_prod;
+    private int qtd_prod;
+    private float preco_prod;
+    private String fabr_prod;
+    private String pr_ativo;
+    private String dos_prod;
+    private String status_prod;
 
-	private int id;
-	private String nome;
-	private String fabricante;
-	private String principioativo;
-        private int quantidade;
-
-    public Produto(int id, String nome, String fabricante, String principioativo, int quantidade) {
-        this.id = id;
-        this.nome = nome;
-        this.fabricante = fabricante;
-        this.principioativo = principioativo;
-        this.quantidade = quantidade;
+    public String getCod_prod() {
+        return cod_prod;
     }
 
-    public String getFabricante() {
-        return fabricante;
+    public void setCod_prod(String cod_prod) {
+        this.cod_prod = cod_prod;
     }
 
-    public int getId() {
-        return id;
+    public String getNome_prod() {
+        return nome_prod;
     }
 
-    public String getNome() {
-        return nome;
+    public void setNome_prod(String nome_prod) {
+        this.nome_prod = nome_prod;
     }
 
-    public String getPrincipioativo() {
-        return principioativo;
+    public int getQtd_prod() {
+        return qtd_prod;
     }
 
-    public int getQuantidade() {
-        return quantidade;
+    public void setQtd_prod(int qtd_prod) {
+        this.qtd_prod = qtd_prod;
     }
 
-    public void setFabricante(String fabricante) {
-        this.fabricante = fabricante;
+    public float getPreco_prod() {
+        return preco_prod;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPreco_prod(float preco_prod) {
+        this.preco_prod = preco_prod;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public String getFabr_prod() {
+        return fabr_prod;
     }
 
-    public void setPrincipioativo(String principioativo) {
-        this.principioativo = principioativo;
+    public void setFabr_prod(String fabr_prod) {
+        this.fabr_prod = fabr_prod;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public String getPr_ativo() {
+        return pr_ativo;
     }
-        	
+
+    public void setPr_ativo(String pr_ativo) {
+        this.pr_ativo = pr_ativo;
+    }
+
+    public String getDos_prod() {
+        return dos_prod;
+    }
+
+    public void setDos_prod(String dos_prod) {
+        this.dos_prod = dos_prod;
+    }
+
+    public String getStatus_prod() {
+        return status_prod;
+    }
+
+    public void setStatus_prod(String status_prod) {
+        this.status_prod = status_prod;
+    }    
 }
