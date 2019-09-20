@@ -6,12 +6,13 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="Classes.Connectta"%>
-<%@include file="menu.jsp" %>
+<%@include file="menu.jsp"%>
 <%@include file="funcoes.jsp"%>
 <!doctype html>
 <html>
     <body>
 <%
+
 String usuario = (String)session.getAttribute("usuario");
 if(usuario == null){
     response.sendRedirect("login.jsp");
@@ -46,11 +47,12 @@ if(usuario == null){
                         <%
                         String produto = request.getParameter("resp");
                         if(produto != null){
-                            Produto p =  buscartexto(produto);
-                       
+                        ResultSet rs = buscartexto(produto);
+                             while (rs.next()) {
+                            
                                 out.print("<tr>");
-                                out.print("<td>"+p.getCod_prod()+"</td>");
-                                out.print("<td>"+p.getNome_prod()+"</td>");
+                                out.print("<td>"+rs.getString("cod_prod")+"</td>");
+                                out.print("<td>"+rs.getString("nome_prod")+"</td>");
                                 //out.print("<td>"+rs.getString("qtd_prod")+"</td>");
                                 //out.print("<td>"+rs.getString("preco_prod")+"</td>");
                                 //out.print("<td>"+rs.getString("dos_prod")+"</td>");
@@ -60,7 +62,7 @@ if(usuario == null){
                                 out.print("<a class='btn btn-danger btn-xs disabled'  href='#' data-toggle='modal' data-target='delete-modal'>Excluir</a> ");
                                 out.print("</td>");
                                 out.print("</tr>");
-                        }
+                        }}
                         %>
                     </tbody>
                 </table>

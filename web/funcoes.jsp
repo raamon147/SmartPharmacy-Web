@@ -9,20 +9,14 @@
     private Connection conn;
     Connectta c = new Connectta();
 
-    public Produto buscartexto(String produto) {
-        
-        Produto p = new Produto();
+    public ResultSet buscartexto(String produto) {
         try {
             conn = c.conectar();
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM produto WHERE nome_prod like ?");
             ps.setString(1, "%" + produto + "%");
             ResultSet rs;
             rs = ps.executeQuery();
-            if (rs.first()) {
-                p.setCod_prod(rs.getString("cod_prod"));
-                p.setNome_prod(rs.getString("nome_prod"));
-            }
-            return p;
+            return rs;
 
         } catch (Exception e) {
             return null;

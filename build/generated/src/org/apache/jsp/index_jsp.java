@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import Classes.Connectta;
+import Classes.Produto;
 
 public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -22,22 +23,29 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
 
     private Connection conn;
     Connectta c = new Connectta();
-    public ResultSet buscartexto(String produto) {
-                        try {
-                            conn = c.conectar();
-                            PreparedStatement ps = conn.prepareStatement("select * from produto where produto like ?");
-                            ps.setString(1, "%" + produto + "%");
-                            ResultSet rs;
-                            rs = ps.executeQuery();
-                            return rs;
-                            
-                        } catch (Exception e) {
-                            return null;
-                        }
-    }
-    
-     public String inserir(int codigo, String produto, double preco, String status,int id_categoria) {
+
+    public Produto buscartexto(String produto) {
         
+        Produto p = new Produto();
+        try {
+            conn = c.conectar();
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM produto WHERE nome_prod like ?");
+            ps.setString(1, "%" + produto + "%");
+            ResultSet rs;
+            rs = ps.executeQuery();
+            if (rs.first()) {
+                p.setCod_prod(rs.getString("cod_prod"));
+                p.setNome_prod(rs.getString("nome_prod"));
+            }
+            return p;
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public String inserir(int codigo, String produto, double preco, String status, int id_categoria) {
+
         try {
             conn = c.conectar();
             String inserir = "INSERT INTO produto (codigo, produto, preco, status,id_categoria) VALUES (?, ?, ?, ?,?)";
@@ -51,7 +59,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
             ps.executeUpdate();
             return "true";
         } catch (SQLException e) {
-          return "false";
+            return "false";
         }
 
     }
@@ -139,8 +147,7 @@ if(key.equals("2")){
       out.write("                    \r\n");
       out.write("                    <div class=\"dropdown-menu\"  aria-labelledby=\"navbarDropdownMenuLink\">\r\n");
       out.write("                        <a class=\"dropdown-item disabled\"  href=\"caditem.jsp?status\">Adicionar Produtos</a>\r\n");
-      out.write("                        <a class=\"dropdown-item disabled\" href=\"edititem.jsp\">Listar/Editar Produtos</a>\r\n");
-      out.write("                        <a class=\"dropdown-item disabled\" href=\"#\">Alterar Status</a>\r\n");
+      out.write("                        <a class=\"dropdown-item \" href=\"edititem.jsp\">Listar/Editar Produtos</a>\r\n");
       out.write("                        <a class=\"dropdown-item disabled\"  href=\"cadconvenio.jsp\">Cadastrar Convênios</a>\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -159,7 +166,6 @@ if(key.equals("2")){
       out.write("                    <div class=\"dropdown-menu\"  aria-labelledby=\"navbarDropdownMenuLink\">\r\n");
       out.write("                        <a class=\"dropdown-item \"  href=\"caditem.jsp?status\">Adicionar Produtos</a>\r\n");
       out.write("                        <a class=\"dropdown-item \" href=\"edititem.jsp\">Listar/Editar Produtos</a>\r\n");
-      out.write("                        <a class=\"dropdown-item\" href=\"#\">Alterar Status</a>\r\n");
       out.write("                        <a class=\"dropdown-item \"  href=\"cadconvenio.jsp\">Cadastrar Convênios</a>\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -203,47 +209,34 @@ if(key.equals("2")){
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
+      out.write("\r\n");
       out.write('\r');
       out.write('\n');
-      out.write("\r\n");
       out.write("\r\n");
       out.write("<!doctype html>\r\n");
       out.write("<html>\r\n");
       out.write("    <body>\r\n");
-      out.write("        <link rel=\"stylesheet\" href=\"JS/jquery-ui.css\" />\r\n");
-      out.write("        <script src=\"JS/jquery-3.4.1.min.js\"></script>\r\n");
-      out.write("        <script src=\"JS/jquery-1.9.1.js\"></script>\r\n");
-      out.write("        <script src=\"JS/jquery-ui.js\"></script>\r\n");
-      out.write("        ");
 
-            String usuario = (String) session.getAttribute("usuario");
-            if (usuario == null) {
-                response.sendRedirect("login.jsp");
-            } else {
-            }
-        
+String usuario = "";
+usuario = (String)session.getAttribute("usuario");
+if(usuario == null){
+    response.sendRedirect("login.jsp");
+}else{
+    
+}
+
       out.write("\r\n");
-      out.write("        <script language=\"javascript\" type=\"text/javascript\">\r\n");
-      out.write("            $(document).ready(function(){\r\n");
-      out.write("                $(\"#auto\").autocomplete(\"get.jsp\", {\r\n");
-      out.write("\t\t\t\t   width:auto,\r\n");
-      out.write("\t\t\t\t   selectFirst: false\r\n");
-      out.write("                });\r\n");
-      out.write("            });\r\n");
-      out.write("        </script>  \r\n");
-      out.write("        <br/>\r\n");
+      out.write("<br/>\r\n");
       out.write("\r\n");
-      out.write("        <form method=\"post\" action=\"buscaritem.jsp\">\r\n");
-      out.write("            <div class=\"input-group md-form form-sm form-2 pl-0\">\r\n");
-      out.write("                <input id=\"auto\" name=\"auto\"  class=\"form-control\" type=\"text\" placeholder=\"Digite o nome do produto\"\r\n");
-      out.write("                       aria-label=\"Search\" name=\"item\">\r\n");
-      out.write("                <div id=\"country\"></div>\r\n");
-      out.write("                <div class=\"input-group-append\">\r\n");
-      out.write("                    <input type=\"submit\" class=\"btn btn-primary\" id=\"btnBuscarProd\" value=\"Buscar\">\r\n");
-      out.write("                </div>\r\n");
+      out.write("<form method=\"post\" action=\"buscaritem.jsp\">\r\n");
+      out.write("        <div class=\"input-group md-form form-sm form-2 pl-0\">\r\n");
+      out.write("            <input class=\"form-control my-0 py-1 red-border\" type=\"text\" placeholder=\"Digite o nome do produto\"\r\n");
+      out.write("                   aria-label=\"Search\" name=\"item\">\r\n");
+      out.write("            <div class=\"input-group-append\">\r\n");
+      out.write("                <input type=\"submit\" class=\"btn btn-primary\" id=\"btnBuscarProd\" value=\"Buscar\">\r\n");
       out.write("            </div>\r\n");
-      out.write("            <br><br>\r\n");
-      out.write("        </form>\r\n");
+      out.write("        </div>\r\n");
+      out.write("    </form>\r\n");
       out.write("        <div id=\"list\" class=\"row\">\r\n");
       out.write("\r\n");
       out.write("            <div class=\"table-responsive col-md-12\">\r\n");
@@ -261,26 +254,23 @@ if(key.equals("2")){
       out.write("                    <tbody>\r\n");
       out.write("                        ");
 
-                            /*  String produto = request.getParameter("resp");
-                             ResultSet rs = buscartexto(produto);
-                             if(rs.wasNull()){
-                             out.println("nulo");
-                             } else {
-                             while (rs.next()) {
-                             out.print("<tr>");
-                             out.print("<td>"+rs.getString("codigo")+"</td>");
-                             out.print("<td>"+rs.getString("produto")+"</td>");
-                             out.print("<td>"+rs.getString("preco")+"</td>");
-                             out.print("<td>"+rs.getString("status")+"</td>");
-                             out.print("<td>"+rs.getString("id_categoria")+"</td>");
-                             out.print("<td class='actions'>");
-                             out.print("<a class='btn btn-success btn-xs disabled' p-3 href='view.jsp'>Adicionar no Carrinho</a> ");
-                             out.print("<a class='btn btn-warning btn-xs disabled' href='edit.jsp'>Editar</a> ");
-                             out.print("<a class='btn btn-danger btn-xs disabled'  href='#' data-toggle='modal' data-target='delete-modal'>Excluir</a> ");
-                             out.print("</td>");
-                             out.print("</tr>");
-                             }
-                             } */
+                        String produto = request.getParameter("resp");
+                        if(produto != null){
+                            Produto p =  buscartexto(produto);
+                       
+                                out.print("<tr>");
+                                out.print("<td>"+p.getCod_prod()+"</td>");
+                                out.print("<td>"+p.getNome_prod()+"</td>");
+                                //out.print("<td>"+rs.getString("qtd_prod")+"</td>");
+                                //out.print("<td>"+rs.getString("preco_prod")+"</td>");
+                                //out.print("<td>"+rs.getString("dos_prod")+"</td>");
+                                out.print("<td class='actions'>");
+                                out.print("<a class='btn btn-success btn-xs disabled' p-3 href='view.jsp'>Adicionar no Carrinho</a> ");
+                                out.print("<a class='btn btn-warning btn-xs disabled' href='edit.jsp'>Editar</a> ");
+                                out.print("<a class='btn btn-danger btn-xs disabled'  href='#' data-toggle='modal' data-target='delete-modal'>Excluir</a> ");
+                                out.print("</td>");
+                                out.print("</tr>");
+                        }
                         
       out.write("\r\n");
       out.write("                    </tbody>\r\n");
@@ -309,7 +299,7 @@ if(key.equals("2")){
       out.write("                                        <th>Preço</th>\r\n");
       out.write("                                        <th class=\"actions\"></th>\r\n");
       out.write("                                    </tr>\r\n");
-      out.write("\r\n");
+      out.write("                                    \r\n");
       out.write("                                </thead>\r\n");
       out.write("                                <tbody>\r\n");
       out.write("\r\n");
@@ -323,7 +313,7 @@ if(key.equals("2")){
       out.write("                                            <a class=\"btn btn-danger btn-xs disabled\"  href=\"#\" data-toggle=\"modal\" data-target=\"#delete-modal\">X</a>\r\n");
       out.write("                                        </td>\r\n");
       out.write("                                    </tr>\r\n");
-      out.write("\r\n");
+      out.write("                                    \r\n");
       out.write("                                </tbody>\r\n");
       out.write("                            </table>\r\n");
       out.write("\r\n");
@@ -345,18 +335,16 @@ if(key.equals("2")){
       out.write("                </div>\r\n");
       out.write("            </div>\r\n");
       out.write("        </div>\r\n");
+      out.write("\r\n");
+      out.write("        <script src=\"https://code.jquery.com/jquery-3.2.1.slim.min.js\"\r\n");
+      out.write("                integrity=\"sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN\"\r\n");
+      out.write("        crossorigin=\"anonymous\"></script>\r\n");
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\"\r\n");
       out.write("                integrity=\"sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q\"\r\n");
       out.write("        crossorigin=\"anonymous\"></script>\r\n");
       out.write("        <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js\"\r\n");
       out.write("                integrity=\"sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl\"\r\n");
       out.write("        crossorigin=\"anonymous\"></script>\r\n");
-      out.write("\r\n");
-      out.write("        <script>\r\n");
-      out.write("            jQuery(function () {\r\n");
-      out.write("                $(\"#auto\").autocomplete(\"List.jsp\");\r\n");
-      out.write("            });\r\n");
-      out.write("        </script>\r\n");
       out.write("    </body>\r\n");
       out.write("\r\n");
       out.write("</html>");

@@ -75,10 +75,15 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
                 user.setUsuario(usuario);
                 user.setSenha(senha);
 
-                String resp = new UsuarioDAO().consulta(user);
+                String resp = new UsuarioDAO().logar(user);
+                String key ="";
                 if (resp.equalsIgnoreCase("conectado")) {
+                    
+                    key = new UsuarioDAO().getKey(user);
+                    
                     session.setAttribute("usuario", usuario);
                     session.setAttribute("senha", senha);
+                    session.setAttribute("key", key);
                     response.sendRedirect("index.jsp");
                 } else if(resp.equalsIgnoreCase("nconectado")){
                     out.println("Usuario não encontrado!");
