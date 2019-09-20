@@ -3,26 +3,34 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="Classes.Connectta"%>
+<%@page import="Classes.Produto"%>
 
 <%!
     private Connection conn;
     Connectta c = new Connectta();
-    public ResultSet buscartexto(String produto) {
-                        try {
-                            conn = c.conectar();
-                            PreparedStatement ps = conn.prepareStatement("select * from produto where produto like ?");
-                            ps.setString(1, "%" + produto + "%");
-                            ResultSet rs;
-                            rs = ps.executeQuery();
-                            return rs;
-                            
-                        } catch (Exception e) {
-                            return null;
-                        }
-    }
-    
-     public String inserir(int codigo, String produto, double preco, String status,int id_categoria) {
+
+    public Produto buscartexto(String produto) {
         
+        Produto p = new Produto();
+        try {
+            conn = c.conectar();
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM produto WHERE nome_prod like ?");
+            ps.setString(1, "%" + produto + "%");
+            ResultSet rs;
+            rs = ps.executeQuery();
+            if (rs.first()) {
+                p.setCod_prod(rs.getString("cod_prod"));
+                p.setNome_prod(rs.getString("nome_prod"));
+            }
+            return p;
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public String inserir(int codigo, String produto, double preco, String status, int id_categoria) {
+
         try {
             conn = c.conectar();
             String inserir = "INSERT INTO produto (codigo, produto, preco, status,id_categoria) VALUES (?, ?, ?, ?,?)";
@@ -36,7 +44,7 @@
             ps.executeUpdate();
             return "true";
         } catch (SQLException e) {
-          return "false";
+            return "false";
         }
 
     }

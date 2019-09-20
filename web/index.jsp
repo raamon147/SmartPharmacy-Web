@@ -1,4 +1,4 @@
-﻿<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -8,42 +8,26 @@
 <%@page import="Classes.Connectta"%>
 <%@include file="menu.jsp" %>
 <%@include file="funcoes.jsp"%>
-<%@ page session="true" %>
 <!doctype html>
 <html>
     <body>
-        <link rel="stylesheet" href="JS/jquery-ui.css" />
-        <script src="JS/jquery-3.4.1.min.js"></script>
-        <script src="JS/jquery-1.9.1.js"></script>
-        <script src="JS/jquery-ui.js"></script>
-        <%
-            String usuario = (String) session.getAttribute("usuario");
-            if (usuario == null) {
-                response.sendRedirect("login.jsp");
-            } else {
-            }
-        %>
-        <script language="javascript" type="text/javascript">
-            $(document).ready(function(){
-                $("#auto").autocomplete("get.jsp", {
-				   width:auto,
-				   selectFirst: false
-                });
-            });
-        </script>  
-        <br/>
+<%
+String usuario = (String)session.getAttribute("usuario");
+if(usuario == null){
+    response.sendRedirect("login.jsp");
+}
+%>
+<br/>
 
-        <form method="post" action="buscaritem.jsp">
-            <div class="input-group md-form form-sm form-2 pl-0">
-                <input id="auto" name="auto"  class="form-control" type="text" placeholder="Digite o nome do produto"
-                       aria-label="Search" name="item">
-                <div id="country"></div>
-                <div class="input-group-append">
-                    <input type="submit" class="btn btn-primary" id="btnBuscarProd" value="Buscar">
-                </div>
+<form method="post" action="buscaritem.jsp">
+        <div class="input-group md-form form-sm form-2 pl-0">
+            <input class="form-control my-0 py-1 red-border" type="text" placeholder="Digite o nome do produto"
+                   aria-label="Search" name="item">
+            <div class="input-group-append">
+                <input type="submit" class="btn btn-primary" id="btnBuscarProd" value="Buscar">
             </div>
-            <br><br>
-        </form>
+        </div>
+    </form>
         <div id="list" class="row">
 
             <div class="table-responsive col-md-12">
@@ -60,26 +44,23 @@
                     </thead>
                     <tbody>
                         <%
-                            /*  String produto = request.getParameter("resp");
-                             ResultSet rs = buscartexto(produto);
-                             if(rs.wasNull()){
-                             out.println("nulo");
-                             } else {
-                             while (rs.next()) {
-                             out.print("<tr>");
-                             out.print("<td>"+rs.getString("codigo")+"</td>");
-                             out.print("<td>"+rs.getString("produto")+"</td>");
-                             out.print("<td>"+rs.getString("preco")+"</td>");
-                             out.print("<td>"+rs.getString("status")+"</td>");
-                             out.print("<td>"+rs.getString("id_categoria")+"</td>");
-                             out.print("<td class='actions'>");
-                             out.print("<a class='btn btn-success btn-xs disabled' p-3 href='view.jsp'>Adicionar no Carrinho</a> ");
-                             out.print("<a class='btn btn-warning btn-xs disabled' href='edit.jsp'>Editar</a> ");
-                             out.print("<a class='btn btn-danger btn-xs disabled'  href='#' data-toggle='modal' data-target='delete-modal'>Excluir</a> ");
-                             out.print("</td>");
-                             out.print("</tr>");
-                             }
-                             } */
+                        String produto = request.getParameter("resp");
+                        if(produto != null){
+                            Produto p =  buscartexto(produto);
+                       
+                                out.print("<tr>");
+                                out.print("<td>"+p.getCod_prod()+"</td>");
+                                out.print("<td>"+p.getNome_prod()+"</td>");
+                                //out.print("<td>"+rs.getString("qtd_prod")+"</td>");
+                                //out.print("<td>"+rs.getString("preco_prod")+"</td>");
+                                //out.print("<td>"+rs.getString("dos_prod")+"</td>");
+                                out.print("<td class='actions'>");
+                                out.print("<a class='btn btn-success btn-xs disabled' p-3 href='view.jsp'>Adicionar no Carrinho</a> ");
+                                out.print("<a class='btn btn-warning btn-xs disabled' href='edit.jsp'>Editar</a> ");
+                                out.print("<a class='btn btn-danger btn-xs disabled'  href='#' data-toggle='modal' data-target='delete-modal'>Excluir</a> ");
+                                out.print("</td>");
+                                out.print("</tr>");
+                        }
                         %>
                     </tbody>
                 </table>
@@ -107,7 +88,7 @@
                                         <th>Preço</th>
                                         <th class="actions"></th>
                                     </tr>
-
+                                    
                                 </thead>
                                 <tbody>
 
@@ -121,7 +102,7 @@
                                             <a class="btn btn-danger btn-xs disabled"  href="#" data-toggle="modal" data-target="#delete-modal">X</a>
                                         </td>
                                     </tr>
-
+                                    
                                 </tbody>
                             </table>
 
@@ -143,18 +124,16 @@
                 </div>
             </div>
         </div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
                 integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
                 integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-
-        <script>
-            jQuery(function () {
-                $("#auto").autocomplete("List.jsp");
-            });
-        </script>
     </body>
 
 </html>
