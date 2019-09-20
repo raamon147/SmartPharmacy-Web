@@ -9,8 +9,9 @@
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <title>SmartPharmacy</title>
 
-    <body><br/>
-        <h2>Nova Aplicação</h2><br/>
+    <body>
+        <div style="margin: 40px;padding: 10px; background-color: #f8f9fa;border-radius: 10px;">
+            <h2 style="color: red"><b>Nova </b>Aplicação</h2><br/>
         <form>
             <div class="form-row">
 

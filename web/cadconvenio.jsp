@@ -12,19 +12,26 @@
 
     </head>
     <body><br/>
+        <%
+         key = (String) session.getAttribute("key");
+                  
+                
+                if(key.equals("2")){
+        response.sendRedirect("index.jsp");
+        }%>
         <div style="margin: 40px;padding: 10px; background-color: #f8f9fa;border-radius: 10px;">
-            <h2 style="color: red"><b>Adicionar</b> Convênios<h2><br/>
+            <h2 style="color: red"><b>Adicionar</b> Convênios</h2><br/>
                     <form method="post" action="cadConv.jsp">
                         <div class="form-row">
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-5">
                                 <label for="inputConv">Nome Convênio</label>
                                 <input type="text" class="form-control" id="inputConv" name="nomeConv">
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="inputConv">Numero Convênio</label>
+                                <label for="inputConv">Prefixo Convênio</label>
                                 <input type="text" class="form-control" id="inputConv" name="numConv">
                             </div>
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-2">
                                 <label for="inputPorc">Desconto Medicamentos</label>
                                 <select id="inputPorc" class="form-control" name="descMed">
                                     <option selected>10</option>
@@ -32,7 +39,7 @@
                                     <option>50</option>
                                 </select>
                             </div>
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-2">
                                 <label for="inputPorc">Desconto Perfumaria</label>
                                 <select id="inputPorc" class="form-control" name="descPerf">
                                     <option selected>5</option>

@@ -12,7 +12,6 @@
 <html>
     <body>
 <%
-
 String usuario = (String)session.getAttribute("usuario");
 if(usuario == null){
     response.sendRedirect("login.jsp");
@@ -37,8 +36,9 @@ if(usuario == null){
                         <tr>
                             <th>Codigo</th>
                             <th>Produto</th>
-                            <th>Categoria</th>
-                            <th>Status</th>
+                            <th>Principio Ativo</th>
+                            <th>Dosagem</th>
+                            <th>Fabricante</th>
                             <th>Preço</th>
                             <th class="actions">Ações</th>
                         </tr>
@@ -53,13 +53,12 @@ if(usuario == null){
                                 out.print("<tr>");
                                 out.print("<td>"+rs.getString("cod_prod")+"</td>");
                                 out.print("<td>"+rs.getString("nome_prod")+"</td>");
-                                //out.print("<td>"+rs.getString("qtd_prod")+"</td>");
-                                //out.print("<td>"+rs.getString("preco_prod")+"</td>");
-                                //out.print("<td>"+rs.getString("dos_prod")+"</td>");
+                                out.print("<td>"+rs.getString("pr_ativo")+"</td>");
+                                out.print("<td>"+rs.getString("dos_prod")+"</td>");
+                                out.print("<td>"+rs.getString("fabr_prod")+"</td>");
+                                out.print("<td>R$ "+rs.getString("preco_prod")+"</td>");
                                 out.print("<td class='actions'>");
                                 out.print("<a class='btn btn-success btn-xs disabled' p-3 href='view.jsp'>Adicionar no Carrinho</a> ");
-                                out.print("<a class='btn btn-warning btn-xs disabled' href='edit.jsp'>Editar</a> ");
-                                out.print("<a class='btn btn-danger btn-xs disabled'  href='#' data-toggle='modal' data-target='delete-modal'>Excluir</a> ");
                                 out.print("</td>");
                                 out.print("</tr>");
                         }}

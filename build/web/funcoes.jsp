@@ -23,24 +23,5 @@
         }
     }
 
-    public String inserir(int codigo, String produto, double preco, String status, int id_categoria) {
-
-        try {
-            conn = c.conectar();
-            String inserir = "INSERT INTO produto (codigo, produto, preco, status,id_categoria) VALUES (?, ?, ?, ?,?)";
-            PreparedStatement ps = conn.prepareStatement(inserir);
-            conn.prepareStatement(inserir);
-            ps.setInt(1, codigo);
-            ps.setString(2, produto);
-            ps.setDouble(3, preco);
-            ps.setString(4, status);
-            ps.setInt(5, id_categoria);
-            ps.executeUpdate();
-            return "true";
-        } catch (SQLException e) {
-            return "false";
-        }
-
-    }
 
 %>
