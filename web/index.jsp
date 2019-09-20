@@ -11,23 +11,23 @@
 <!doctype html>
 <html>
     <body>
-<%
-String usuario = (String)session.getAttribute("usuario");
-if(usuario == null){
-    response.sendRedirect("login.jsp");
-}
-%>
-<br/>
+        <%
+            String usuario = (String) session.getAttribute("usuario");
+            if (usuario == null) {
+                response.sendRedirect("login.jsp");
+            }
+        %>
+        <br/>
 
-<form method="post" action="buscaritem.jsp">
-        <div class="input-group md-form form-sm form-2 pl-0">
-            <input class="form-control my-0 py-1 red-border" type="text" placeholder="Digite o nome do produto"
-                   aria-label="Search" name="item">
-            <div class="input-group-append">
-                <input type="submit" class="btn btn-primary" id="btnBuscarProd" value="Buscar">
+        <form method="post" action="buscaritem.jsp">
+            <div class="input-group md-form form-sm form-2 pl-0">
+                <input class="form-control my-0 py-1 red-border" type="text" placeholder="Digite o nome do produto"
+                       aria-label="Search" name="item">
+                <div class="input-group-append">
+                    <input type="submit" class="btn btn-primary" id="btnBuscarProd" value="Buscar">
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
         <div id="list" class="row">
 
             <div class="table-responsive col-md-12">
@@ -45,23 +45,24 @@ if(usuario == null){
                     </thead>
                     <tbody>
                         <%
-                        String produto = request.getParameter("resp");
-                        if(produto != null){
-                        ResultSet rs = buscartexto(produto);
-                             while (rs.next()) {
-                            
-                                out.print("<tr>");
-                                out.print("<td>"+rs.getString("cod_prod")+"</td>");
-                                out.print("<td>"+rs.getString("nome_prod")+"</td>");
-                                out.print("<td>"+rs.getString("pr_ativo")+"</td>");
-                                out.print("<td>"+rs.getString("dos_prod")+"</td>");
-                                out.print("<td>"+rs.getString("fabr_prod")+"</td>");
-                                out.print("<td>R$ "+rs.getString("preco_prod")+"</td>");
-                                out.print("<td class='actions'>");
-                                out.print("<a class='btn btn-success btn-xs disabled' p-3 href='view.jsp'>Adicionar no Carrinho</a> ");
-                                out.print("</td>");
-                                out.print("</tr>");
-                        }}
+                            String produto = request.getParameter("resp");
+                            if (produto != null) {
+                                ResultSet rs = buscartexto(produto);
+                                while (rs.next()) {
+
+                                    out.print("<tr>");
+                                    out.print("<td>" + rs.getString("cod_prod") + "</td>");
+                                    out.print("<td>" + rs.getString("nome_prod") + "</td>");
+                                    out.print("<td>" + rs.getString("pr_ativo") + "</td>");
+                                    out.print("<td>" + rs.getString("dos_prod") + "</td>");
+                                    out.print("<td>" + rs.getString("fabr_prod") + "</td>");
+                                    out.print("<td>R$ " + rs.getString("preco_prod") + "</td>");
+                                    out.print("<td class='actions'>");
+                                    out.print("<a class='btn btn-success btn-xs disabled' p-3 href='view.jsp'>Adicionar no Carrinho</a> ");
+                                    out.print("</td>");
+                                    out.print("</tr>");
+                                }
+                            }
                         %>
                     </tbody>
                 </table>
@@ -89,7 +90,7 @@ if(usuario == null){
                                         <th>Preço</th>
                                         <th class="actions"></th>
                                     </tr>
-                                    
+
                                 </thead>
                                 <tbody>
 
@@ -103,7 +104,7 @@ if(usuario == null){
                                             <a class="btn btn-danger btn-xs disabled"  href="#" data-toggle="modal" data-target="#delete-modal">X</a>
                                         </td>
                                     </tr>
-                                    
+
                                 </tbody>
                             </table>
 
