@@ -8,6 +8,7 @@
 <%@page import="Classes.Connectta"%>
 <%@include file="menu.jsp"%>
 <%@include file="funcoes.jsp"%>
+<%@page import="DAO.CarrinhoDAO"%>
 <!doctype html>
 <html>
     <body>
@@ -28,6 +29,7 @@
                 </div>
             </div>
         </form>
+        <form method="post" action="addcarrinho.jsp">
         <div id="list" class="row">
 
             <div class="table-responsive col-md-12">
@@ -58,7 +60,7 @@
                                     out.print("<td>" + rs.getString("fabr_prod") + "</td>");
                                     out.print("<td>R$ " + rs.getString("preco_prod") + "</td>");
                                     out.print("<td class='actions'>");
-                                    out.print("<a class='btn btn-success btn-xs disabled' p-3 href='view.jsp'>Adicionar no Carrinho</a> ");
+                                    out.print("<button type='submit' class='btn btn-success btn-md' p-3 name='cod' value='" + rs.getString("cod_prod")+ "'>Adicionar ao carrinho</button>");
                                     out.print("</td>");
                                     out.print("</tr>");
                                 }
@@ -69,63 +71,10 @@
 
             </div>
         </div>
+</form>
 
+        <a class="btn btn-primary" href="carrinho.jsp" role="button">Abrir Carrinho</a>
 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".carrinho">Abrir Carrinho</button>
-
-        <div class="modal fade carrinho" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <h1 style="text-align: center; padding: 2px;">Carrinho de compras</h1>
-                    <div id="list" class="row">
-
-                        <div class="table-responsive col-md-12">
-                            <table class="table table-striped" cellspacing="0" cellpadding="0">
-                                <thead>
-                                    <tr>
-                                        <th>Codigo</th>
-                                        <th>Produto</th>
-                                        <th>Categoria</th>
-                                        <th>Quantidade</th>
-                                        <th>Preço</th>
-                                        <th class="actions"></th>
-                                    </tr>
-
-                                </thead>
-                                <tbody>
-
-                                    <tr>
-                                        <td>1001</td>
-                                        <td>Dipirona Gotas</td>
-                                        <td>Medicamento</td>
-                                        <td><input type="text" class="md-form" size="1" name="qtd" value="1"></td>
-                                        <td>R$ 5,99</td>
-                                        <td class="actions">
-                                            <a class="btn btn-danger btn-xs disabled"  href="#" data-toggle="modal" data-target="#delete-modal">X</a>
-                                        </td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <h1 class="display-4 float-right col-md-5"><div>Total: R$: 5,99 </div></h1><br/>
-                            <div class="p-1 float-right"> <a class="btn btn-success disabled m-1" href="carrinho.jsp">Finalizar Compra</a>
-                                <a class="btn btn-warning float-right m-1" href="index.jsp">Voltar</a></div>
-
-                            <div class="float-right col-md m-1" style="width: 300px; height: 200px;">
-                                <h3 style="text-align: center">Desconto Convenio</h3><br>
-                                <label for="numConv">Numero</label>
-                                <input type="text" class="form-control" id="numConv">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
                 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

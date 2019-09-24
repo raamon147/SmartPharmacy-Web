@@ -49,3 +49,11 @@ CREATE TABLE `produto` (
   PRIMARY KEY (`idproduto`),
   UNIQUE KEY `cod_prod_UNIQUE` (`cod_prod`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `carrinhocompras` (
+  `codprod` int(11) NOT NULL,
+  `prod` varchar(45) NOT NULL,
+  `qtd` int(11) NOT NULL,
+  `valor` double NOT NULL,
+  PRIMARY KEY (`codprod`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
