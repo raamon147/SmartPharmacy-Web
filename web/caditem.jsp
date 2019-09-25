@@ -13,12 +13,9 @@
     </head>
     <body><br/>
         <%
-      
-                  
-                
-                if(session.getAttribute("key").equals("2")){
-        response.sendRedirect("index.jsp");
-        }%>
+            if (session.getAttribute("key").equals("2")) {
+                response.sendRedirect("index.jsp");
+            }%>
         <div style="margin: 40px;padding: 10px; padding-left: 30px; background-color: #f8f9fa;border-radius: 10px;">    
             <h2 style="color: red"><b>Cadastrar</b> Produtos</h2>
             <br/>
@@ -57,14 +54,14 @@
                         <input type="search" class="form-control" id="inputDosagem" name="cadDos" required>
                     </div>
                 </div>
-                <% 
-                if(request.getParameter("status").equals("ok")){
-                out.println("<div class='alert alert-success' role='alert'> Cadastrado com sucesso</div>");
-                }else if(request.getParameter("status").equals("none")){
-                out.println("<div class='alert alert-danger' role='alert'> Erro ao Cadastrar</div>");
-                }else if(request.getParameter("status").equals("exist")){
-                    out.println("<div class='alert alert-danger' role='alert'>Já existe um registro com esse codigo</div>");
-                }
+                <%
+                    if (request.getParameter("status").equals("ok")) {
+                        out.println("<div class='alert alert-success' role='alert'> Cadastrado com sucesso</div>");
+                    } else if (request.getParameter("status").equals("none")) {
+                        out.println("<div class='alert alert-danger' role='alert'> Erro ao Cadastrar</div>");
+                    } else if (request.getParameter("status").equals("exist")) {
+                        out.println("<div class='alert alert-danger' role='alert'>Já existe um registro com esse codigo</div>");
+                    }
                 %>
                 <button type="submit" class="btn btn-primary" id="btnCadProd">Cadastrar</button>
             </form>

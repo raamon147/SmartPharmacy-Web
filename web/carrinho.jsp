@@ -1,3 +1,5 @@
+<%@page import="Classes.Conexao"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.SQLException"%>
@@ -29,25 +31,53 @@
                                 <th>Produto</th>
                                 <th>Quantidade</th>
                                 <th>Preço</th>
+                                <th>Total</th>
                                 <th class="actions"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <%          CarrinhoDAO ca = new CarrinhoDAO();
+                            <%
+                                Connection con = Conexao.getConexao();
+                                PreparedStatement ps = null;
+                                String sql = "";
+                                ArrayList cart = (ArrayList) session.getAttribute("cart");
 
-                                ResultSet rs = ca.carrinholista();
-                                while (rs.next()) {
+                                ArrayList<Produto> lista = new ArrayList<Produto>();
+                                ArrayList<Float> listaTotal = new ArrayList<Float>();
+                                for (int i = 0; i < cart.size(); i++) {
+                                    sql = "SELECT * FROM produto WHERE cod_prod = ?";
+                                    ps = con.prepareStatement(sql);
+                                    ps.setString(1, String.valueOf(cart.get(i)));
+
+                                    ResultSet r = ps.executeQuery();
+                                    Produto prod = new Produto();
+
+                                    if (r.first()) {
+                                        prod.setCod_prod(r.getString("cod_prod"));
+                                        prod.setNome_prod(r.getString("nome_prod"));
+                                        prod.setQtd_prod(1);
+                                        prod.setPreco_prod(r.getFloat("preco_prod"));
+
+                                    }
+
+                                    lista.add(lista.size(), prod);
+                                    listaTotal.add(listaTotal.size(), prod.getPreco_prod());
+
+                                }
+                                for (Produto p : lista) {
                                     out.print("<tr>");
-                                    out.print("<td>" + rs.getInt("codprod") + "</td>");
-                                    out.print("<td>" + rs.getString("prod") + "</td>");
-                                    out.print("<td><input type='text' value = " + rs.getInt("qtd") + " size = '2'></td>");
-                                    out.print("<td>" + rs.getDouble("valor") + "</td>");
+                                    out.print("<td>" + p.getCod_prod() + "</td>");
+                                    out.print("<td>" + p.getNome_prod() + "</td>");
+                                    out.print("<td><input type='text' value = " + p.getQtd_prod() + " size = '2'></td>");
+                                    out.print("<td>" + p.getPreco_prod() + "</td>");
+                                    out.print("<td>" + (p.getPreco_prod()*p.getQtd_prod()) + "</td>");
                                     out.print("<td class='actions'>");
-                                    out.print("<button type='submit' class='btn btn-danger btn-md' p-3 name='cod' value='" + rs.getString("codprod") + "'>X</button>");
+                                    out.print("<button type='submit' class='btn btn-danger btn-md' p-3 name='cod' value='" + p.getCod_prod() + "'>Remover</button>");
+                                    out.print("&nbsp;&nbsp;&nbsp;");
+                                    out.print("<button type='submit' class='btn btn-warning btn-md' p-3 name='cod' value='" + p.getCod_prod() + "'>Alterar</button>");
                                     out.print("</td>");
                                     out.print("</tr>");
                                 }
-
                             %>
                         </tbody>
                     </table>
@@ -56,17 +86,22 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <%                                 rs = ca.valortotal();
-
-                        while (rs.next()) {
-                            if (rs.getString("total") != null) {
-                                out.println("<h1 class='display-4 float-right col-md-5'><div>Total: R$:" + rs.getString("total") + ",00</h1> </div>");
-                            } else {
-                                out.println("<h1 class='display-4 float-right col-md-5'><div>Total: R$: 0,00</h1> </div>");
+                    <%
+                        try {
+                            float total = 0;
+                            for (int i = 0; i < listaTotal.size(); i++) {
+                                total += listaTotal.get(i);
                             }
+                            if (total != 0) {
+                                out.println("<h1 class='display-4 float-right col-md-5'><div>Total: R$" + String.format("%.2f",total)+ "</h1> </div>");
+                            } else {
+                                out.println("<h1 class='display-4 float-right col-md-5'><div>Total: R$ 0,00</h1> </div>");
+                            }
+                        } catch (Exception e) {
+                            out.println("<h1 class='display-4 float-right col-md-5'><div>"+e.toString()+"</h1> </div>");
                         }
-
                     %> 
+
                     <div class="p-1 float-right"> <a class="btn btn-success disabled m-1" href="carrinho.jsp">Finalizar Compra</a>
                         <a class="btn btn-warning float-right m-1" href="index.jsp">Voltar</a></div>
 

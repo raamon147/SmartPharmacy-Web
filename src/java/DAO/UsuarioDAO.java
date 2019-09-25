@@ -34,7 +34,7 @@ public class UsuarioDAO {
             }
             
         }catch(Exception e){
-            ext = "Erro ao logar "+e.toString();
+            ext = "Erro ao logar "+e.getMessage();
         }
         
         return ext;

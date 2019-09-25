@@ -12,6 +12,7 @@ import Classes.Connectta;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -64,16 +65,16 @@ public class CarrinhoDAO {
             PreparedStatement ps = con.prepareStatement(sql);
             ps = con.prepareStatement(sql);
             ps.setInt(1, produto.getCodprod());
-            
-                ps.setInt(1, produto.getCodprod());
-                
-                ps.execute();
 
-                ps.close();
-                con.close();
+            ps.setInt(1, produto.getCodprod());
 
-                res = "ok";
-            
+            ps.execute();
+
+            ps.close();
+            con.close();
+
+            res = "ok";
+
         } catch (Exception e) {
             res = "Erro ao cadastrar produto: \n" + e.toString();
         }
@@ -116,7 +117,8 @@ public class CarrinhoDAO {
             return null;
         }
     }
-        public ResultSet valortotal() {
+
+    public ResultSet valortotal() {
         try {
             conne = cone.conectar();
             PreparedStatement ps = conne.prepareStatement("SELECT SUM(valor) AS total FROM carrinhocompras");
@@ -128,5 +130,4 @@ public class CarrinhoDAO {
             return null;
         }
     }
-    
 }

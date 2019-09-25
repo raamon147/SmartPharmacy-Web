@@ -1,3 +1,6 @@
+<%@page import="java.lang.String"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.SQLException"%>
@@ -8,6 +11,7 @@
 <%@page import="Classes.Connectta"%>
 <%@include file="menu.jsp"%>
 <%@include file="funcoes.jsp"%>
+<%@page session="true" %>
 <%@page import="DAO.CarrinhoDAO"%>
 <!doctype html>
 <html>
@@ -16,6 +20,11 @@
             String usuario = (String) session.getAttribute("usuario");
             if (usuario == null) {
                 response.sendRedirect("login.jsp");
+            }
+            ArrayList<String> cart = (ArrayList) session.getAttribute("cart");
+            if (cart == null) {
+                cart = new ArrayList<String>();
+                session.setAttribute("cart", cart);
             }
         %>
         <br/>
@@ -29,49 +38,62 @@
                 </div>
             </div>
         </form>
-        <form method="post" action="addcarrinho.jsp">
-        <div id="list" class="row">
+        <form method="post" action="addtocart.jsp">
+            <div id="list" class="row">
 
-            <div class="table-responsive col-md-12">
-                <table class="table table-striped" cellspacing="0" cellpadding="0">
-                    <thead>
-                        <tr>
-                            <th>Codigo</th>
-                            <th>Produto</th>
-                            <th>Principio Ativo</th>
-                            <th>Dosagem</th>
-                            <th>Fabricante</th>
-                            <th>Preço</th>
-                            <th class="actions">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <%
-                            String produto = request.getParameter("resp");
-                            if (produto != null) {
-                                ResultSet rs = buscartexto(produto);
-                                while (rs.next()) {
+                <div class="table-responsive col-md-12">
+                    <table class="table table-striped" cellspacing="0" cellpadding="0">
+                        <thead>
+                            <tr>
+                                <th>Codigo</th>
+                                <th>Produto</th>
+                                <th>Principio Ativo</th>
+                                <th>Dosagem</th>
+                                <th>Fabricante</th>
+                                <th>Preço</th>
+                                <th class="actions">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+                                String produto = request.getParameter("resp");
+                                if (produto != null) {
+                                    ResultSet rs = buscartexto(produto);
+                                    while (rs.next()) {
 
-                                    out.print("<tr>");
-                                    out.print("<td>" + rs.getString("cod_prod") + "</td>");
-                                    out.print("<td>" + rs.getString("nome_prod") + "</td>");
-                                    out.print("<td>" + rs.getString("pr_ativo") + "</td>");
-                                    out.print("<td>" + rs.getString("dos_prod") + "</td>");
-                                    out.print("<td>" + rs.getString("fabr_prod") + "</td>");
-                                    out.print("<td>R$ " + rs.getString("preco_prod") + "</td>");
-                                    out.print("<td class='actions'>");
-                                    out.print("<button type='submit' class='btn btn-success btn-md' p-3 name='cod' value='" + rs.getString("cod_prod")+ "'>Adicionar ao carrinho</button>");
-                                    out.print("</td>");
-                                    out.print("</tr>");
+                                        out.print("<tr>");
+                                        out.print("<td>" + rs.getString("cod_prod") + "</td>");
+                                        out.print("<td>" + rs.getString("nome_prod") + "</td>");
+                                        out.print("<td>" + rs.getString("pr_ativo") + "</td>");
+                                        out.print("<td>" + rs.getString("dos_prod") + "</td>");
+                                        out.print("<td>" + rs.getString("fabr_prod") + "</td>");
+                                        out.print("<td>R$ " + rs.getString("preco_prod") + "</td>");
+                                        out.print("<td class='actions'>");
+                                        out.print("<button type='submit' class='btn btn-success btn-md' p-3 name='cod' value='" + rs.getString("cod_prod") + "'>Adicionar ao carrinho</button>");
+                                        out.print("</td>");
+                                        out.print("</tr>");
+                                    }
                                 }
+                            %>
+                        </tbody>
+                    </table>
+                    <%
+                        String res = request.getParameter("cart");
+                        
+                        if (res != null) {
+                            if (res.equalsIgnoreCase("ok")) {
+                                out.println("<div class='alert alert-success' role='alert'>Produto Adicionado ao Carrinho</div>");
+                            } else if (res.equalsIgnoreCase("fail")) {
+                                out.println("<div class='alert alert-danger' role='alert'> Erro ao Adicionar</div>");
+                            } else if (res.equalsIgnoreCase("exist")) {
+                                out.println("<div class='alert alert-danger' role='alert'>Esse Produto ja esta no carrinho</div>");
+                            } else {
                             }
-                        %>
-                    </tbody>
-                </table>
-
+                        }
+                    %>
+                </div>
             </div>
-        </div>
-</form>
+        </form>
 
         <a class="btn btn-primary" href="carrinho.jsp" role="button">Abrir Carrinho</a>
 

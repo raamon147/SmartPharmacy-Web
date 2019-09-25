@@ -1,6 +1,7 @@
 <%@page import="DAO.UsuarioDAO"%>
 <%@page import="Classes.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="true" %>
 <!DOCTYPE html>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href="login.css" rel="stylesheet">
@@ -20,7 +21,8 @@
             <input type="password" id="password" class="fadeIn third" name="senha" placeholder="Senha">
             <input type="submit" class="fadeIn fourth" value="Acessar" name="btnlogin">
 
-        </form>
+        </form>                    
+
         <%
             String usuario = request.getParameter("login");
             String senha = request.getParameter("senha");
@@ -34,7 +36,6 @@
                 if (resp.equalsIgnoreCase("conectado")) {
                     
                     key = new UsuarioDAO().getKey(user);
-                    
                     session.setAttribute("usuario", usuario);
                     session.setAttribute("senha", senha);
                     session.setAttribute("key", key);
