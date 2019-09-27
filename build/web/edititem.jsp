@@ -10,6 +10,8 @@
 <%@page import="Classes.Connectta"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="menu.jsp" %>
+
+
 ﻿<!doctype html>
 <html>
     <head>
@@ -98,19 +100,21 @@
         </div>
         <div style="margin: 40px;padding: 10px; background-color: #f8f9fa;border-radius: 10px;">
             <h2 style="color: red"><b>Editar </b>  Produtos</h2>
-            <%                key = (String) session.getAttribute("key");
+            <%  key = (String) session.getAttribute("key");
                 Produto prod = new Produto();
                 String cod = (String) request.getParameter("cod");
                 if (cod != null) {
                     prod = new ProdutoDAO().consultaProd(cod);
-                } else {
-                    //out.println("vazio");
                 }
 
                 String res = (String) request.getParameter("res");
+                String resp = (String) request.getParameter("resp");
                 if (res != null && res.equals("ok")) {
                     out.print("<script>alert(\"Deletado com sucesso\");</script>");
 
+                }
+                if(resp != null && resp.equals("ok")){
+                    out.println();
                 }
             %>
             <%if (key.equals("1")) {%>
@@ -150,8 +154,8 @@
                 </div>
                 <input type="hidden" name="func" value="" id="func">
 
-                <button type="submit" class="btn btn-primary" name="alt" id="alt">Alterar</button>
-                <button type="submit" class="btn btn-primary" name="exc" id="exc" >Excluir</button>
+                <button type="submit" class="btn btn-primary" name="func" value="alterar">Alterar</button>
+                <button type="submit" class="btn btn-primary" name="func" value="excluir" >Excluir</button>
             </form>
             <%} else {%>
             <form method="POST" action="altFun.jsp">

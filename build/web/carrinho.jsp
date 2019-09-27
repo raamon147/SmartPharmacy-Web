@@ -69,12 +69,12 @@
                                     out.print("<td>" + p.getCod_prod() + "</td>");
                                     out.print("<td>" + p.getNome_prod() + "</td>");
                                     out.print("<td><input type='text' value = " + p.getQtd_prod() + " size = '2'></td>");
-                                    out.print("<td>" + p.getPreco_prod() + "</td>");
-                                    out.print("<td>" + (p.getPreco_prod()*p.getQtd_prod()) + "</td>");
+                                    out.print("<td>" + String.format("%.2f",p.getPreco_prod()) + "</td>");
+                                    out.print("<td>" + String.format("%.2f",p.getPreco_prod()*p.getQtd_prod()) + "</td>");
                                     out.print("<td class='actions'>");
                                     out.print("<button type='submit' class='btn btn-danger btn-md' p-3 name='cod' value='" + p.getCod_prod() + "'>Remover</button>");
                                     out.print("&nbsp;&nbsp;&nbsp;");
-                                    out.print("<button type='submit' class='btn btn-warning btn-md' p-3 name='cod' value='" + p.getCod_prod() + "'>Alterar</button>");
+                                    //out.print("<button type='submit' class='btn btn-warning btn-md' p-3 name='cod' value='" + p.getCod_prod() + "'>Alterar</button>");
                                     out.print("</td>");
                                     out.print("</tr>");
                                 }
