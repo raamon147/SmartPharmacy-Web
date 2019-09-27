@@ -12,5 +12,5 @@
         prod.setQtd_prod(Integer.parseInt(qtd));
 
         res = new ProdutoDAO().alterarProdFun(prod);
-        response.sendRedirect("edititem.jsp?res=" + req);
+        response.sendRedirect("edititem.jsp?res=" + res);
 %>

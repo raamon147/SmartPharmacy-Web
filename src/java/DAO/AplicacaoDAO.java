@@ -1,7 +1,7 @@
 
 package DAO;
 
-import Classes.Connectta;
+import Classes.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -9,11 +9,10 @@ import java.sql.SQLException;
 
 public class AplicacaoDAO {
     
-        Connectta c = new Connectta();
       public String inserirAplicacao(String cpf, String nome, String nascimento,String endereco, String tipo,String medicamento,String data) {
 
         try {
-            Connection conn = c.conectar();
+            Connection conn = Conexao.getConexao();
             String inserir = "INSERT INTO aplicacao (cpf, nome, nascimento, endereco, tipo, medicamento, data) VALUES (?, ?, ?, ?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(inserir);
             conn.prepareStatement(inserir);

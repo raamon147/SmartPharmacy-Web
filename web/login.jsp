@@ -3,10 +3,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="true" %>
 <!DOCTYPE html>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<link href="login.css" rel="stylesheet">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="CSS/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="CSS/login.css" rel="stylesheet">
+<script src="JS/bootstrap.min.js"></script>
+<script src="JS/jquery.min.js"></script>
 
 
 <div class="wrapper fadeInDown">

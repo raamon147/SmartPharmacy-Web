@@ -8,7 +8,6 @@ package DAO;
 import Classes.Conexao;
 import Classes.ItemCarrinho;
 import Classes.Produto;
-import Classes.Connectta;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,114 +19,37 @@ import java.util.ArrayList;
  */
 public class CarrinhoDAO {
 
-    private Connection conne;
-    Connectta cone = new Connectta();
+    public ArrayList<Produto> getCart(ArrayList<String> cart, ArrayList<Integer> cartQtd) {
 
-    public String insereProduto(ItemCarrinho produto) {
-        String res = "";
+        String sql = "";
+        PreparedStatement ps = null;
 
         try {
             Connection con = Conexao.getConexao();
-            String cons = "SELECT * FROM produto where cod_prod = ?";
-            PreparedStatement ps = con.prepareStatement(cons);
-            ps.setInt(1, produto.getCodprod());
-            ResultSet rs = ps.executeQuery();
-            if (rs.first()) {
-                res = "exist";
-                String sql = "INSERT INTO carrinhocompras (codprod,prod,qtd,valor) VALUES (?,?,?,?)";
-
+            ArrayList<Produto> lista = new ArrayList<Produto>();
+            for (int i = 0; i < cart.size(); i++) {
+                sql = "Select * from produto WHERE cod_prod = ?";
                 ps = con.prepareStatement(sql);
-                ps.setInt(1, produto.getCodprod());
-                ps.setString(2, rs.getString("nome_prod"));
-                ps.setInt(3, 1);
-                ps.setDouble(4, rs.getDouble("preco_prod"));
+                ps.setString(1, String.valueOf(cart.get(i)));
 
-                ps.execute();
+                ResultSet rs = ps.executeQuery();
+                Produto prod = new Produto();
+                if (rs.first()) {
+                    prod.setCod_prod(rs.getString("cod_prod"));
+                    prod.setNome_prod(rs.getString("nome_prod"));
+                    prod.setQtd_prod(Integer.parseInt(cartQtd.get(i).toString()));
+                    prod.setPreco_prod(rs.getFloat("preco_prod"));
+                }
 
-                ps.close();
-                con.close();
+                lista.add(lista.size(), prod);
 
-                res = "ok";
             }
-        } catch (Exception e) {
-            res = "Erro ao cadastrar produto: \n" + e.toString();
-        }
-
-        return res;
-    }
-
-    public String deletaProduto(ItemCarrinho produto) {
-        String res = "";
-
-        try {
-            Connection con = Conexao.getConexao();
-            String sql = "DELETE FROM carrinhocompras WHERE codprod = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, produto.getCodprod());
-
-            ps.setInt(1, produto.getCodprod());
-
-            ps.execute();
-
-            ps.close();
-            con.close();
-
-            res = "ok";
-
-        } catch (Exception e) {
-            res = "Erro ao cadastrar produto: \n" + e.toString();
-        }
-
-        return res;
-    }
-
-    public ItemCarrinho consultaProd() {
-
-        ItemCarrinho item = new ItemCarrinho();
-
-        try {
-            Connection con = Conexao.getConexao();
-            String sql = "SELECT * FROM carrinhocompras";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                item.setCodprod(rs.getInt("codprod"));
-                item.setProd(rs.getString("prod"));
-                item.setQtd(rs.getInt("qtd"));
-                item.setValor(rs.getDouble("valor"));
-            }
+            return lista;
 
         } catch (Exception e) {
             e.printStackTrace();
-        }
-
-        return item;
-    }
-
-    public ResultSet carrinholista() {
-        try {
-            conne = cone.conectar();
-            PreparedStatement ps = conne.prepareStatement("SELECT * FROM carrinhocompras");
-            ResultSet rs;
-            rs = ps.executeQuery();
-            return rs;
-
-        } catch (Exception e) {
             return null;
         }
     }
 
-    public ResultSet valortotal() {
-        try {
-            conne = cone.conectar();
-            PreparedStatement ps = conne.prepareStatement("SELECT SUM(valor) AS total FROM carrinhocompras");
-            ResultSet rs;
-            rs = ps.executeQuery();
-            return rs;
-
-        } catch (Exception e) {
-            return null;
-        }
-    }
 }

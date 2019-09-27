@@ -1,9 +1,10 @@
 <%@page import="Classes.Produto"%>
 <%@page import="DAO.ProdutoDAO"%>
 <%
+    Produto prod = new Produto();
     String req = request.getParameter("func");
-    String res = ""; 
-    
+    String res = "";
+
     String cod = request.getParameter("cadCod");
     String nome = request.getParameter("cadNome");
     String qtd = request.getParameter("cadQtd");
@@ -11,8 +12,7 @@
     String dos = request.getParameter("cadDos");
     String fab = request.getParameter("cadFab");
     String prin = request.getParameter("cadPrin");
-    
-    Produto prod = new Produto();
+
     prod.setCod_prod(cod);
     prod.setNome_prod(nome);
     prod.setQtd_prod(Integer.parseInt(qtd));
@@ -20,13 +20,15 @@
     prod.setDos_prod(dos);
     prod.setFabr_prod(fab);
     prod.setPr_ativo(prin);
-    
-    if(req.equalsIgnoreCase("alterar")){
-        res = new ProdutoDAO().alterarProd(prod);
-        response.sendRedirect("edititem.jsp?res="+req);
-    } else if(req.equalsIgnoreCase("excluir")){
-        res = new ProdutoDAO().excluirProd(cod);
-        response.sendRedirect("edititem.jsp?res="+req);
+
+    if (req != null) {
+        if (req.equalsIgnoreCase("alterar")) {
+            res = new ProdutoDAO().alterarProd(prod);
+            response.sendRedirect("edititem.jsp?rest=" + res);
+        } else if (req.equalsIgnoreCase("excluir")) {
+            res = new ProdutoDAO().excluirProd(cod);
+            response.sendRedirect("edititem.jsp?rest=" + res);
+        }
     }
 
 %>

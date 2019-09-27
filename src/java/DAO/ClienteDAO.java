@@ -1,19 +1,17 @@
 
 package DAO;
 
+import Classes.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import Classes.Connectta;
 
 
 public class ClienteDAO {
-    
-    Connectta c = new Connectta();
       public String inserirCliente(String nome, String end, String dtnasc,String cpf, String tel) {
 
         try {
-            Connection conn = c.conectar();
+            Connection conn = Conexao.getConexao();
             String inserir = "INSERT INTO cliente (cpf, c_nome, c_end, c_tel, c_dtnasc) VALUES (?, ?, ?, ?,?)";
             PreparedStatement ps = conn.prepareStatement(inserir);
             conn.prepareStatement(inserir);

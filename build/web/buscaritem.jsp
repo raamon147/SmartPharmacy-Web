@@ -1,5 +1,4 @@
 <%@include file="funcoes.jsp"%>
-<%@page import="Classes.Connectta"%>
 <%
     
     String produto = request.getParameter("item");

@@ -81,17 +81,17 @@ public class ProdutoDAO {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, cod);
             
-            if(ps.execute()){
-                res = "ok";
-            } else {
-                res = "erro";
-            }
+            ps.execute();
+            
+            res = "ok";
+            
+            return res;             
             
         }catch(Exception e){
             res = e.toString();
+            return res;
         }
         
-        return res;
     }
     
     public String alterarProd(Produto prod){
@@ -108,12 +108,9 @@ public class ProdutoDAO {
             ps.setString(6, prod.getDos_prod());
             ps.setString(7, prod.getCod_prod());
             
-            if(ps.execute()){
-                res = "okalt";
-            } else {
-                res = "erro";
-            }
+            ps.execute();
             
+            res = "okalt";
             
             return res;
         }catch(Exception e){
@@ -131,12 +128,9 @@ public class ProdutoDAO {
             ps.setInt(1, prod.getQtd_prod());
             ps.setString(2, prod.getCod_prod());
             
-            if(ps.execute()){
-                res = "okalt";
-            } else {
-                res = "erro";
-            }
+            ps.execute();
             
+            res = "okalt";
             
             return res;
         }catch(Exception e){

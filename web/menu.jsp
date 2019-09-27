@@ -3,8 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="CSS/bootstrap.min.css">
         <title>SmartPharmacy</title>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="index.jsp"><strong><font COLOR="red">Smart</strong>Pharmacy</font></a>
@@ -27,7 +26,7 @@
                     </a>
                     
                     <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item disabled"  href="caditem.jsp?status">Adicionar Produtos</a>
+                        <a class="dropdown-item disabled"  href="caditem.jsp">Adicionar Produtos</a>
                         <a class="dropdown-item " href="edititem.jsp">Listar/Editar Produtos</a>
                         <a class="dropdown-item disabled"  href="cadconvenio.jsp">Cadastrar Convênios</a>
 
@@ -43,7 +42,7 @@
                     </a>
                     
                     <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item "  href="caditem.jsp?status">Adicionar Produtos</a>
+                        <a class="dropdown-item "  href="caditem.jsp">Adicionar Produtos</a>
                         <a class="dropdown-item " href="edititem.jsp">Listar/Editar Produtos</a>
                         <a class="dropdown-item "  href="cadconvenio.jsp">Cadastrar Convênios</a>
 
