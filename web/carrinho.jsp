@@ -1,3 +1,4 @@
+<%@page import="java.util.Random"%>
 <%@page import="Classes.Conexao"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -20,109 +21,213 @@
 
         <form method="post" action="removecarrinho.jsp">
             <h1 style="text-align: center; padding: 2px;">Carrinho de compras</h1>
-            <div id="list" class="row">
+            <div style="margin: 40px;padding: 10px; padding-left: 30px; background-color: #f8f9fa;border-radius: 10px;">
+                <div id="list" class="row">
 
-                <div class="table-responsive col-md-12">
-                    <table class="table table-striped" cellspacing="0" cellpadding="0">
-                        <thead>
-                            <tr>
-                                <th>Codigo</th>
-                                <th>Produto</th>
-                                <th>Quantidade</th>
-                                <th>Preço</th>
-                                <th>Total</th>
-                                <th class="actions"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%
-                                ArrayList<String> cart = (ArrayList) session.getAttribute("cart");
-                                ArrayList<Integer> cartQtd = (ArrayList) session.getAttribute("cartQtd");
+                    <div class="table-responsive col-md-12">
+                        <table class="table table-striped" cellspacing="0" cellpadding="0">
+                            <thead>
+                                <tr>
+                                    <th>Codigo</th>
+                                    <th>Produto</th>
+                                    <th>Quantidade</th>
+                                    <th>Preço</th>
+                                    <th>Total</th>
+                                    <th class="actions"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
+                                    ArrayList<String> cart = (ArrayList) session.getAttribute("cart");
+                                    ArrayList<Integer> cartQtd = (ArrayList) session.getAttribute("cartQtd");
 
-                                ArrayList<Produto> lista = new CarrinhoDAO().getCart(cart, cartQtd);
+                                    ArrayList<Produto> lista = new CarrinhoDAO().getCart(cart, cartQtd);
 
-                                for (int i = 0; i < lista.size(); i++) {
-                                    out.print("<tr>");
-                                    out.print("<td>" + lista.get(i).getCod_prod() + "</td>");
-                                    out.print("<td>" + lista.get(i).getNome_prod() + "</td>");
-                                    out.print("<td><input id='" + lista.get(i).getCod_prod() + "' name='qtdProd' type='text' value = " + cartQtd.get(i) + " size = '2'></td>");
-                                    out.print("<td>" + String.format("%.2f", lista.get(i).getPreco_prod()) + "</td>");
-                                    out.print("<td>" + String.format("%.2f", lista.get(i).getPreco_prod() * cartQtd.get(i)) + "</td>");
-                                    out.print("<td class='actions'>");
-                                    out.print("<button type='submit' class='btn btn-danger btn-md' p-3 name='cod' value='" + lista.get(i).getCod_prod() + "'>Remover</button>");
-                                    out.print("&nbsp;&nbsp;&nbsp;");
-                                    out.print("</td>");
-                                    out.print("</tr>");
+                                    float totalItens = 0;
+
+                                    for (int i = 0; i < lista.size(); i++) {
+                                        out.print("<tr>");
+                                        out.print("<td>" + lista.get(i).getCod_prod() + "</td>");
+                                        out.print("<td>" + lista.get(i).getNome_prod() + "</td>");
+                                        out.print("<td><input id='" + lista.get(i).getCod_prod() + "' name='qtdProd' type='text' value = " + cartQtd.get(i) + " size = '2'></td>");
+                                        out.print("<td>" + String.format("%.2f", lista.get(i).getPreco_prod()) + "</td>");
+                                        out.print("<td>" + String.format("%.2f", lista.get(i).getPreco_prod() * cartQtd.get(i)) + "</td>");
+                                        out.print("<td class='actions'>");
+                                        out.print("<button type='submit' class='btn btn-danger btn-md' p-3 name='cod' value='" + lista.get(i).getCod_prod() + "'>Remover</button>");
+                                        out.print("&nbsp;&nbsp;&nbsp;");
+                                        out.print("</td>");
+                                        out.print("</tr>");
+
+                                        totalItens += lista.get(i).getPreco_prod() * cartQtd.get(i);
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                        <%
+                            String desc = request.getParameter("apply");
+
+                            if (desc != null) {
+                                float fdesc = Float.valueOf(desc);
+                                totalItens = totalItens - ((totalItens * fdesc) / 100);
+                                response.sendRedirect("carrinho.jsp?total=" + totalItens);
+                            }
+
+                            String tt = request.getParameter("total");
+
+                            if (tt != null) {
+                                float tTotal = Float.parseFloat(tt);
+
+                                totalItens = tTotal;
+
+                                if (totalItens != 0) {
+                                    out.println("<h1 class='display-4 float-right col-md-5'><div>Total: R$" + String.format("%.2f", totalItens) + "</h1> ");
+                                    out.println("<input type='button' class='btn btn-warning float-left' id='btnVoltar' value='Voltar'>");
+                                    out.println("&nbsp;&nbsp;&nbsp;&nbsp;<input type='button' class='btn btn-success ' id='btnFin' value='Finalizar Compra'>");
+
+                                } else {
+                                    out.println("<h1 class='display-4 float-right col-md-5'><div>Não há itens no carrinho</h1> <input type='button' class='btn btn-warning float-left' id='btnVoltar' value='Voltar'>");
                                 }
-                            %>
-                        </tbody>
-                    </table>
+                            } else if (totalItens != 0) {
+                                out.println("<h1 class='display-4 float-right col-md-5'><div>Total: R$" + String.format("%.2f", totalItens) + "</h1> ");
+                                out.println("<input type='button' class='btn btn-warning float-left' id='btnVoltar' value='Voltar'>");
+                                out.println("&nbsp;&nbsp;&nbsp;&nbsp;<input type='button' class='btn btn-success ' id='btnFin' value='Finalizar Compra'>");
 
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">                    
-                    <%--
-                        try {
-                            float total = 0;
-                            for (int i = 0; i < listaTotal.size(); i++) {
-                                total += listaTotal.get(i);
-                            }
-                            if (total != 0) {
-                                out.println("<h1 class='display-4 float-right col-md-5'><div>Total: R$" + String.format("%.2f", total) + "</h1> </div>");
                             } else {
-                                out.println("<h1 class='display-4 float-right col-md-5'><div>Total: R$ 0,00</h1> </div>");
+                                out.println("<h1 class='display-4 float-right col-md-5'><div>Não há itens no carrinho</h1> <input type='button' class='btn btn-warning float-left' id='btnVoltar' value='Voltar'>");
                             }
-                        } catch (Exception e) {
-                            out.println("<h1 class='display-4 float-right col-md-5'><div>" + e.toString() + "</h1> </div>");
-                        }
-                    --%> 
 
-                    <div class="p-1 float-right"> <a class="btn btn-success disabled m-1" href="carrinho.jsp">Finalizar Compra</a>
-                        <a class="btn btn-warning float-right m-1" href="index.jsp">Voltar</a></div>
 
-                    <div class="float-right col-md m-1" style="width: 300px; height: 200px;">
-                        <h3 style="text-align: center">Desconto Convenio</h3><br>
-                        <label for="numConv">Numero</label>
-                        <input type="text" class="form-control" id="numConv">
+                        %>
+
                     </div>
                 </div>
-            </div>
-        </form>
-        <script src="JS/jquery-3.2.1.slim.min.js"></script>
-        <script src="JS/popper.min.js"></script>
-        <script src="JS/bootstrap.min.js"></script>
-        <script>
-
-            $(document).on('keypress', ':input:not(text):not([type=submit])', function (e) {
-                if (e.which == 13)
-                    e.preventDefault();
-            });
-
-            jQuery('input[type="text"]').keypress(function (event) {
-                var cod = $(this).attr("id");
-                var qtd = $(this).val();
-                var keycode = (event.keyCode ? event.keyCode : event.which);
-                if (keycode == '13') {
-                    document.location.href = "carrinho.jsp?change=" + cod + "&qtd=" + qtd;
-            <%
-                String change = request.getParameter("change");
-                String qtd = request.getParameter("qtd");
-                int nQtd = 0;
-                if (change != null) {
-                    if (cart.contains(change)) {
-                        int n = cart.indexOf(change);
-                        if (n != -1) {
-                            cartQtd.set(n, Integer.parseInt(qtd));
-                            response.sendRedirect("carrinho.jsp?nchange=ok");
+                <%                            
+                    String pedido = request.getParameter("pedido");
+                    if (pedido != null) {
+                        if (pedido.equalsIgnoreCase("ok")) {
+                            out.println("<div class='alert alert-success' role='alert'>Pedido finalizado</div>");
                         }
                     }
-                }
+                %>
+            </div>
+        </form>
+        <div style="margin: 40px;padding: 10px; padding-left: 30px; background-color: #f8f9fa;border-radius: 10px; width: 40%">
+            <h3>Descontos</h3>
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-conv-tab" data-toggle="tab" href="#nav-conv" role="tab" aria-controls="nav-conv" aria-selected="true">DESCONTO DE CONVÊNIO</a>
+                    <a class="nav-item nav-link" id="nav-cpf-tab" data-toggle="tab" href="#nav-cpf" role="tab" aria-controls="nav-cpf" aria-selected="false">DESCONTO CPF</a>
+                    <a class="nav-item nav-link" id="nav-gerente-tab" data-toggle="tab" href="#nav-gerente" role="tab" aria-controls="nav-gerente" aria-selected="false">DESCONTO DO GERENTE</a>
+                </div>
+            </nav>
+
+            <div class="tab-content" id="nav-tabContent">
+
+                <div class="tab-pane fade show active" id="nav-conv" role="tabpanel" aria-labelledby="nav-conv-tab" style="padding: 10px;">
+                    <div class="form-row">
+                        <div class="form-group col-md-4 ">
+                            <label for="numConv">Numero de identificação</label>
+                            <input type="text" class="form-control" id="numConv">
+
+                        </div>
+                        <div class="form-group col-md-4 ">
+                            <label for="btnConvenio">&nbsp;&nbsp;&nbsp;</label>
+                            <input type="button" value="Aplicar ao Total" id="btnConvenio" class="form-control btn btn-primary float-right">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="nav-cpf" role="tabpanel" aria-labelledby="nav-cpf-tab" style="padding: 10px;">
+                    <div class="form-row">
+                        <div class="form-group col-md-4 ">
+                            <label for="numCPF">Numero do CPF</label>
+                            <input type="text" onkeypress="$(this).mask('000.000.000-00');" class="form-control" id="numCPF">
+
+                        </div>
+                        <div class="form-group col-md-4 ">
+                            <label for="btnCPF">&nbsp;&nbsp;&nbsp;</label>
+                            <input type="button" value="Aplicar ao Total" id="btnCPF" class="form-control btn btn-primary float-right">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="nav-gerente" role="tabpanel" aria-labelledby="nav-gerente-tab" style="padding: 10px;">
+                    <div class="form-row">
+                        <div class="form-group col-md-4 ">
+                            <label for="numGerente">Desconto do Gerente</label>
+                            <input type="text" class="form-control" id="numGerente">
+
+                        </div>
+                        <div class="form-group col-md-4 ">
+                            <label for="btnGerente">&nbsp;&nbsp;&nbsp;</label>
+                            <input type="button" value="Aplicar ao Total" id="btnGerente" class="form-control btn btn-primary float-right">
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+        <script src="JS/jquery-3.3.1.slim.min.js"></script>
+        <script src="JS/popper.min.js" ></script>
+        <script src="JS/bootstrap.min.js"></script>
+        <script src="JS/jquery.mask.min.js"></script>
+        <script>
+
+                                $("#btnGerente").click(function () {
+                                    var desc = $("#numGerente").val();
+
+                                    document.location.href = "carrinho.jsp?apply=" + desc;
+
+                                })
+
+                                $(document).on('keypress', ':input:not(text):not([type=submit])', function (e) {
+                                    if (e.which == 13)
+                                        e.preventDefault();
+                                });
+
+                                $("#btnVoltar").click(function () {
+                                    document.location.href = "index.jsp";
+                                })
+
+                                jQuery('input[type="text"]').keypress(function (event) {
+                                    var cod = $(this).attr("id");
+                                    var qtd = $(this).val();
+                                    var keycode = (event.keyCode ? event.keyCode : event.which);
+                                    if (keycode == '13') {
+                                        document.location.href = "carrinho.jsp?change=" + cod + "&qtd=" + qtd;
+            <%                String change = request.getParameter("change");
+                                            String qtd = request.getParameter("qtd");
+                                            int nQtd = 0;
+                                            if (change != null) {
+                                                if (cart.contains(change)) {
+                                                    int n = cart.indexOf(change);
+                                                    if (n != -1) {
+                                                        cartQtd.set(n, Integer.parseInt(qtd));
+                                                        response.sendRedirect("carrinho.jsp?nchange=ok");
+                                                    }
+                                                }
+                                            }
 
             %>
-                }
+                                    }
 
-            });
+                                });
+
+                                $("#btnFin").click(function () {
+                                    var cpf = "";
+                                    var res = confirm("Deseja inserir o cpf na compra?");
+                                    if (res) {
+                                        cpf = prompt("Digite o cpf");
+
+                                        document.location.href = "closeCart.jsp?cpf=" + cpf + "&total=" +<%=totalItens%>;
+                                    } else {
+                                        document.location.href = "closeCart.jsp?total=" +<%=totalItens%>;
+                                    }
+
+
+                                })
         </script>
     </body>
 </html>

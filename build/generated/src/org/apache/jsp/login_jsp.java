@@ -48,10 +48,10 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
-      out.write("<link href=\"//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css\" rel=\"stylesheet\" id=\"bootstrap-css\">\r\n");
-      out.write("<link href=\"login.css\" rel=\"stylesheet\">\r\n");
-      out.write("<script src=\"//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js\"></script>\r\n");
-      out.write("<script src=\"//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>\r\n");
+      out.write("<link href=\"CSS/bootstrap.min.css\" rel=\"stylesheet\" id=\"bootstrap-css\">\r\n");
+      out.write("<link href=\"CSS/login.css\" rel=\"stylesheet\">\r\n");
+      out.write("<script src=\"JS/bootstrap.min.js\"></script>\r\n");
+      out.write("<script src=\"JS/jquery.min.js\"></script>\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("<div class=\"wrapper fadeInDown\">\r\n");
