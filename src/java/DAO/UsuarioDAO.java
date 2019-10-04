@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DAO;
 
 import Classes.Conexao;
+import Classes.Produto;
 import Classes.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -59,6 +56,41 @@ public class UsuarioDAO {
         }
         
         return key;
+    }
+    
+        public String insereUsuario(Usuario usuario) {
+        String res = "";
+
+        try {
+            Connection con = Conexao.getConexao();
+            String cons = "SELECT * FROM login where cpf = ?";
+            PreparedStatement ps = con.prepareStatement(cons);
+            ps.setString(1, usuario.getCpf());
+            ResultSet rs = ps.executeQuery();
+            if (rs.first()) {
+                res = "exist";
+            } else {
+                String sql = "INSERT INTO login (usuario,senha,cpf,email,codigo) VALUES (?,?,?,?,?)";
+                ps = con.prepareStatement(sql);
+                ps.setString(1, usuario.getUsuario());
+                ps.setString(2, usuario.getSenha());
+                ps.setString(3, usuario.getCpf());
+                ps.setString(4, usuario.getEmail());
+                ps.setInt(5, usuario.getCodigo());
+
+                ps.execute();
+
+                ps.close();
+                con.close();
+
+                res = "ok";
+            }
+
+        } catch (Exception e) {
+            res = "exist";
+        }
+
+        return res;
     }
     
 }

@@ -98,7 +98,7 @@
         </div>
         <div style="margin: 40px;padding: 20px; background-color: #f8f9fa;border-radius: 10px;">
             <h2 style="color: red;"><b>Editar </b>  Produtos</h2>
-            <%  key = (String) session.getAttribute("key");
+            <% String key = (String) session.getAttribute("key");
                 Produto prod = new Produto();
                 String cod = (String) request.getParameter("cod");
                 if (cod != null) {

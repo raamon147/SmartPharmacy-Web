@@ -15,36 +15,36 @@
 
                     <div class="form-group col-md-6">
                         <label for="inputName4">Nome</label>
-                        <input type="text" class="form-control" id="inputnome" name="nome">
+                        <input type="text" class="form-control" id="inputnome" name="nome" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputName4">CPF</label>
-                        <input type="text" class="form-control" name="cpf" onkeypress="$(this).mask('000.000.000-00');">
+                        <input type="text" class="form-control" name="cpf" required onkeypress="$(this).mask('000.000.000-00');">
                     </div>
                     <div class="form-group col-md-2">
                         <label for="inputZip">Data de Nascimento</label>
-                        <input type="text" name="dtnasc" class="form-control" onkeypress="$(this).mask('00/00/0000')">
+                        <input type="text" name="dtnasc" class="form-control" required onkeypress="$(this).mask('00/00/0000')">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputAddress">Endereço</label>
-                    <input type="text" class="form-control" name="endereco" id="inputAddress">
+                    <input type="text" class="form-control" name="endereco" required id="inputAddress">
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputMed">Medicamento</label>
-                        <input type="text" class="form-control" name="medicamento" id="inputMed">
+                        <input type="text" class="form-control" name="medicamento" required id="inputMed">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="inputApli">Tipo Aplicação</label>
-                        <select id="inputApli" class="form-control" name="tipo">
+                        <select id="inputApli" class="form-control" required name="tipo">
                             <option selected>Intramuscular</option>
                             <option>Subcutânea</option>
                         </select>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="dtApli">Data da Aplicação</label>
-                        <input type="text" name="data" id="dtApli" class="form-control" onkeypress="$(this).mask('00/00/0000')">
+                        <input type="text" name="data" id="dtApli" class="form-control" required onkeypress="$(this).mask('00/00/0000')">
                     </div>
 
                 </div>

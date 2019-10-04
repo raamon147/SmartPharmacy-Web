@@ -14,8 +14,9 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <%
+                    try{
                     String key = (String) session.getAttribute("key");
-                  
+                    
                 %>
                 <%if(key.equals("2")){%>
                 <li class="nav-item dropdown">
@@ -29,6 +30,7 @@
                         <a class="dropdown-item disabled"  href="caditem.jsp">Adicionar Produtos</a>
                         <a class="dropdown-item " href="edititem.jsp">Listar/Editar Produtos</a>
                         <a class="dropdown-item disabled"  href="cadconvenio.jsp">Cadastrar Convênios</a>
+                        <a class="dropdown-item disabled"  href="cadfuncionario.jsp">Cadastrar Usuarios</a>
 
 
                     </div>
@@ -45,11 +47,13 @@
                         <a class="dropdown-item "  href="caditem.jsp">Adicionar Produtos</a>
                         <a class="dropdown-item " href="edititem.jsp">Listar/Editar Produtos</a>
                         <a class="dropdown-item "  href="cadconvenio.jsp">Cadastrar Convênios</a>
-
+                        <a class="dropdown-item"  href="cadfuncionario.jsp">Cadastrar Usuarios</a>
 
                     </div>
                 </li>
-                <%}%>
+                <%}}catch(Exception f){
+                    
+                }%>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

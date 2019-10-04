@@ -14,6 +14,8 @@ public class Usuario {
     private int codigo;
     private String usuario;
     private String senha;
+    private String email;
+    private String cpf;
 
     public int getCodigo() {
         return codigo;
@@ -37,6 +39,34 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * @return the cpf
+     */
+    public String getCpf() {
+        return cpf;
+    }
+
+    /**
+     * @param cpf the cpf to set
+     */
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
     
     

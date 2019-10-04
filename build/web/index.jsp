@@ -14,14 +14,41 @@
 <%@page import="DAO.CarrinhoDAO"%>
 <!doctype html>
 <html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+        <script src="JS/popper.min.js"></script>
+        <script src="JS/bootstrap.min.js"></script>
+
+        <script>
+            function selector() {
+                $(".alert").removeClass('hidden');
+                window.setTimeout(function () {
+                    $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                        $(this).remove();
+                    });
+                }, 1000);
+            }
+
+
+        </script>   
+
+
+    </head>
     <body>
         <%
-            String usuario = (String) session.getAttribute("usuario");
-            if (usuario == null) {
+            try {
+                String usuario = (String) session.getAttribute("usuario");
+                if (usuario == null) {
+                    response.sendRedirect("login.jsp");
+                }
+            } catch (Exception e) {
                 response.sendRedirect("login.jsp");
             }
+
             ArrayList<String> cart = (ArrayList) session.getAttribute("cart");
-            ArrayList<Integer> cartQtd= (ArrayList) session.getAttribute("cartQtd");
+            ArrayList<Integer> cartQtd = (ArrayList) session.getAttribute("cartQtd");
             if (cart == null && cartQtd == null) {
                 cart = new ArrayList<String>();
                 cartQtd = new ArrayList<Integer>();
@@ -81,16 +108,27 @@
                                 %>
                             </tbody>
                         </table>
+
                         <%
+                                    
                             String res = request.getParameter("cart");
 
                             if (res != null) {
                                 if (res.equalsIgnoreCase("ok")) {
-                                    out.println("<div class='alert alert-success' role='alert'>Produto Adicionado ao Carrinho</div>");
-                                } else if (res.equalsIgnoreCase("fail")) {
-                                    out.println("<div class='alert alert-danger' role='alert'> Erro ao Adicionar</div>");
-                                } else if (res.equalsIgnoreCase("exist")) {
-                                    out.println("<div class='alert alert-danger' role='alert'>Esse Produto ja esta no carrinho</div>");
+                        %><div class="alert alert-success hidden" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            Produto Adicionado ao Carrinho
+                        </div> 
+                        <script>$(selector).click();</script><%
+                        } else if (res.equalsIgnoreCase("fail")) {
+                            out.println("<div class='alert alert-danger' role='alert'> Erro ao Adicionar</div>");
+                        } else if (res.equalsIgnoreCase("exist")) {%>
+                        <div class="alert alert-danger hidden" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            Esse Produto ja esta no carrinho
+                        </div> 
+                        <script>$(selector).click();</script><%
+
                                 } else {
                                 }
                             }
@@ -103,10 +141,6 @@
 
         </div>
 
-
-        <script src="JS/jquery-3.2.1.slim.min.js"></script>
-        <script src="JS/popper.min.js"></script>
-        <script src="JS/bootstrap.min.js"></script>
     </body>
 
 </html>
