@@ -49,7 +49,7 @@
                                         out.print("<tr>");
                                         out.print("<td>" + lista.get(i).getCod_prod() + "</td>");
                                         out.print("<td>" + lista.get(i).getNome_prod() + "</td>");
-                                        out.print("<td><input id='" + lista.get(i).getCod_prod() + "' name='qtdProd' type='text' value = " + cartQtd.get(i) + " size = '2'></td>");
+                                        out.print("<td width='1'><input id='" + lista.get(i).getCod_prod() + "' name='qtdProd' type='number' min='1' value = " + cartQtd.get(i) + " size = '1'></td>");
                                         out.print("<td>" + String.format("%.2f", lista.get(i).getPreco_prod()) + "</td>");
                                         out.print("<td>" + String.format("%.2f", lista.get(i).getPreco_prod() * cartQtd.get(i)) + "</td>");
                                         out.print("<td class='actions'>");
@@ -191,10 +191,10 @@
                                     document.location.href = "index.jsp";
                                 })
 
-                                jQuery('input[type="text"]').keypress(function (event) {
+                                jQuery('input[type="number"]').focusout(function (event) {
                                     var cod = $(this).attr("id");
                                     var qtd = $(this).val();
-                                    var keycode = (event.keyCode ? event.keyCode : event.which);
+                                    var keycode = '13';
                                     if (keycode == '13') {
                                         document.location.href = "carrinho.jsp?change=" + cod + "&qtd=" + qtd;
             <%                String change = request.getParameter("change");
