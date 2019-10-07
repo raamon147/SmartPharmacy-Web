@@ -82,7 +82,7 @@
                                 if (totalItens != 0) {
                                     out.println("<h1 class='display-4 float-right col-md-5'><div>Total: R$" + String.format("%.2f", totalItens) + "</h1> ");
                                     out.println("<input type='button' class='btn btn-warning float-left' id='btnVoltar' value='Voltar'>");
-                                    out.println("&nbsp;&nbsp;&nbsp;&nbsp;<input type='button' class='btn btn-success ' id='btnFin' value='Finalizar Compra'>");
+                                    out.println("&nbsp;&nbsp;&nbsp;&nbsp;<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalfin'>Finalizar Compra</button>");
 
                                 } else {
                                     out.println("<h1 class='display-4 float-right col-md-5'><div>Não há itens no carrinho</h1> <input type='button' class='btn btn-warning float-left' id='btnVoltar' value='Voltar'>");
@@ -90,7 +90,7 @@
                             } else if (totalItens != 0) {
                                 out.println("<h1 class='display-4 float-right col-md-5'><div>Total: R$" + String.format("%.2f", totalItens) + "</h1> ");
                                 out.println("<input type='button' class='btn btn-warning float-left' id='btnVoltar' value='Voltar'>");
-                                out.println("&nbsp;&nbsp;&nbsp;&nbsp;<input type='button' class='btn btn-success ' id='btnFin' value='Finalizar Compra'>");
+                                out.println("&nbsp;&nbsp;&nbsp;&nbsp;<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalfin'>Finalizar Compra</button>");
 
                             } else {
                                 out.println("<h1 class='display-4 float-right col-md-5'><div>Não há itens no carrinho</h1> <input type='button' class='btn btn-warning float-left' id='btnVoltar' value='Voltar'>");
@@ -101,8 +101,7 @@
 
                     </div>
                 </div>
-                <%                            
-                    String pedido = request.getParameter("pedido");
+                <%                    String pedido = request.getParameter("pedido");
                     if (pedido != null) {
                         if (pedido.equalsIgnoreCase("ok")) {
                             out.println("<div class='alert alert-success' role='alert'>Pedido finalizado</div>");
@@ -169,65 +168,101 @@
             </div>
 
         </div>
+        <div class="modal fade" id="modalfin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Finalizando Compra</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Deseja Inserir o CPF na compra?
+                        <br>
+                        <input type="radio" name='escolha' id='simE' value='sim'>
+                        <label for='simE'>Sim</label>
+                        <input type="radio" name='escolha' id='naoE' value='nao'>
+                        <label for='simE'>Não</label><br><br>
+                        <input type='text' id='cpfEscolha' value='' name="cpfEscolha" onkeypress="$(this).mask('000.000.000-00');" >
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <input type='button' class='btn btn-primary' id='btnFin' value='Concluir' name='btnFin' >
+                    </div>
+                </div>
+            </div>
+        </div>
         <script src="JS/jquery-3.3.1.slim.min.js"></script>
         <script src="JS/popper.min.js" ></script>
         <script src="JS/bootstrap.min.js"></script>
         <script src="JS/jquery.mask.min.js"></script>
         <script>
 
-                                $("#btnGerente").click(function () {
-                                    var desc = $("#numGerente").val();
-
-                                    document.location.href = "carrinho.jsp?apply=" + desc;
-
+                            $(document).ready(function () {
+                                $('input[name="escolha"]').click(function (e) {
+                                    if (e.target.value === 'sim') {
+                                        $('#cpfEscolha').show();
+                                    } else {
+                                        $('#cpfEscolha').val("");
+                                        $('#cpfEscolha').hide();
+                                    }
                                 })
 
-                                $(document).on('keypress', ':input:not(text):not([type=submit])', function (e) {
-                                    if (e.which == 13)
-                                        e.preventDefault();
-                                });
+                                $('#cpfEscolha').hide();
+                            });
 
-                                $("#btnVoltar").click(function () {
-                                    document.location.href = "index.jsp";
-                                })
+                            $("#btnGerente").click(function () {
+                                var desc = $("#numGerente").val();
 
-                                jQuery('input[type="number"]').focusout(function (event) {
-                                    var cod = $(this).attr("id");
-                                    var qtd = $(this).val();
-                                    var keycode = '13';
-                                    if (keycode == '13') {
-                                        document.location.href = "carrinho.jsp?change=" + cod + "&qtd=" + qtd;
+                                document.location.href = "carrinho.jsp?apply=" + desc;
+
+                            })
+
+                            $(document).on('keypress', ':input:not(text):not([type=submit])', function (e) {
+                                if (e.which == 13)
+                                    e.preventDefault();
+                            });
+
+                            $("#btnVoltar").click(function () {
+                                document.location.href = "index.jsp";
+                            })
+
+                            jQuery('input[type="number"]').focusout(function (event) {
+                                var cod = $(this).attr("id");
+                                var qtd = $(this).val();
+                                var keycode = '13';
+                                if (keycode == '13') {
+                                    document.location.href = "carrinho.jsp?change=" + cod + "&qtd=" + qtd;
             <%                String change = request.getParameter("change");
-                                            String qtd = request.getParameter("qtd");
-                                            int nQtd = 0;
-                                            if (change != null) {
-                                                if (cart.contains(change)) {
-                                                    int n = cart.indexOf(change);
-                                                    if (n != -1) {
-                                                        cartQtd.set(n, Integer.parseInt(qtd));
-                                                        response.sendRedirect("carrinho.jsp?nchange=ok");
-                                                    }
-                                                }
-                                            }
+                String qtd = request.getParameter("qtd");
+                int nQtd = 0;
+                if (change != null) {
+                    if (cart.contains(change)) {
+                        int n = cart.indexOf(change);
+                        if (n != -1) {
+                            cartQtd.set(n, Integer.parseInt(qtd));
+                            response.sendRedirect("carrinho.jsp?nchange=ok");
+                        }
+                    }
+                }
 
             %>
-                                    }
+                                }
 
-                                });
+                            });
 
-                                $("#btnFin").click(function () {
-                                    var cpf = "";
-                                    var res = confirm("Deseja inserir o cpf na compra?");
-                                    if (res) {
-                                        cpf = prompt("Digite o cpf");
-
-                                        document.location.href = "closeCart.jsp?cpf=" + cpf + "&total=" +<%=totalItens%>;
-                                    } else {
-                                        document.location.href = "closeCart.jsp?total=" +<%=totalItens%>;
-                                    }
+                            $("#btnFin").click(function () {
+                                var cpf = document.getElementById("cpfEscolha").value;
+                                
+                                if(cpf != null || cpf != ""){
+                                    document.location.href = "closeCart.jsp?cpf=" + cpf + "&total=" +<%=totalItens%>;
+                                } else {
+                                    document.location.href = "closeCart.jsp?total=" +<%=totalItens%>;
+                                }
 
 
-                                })
+                            })
         </script>
     </body>
 </html>

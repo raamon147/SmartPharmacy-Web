@@ -7,12 +7,6 @@
         String tipo = request.getParameter("tipo");
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
-        
-        if(tipo.equalsIgnoreCase("Administrador")){
-            tipo = "1";
-        }else{
-            tipo = "2";
-        }
 
         Usuario usuario = new Usuario();
         usuario.setCodigo(Integer.parseInt(tipo));

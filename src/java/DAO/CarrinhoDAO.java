@@ -64,40 +64,59 @@ public class CarrinhoDAO {
             con.setAutoCommit(false);
             long value = System.currentTimeMillis();
             String sValue = String.valueOf(value);
-            
+
             for (int i = 0; i < cart.size(); i++) {
                 sql = "select nome_prod,preco_prod,cod_prod from produto Where cod_prod = ?";
                 ps = con.prepareStatement(sql);
                 ps.setString(1, cart.get(i));
-                
+
                 ResultSet rs = ps.executeQuery();
                 Produto prod = new Produto();
                 if (rs.first()) {
                     prod.setCod_prod(rs.getString("cod_prod"));
                     prod.setNome_prod(rs.getString("nome_prod"));
                     prod.setPreco_prod(rs.getFloat("preco_prod"));
-                    
+
                     sql = "insert into produtos_compra(cod_prod,nome_produto,qtd_produto,total_produto,codigo_carrinho,data_compra) values (?,?,?,?,?,now())";
                     ps = con.prepareStatement(sql);
                     ps.setString(1, prod.getCod_prod());
                     ps.setString(2, prod.getNome_prod());
                     ps.setInt(3, cartQtd.get(i));
-                    ps.setFloat(4, (prod.getPreco_prod()*cartQtd.get(i)));
+                    ps.setFloat(4, (prod.getPreco_prod() * cartQtd.get(i)));
                     ps.setString(5, sValue);
-                    
-                    ps.execute();                   
+
+                    ps.execute();
                 }
             }
             String sqln = "insert into compra(codigo_carrinho,total_compra,cpf_comprador,data_compra) values(?,?,?,now())";
             PreparedStatement ps2 = con.prepareStatement(sqln);
             ps2.setString(1, sValue);
             ps2.setFloat(2, total);
-            ps2.setString(3,cpf);
-            
+            ps2.setString(3, cpf);
+
             ps2.execute();
-            
+
+            int tArre = (int) Math.floor(total);
+
+            String sqn = "update cliente set c_qtdpontos = ? where cpf = ?";
+            PreparedStatement ps3 = con.prepareStatement(sqn);
+            ps3.setInt(1, tArre);
+            ps3.setString(2, cpf);
+
+            ps3.execute();
+
+            for (int i = 0; i < cart.size(); i++) {
+                String sqt = "update produto set qtd_prod = (qtd_prod - ?) where cod_prod = ?";
+                PreparedStatement ps4 = con.prepareStatement(sqt);
+                ps4.setInt(1, cartQtd.get(i));
+                ps4.setString(2, cart.get(i));
+                
+                ps4.execute();
+                
+            }
+
             con.commit();
-            
+
             res = "ok";
             return res;
 
@@ -106,7 +125,7 @@ public class CarrinhoDAO {
             con.rollback();
             res = null;
             return res;
-        } finally{
+        } finally {
             con.setAutoCommit(true);
         }
     }
@@ -120,39 +139,39 @@ public class CarrinhoDAO {
             con.setAutoCommit(false);
             long value = System.currentTimeMillis();
             String sValue = String.valueOf(value);
-            
+
             for (int i = 0; i < cart.size(); i++) {
                 sql = "select nome_prod,preco_prod,cod_prod from produto Where cod_prod = ?";
                 ps = con.prepareStatement(sql);
                 ps.setString(1, cart.get(i));
-                
+
                 ResultSet rs = ps.executeQuery();
                 Produto prod = new Produto();
                 if (rs.first()) {
                     prod.setCod_prod(rs.getString("cod_prod"));
                     prod.setNome_prod(rs.getString("nome_prod"));
                     prod.setPreco_prod(rs.getFloat("preco_prod"));
-                    
+
                     sql = "insert into produtos_compra(cod_prod,nome_produto,qtd_produto,total_produto,codigo_carrinho,data_compra) values (?,?,?,?,?,now())";
                     ps = con.prepareStatement(sql);
                     ps.setString(1, prod.getCod_prod());
                     ps.setString(2, prod.getNome_prod());
                     ps.setInt(3, cartQtd.get(i));
-                    ps.setFloat(4, (prod.getPreco_prod()*cartQtd.get(i)));
+                    ps.setFloat(4, (prod.getPreco_prod() * cartQtd.get(i)));
                     ps.setString(5, sValue);
-                    
-                    ps.execute();                   
+
+                    ps.execute();
                 }
             }
             String sqln = "insert into compra(codigo_carrinho,total_compra,data_compra) values(?,?,now())";
             PreparedStatement ps2 = con.prepareStatement(sqln);
             ps2.setString(1, sValue);
             ps2.setFloat(2, total);
-            
+
             ps2.execute();
-            
+
             con.commit();
-            
+
             res = "ok";
             return res;
 
@@ -161,7 +180,7 @@ public class CarrinhoDAO {
             con.rollback();
             res = null;
             return res;
-        } finally{
+        } finally {
             con.setAutoCommit(true);
         }
     }

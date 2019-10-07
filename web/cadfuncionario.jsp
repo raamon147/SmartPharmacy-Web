@@ -47,8 +47,8 @@
                     <div class="form-group col-md-2">
                         <label for="inputTipo">Tipo: </label>
                         <select id="inputTipo" class="form-control" name="tipo" required>
-                            <option selected>Administrador</option>
-                            <option>Atendente</option>
+                            <option value="1" selected>Administrador</option>
+                            <option value="2">Atendente</option>
                         </select>
                     </div>
                     <div class="form-group col-md-3">
