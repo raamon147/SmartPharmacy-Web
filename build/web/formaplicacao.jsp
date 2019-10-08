@@ -46,7 +46,7 @@
                         <label for="dtApli">Data da Aplicação</label>
                         <input type="text" name="data" id="dtApli" class="form-control" required onkeypress="$(this).mask('00/00/0000')">
                     </div>
-
+                   
                 </div>
 
                 <button type="submit" class="btn btn-primary" id="btnCadAplic">Cadastrar</button>
@@ -55,7 +55,9 @@
                 String res = request.getParameter("res");
                 if (res != null) {
                     if (res.equalsIgnoreCase("true")) {
-                        out.println("<div class='alert alert-success' role='alert'>Aplicação Cadastrada</div>");
+                        out.println("<div class='alert alert-success' role='alert'>Aplicação Cadastrada<a href='pdf/print"+request.getParameter("id")+".pdf' target='_blank'>&nbsp;&nbsp;&nbsp;Imprimir</a> </div>");
+                        
+                        
                     } else {
                         out.println("<div class='alert alert-danger' role='alert'>Erro ao Cadastrar</div>");
                     }

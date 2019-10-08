@@ -70,7 +70,7 @@
                         Relatórios
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item disabled" href="#">Relatórios Gerenciais</a>
+                        <a class="dropdown-item" href="relatorioaplicacao.jsp">Relatórios Aplicações</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
