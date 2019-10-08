@@ -72,4 +72,18 @@ public class AplicacaoDAO {
             return null;
         }
     }
+      
+            public ResultSet buscarappcodigo(int codigo) {
+        try {
+            Connection conn = Conexao.getConexao();
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM aplicacao WHERE id = ?");
+            ps.setInt(1, codigo);
+            ResultSet rs;
+            rs = ps.executeQuery();
+            return rs;
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

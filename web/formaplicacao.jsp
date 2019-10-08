@@ -53,9 +53,10 @@
             </form>
             <%
                 String res = request.getParameter("res");
+                String id = request.getParameter("id");
                 if (res != null) {
                     if (res.equalsIgnoreCase("true")) {
-                        out.println("<div class='alert alert-success' role='alert'>Aplicação Cadastrada<a href='pdf/print"+request.getParameter("id")+".pdf' target='_blank'>&nbsp;&nbsp;&nbsp;Imprimir</a> </div>");
+                        out.println("<div class='alert alert-success' role='alert'>Aplicação Cadastrada </div>");
                         
                         
                     } else {

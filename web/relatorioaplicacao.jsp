@@ -39,38 +39,40 @@
             <div class="input-group md-form form-sm form-2 pl-0">
                 <input class="form-control my-0 py-1 red-border" id="buscar" onkeyup="Buscar()" type="text" placeholder="Digite o nome" aria-label="Search">
                 <div class="input-group-append">
-                   
+
                 </div>
             </div>
-            <table class="table" id="tabela">
-                <thead>
-                    <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Data</th>
-                        <th scope="col">Medicamento</th>
-                        <th scope="col">Comprovante</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%
-                        AplicacaoDAO a = new AplicacaoDAO();
-                        ResultSet rs = a.buscarapp();
-                        while (rs.next()) {
-                            out.println("<tr>");
-                            out.println("<th scope='row'>" + rs.getInt("id") + "</th>");
-                            out.println("<td>" + rs.getString("nome") + "</td>");
-                            out.println("<td>" + rs.getString("data") + "</td>");
-                            out.println("<td>" + rs.getString("medicamento") + "</td>");
-                            out.println("<td><a href='pdf/print" + rs.getInt("id") + ".pdf' target='_blank'>PDF</a></td>");
-                            out.println("</tr>");
-                        }
-                    %>
+            <form method="post" action="getaplicacao.jsp" target="_blank">
+                <table class="table" id="tabela">
+                    <thead>
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Medicamento</th>
+                            <th scope="col">Comprovante</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%
+                            AplicacaoDAO a = new AplicacaoDAO();
+                            ResultSet rs = a.buscarapp();
+                            while (rs.next()) {
+                                out.println("<tr>");
+                                out.println("<th scope='row'>" + rs.getInt("id") + "</th>");
+                                out.println("<td>" + rs.getString("nome") + "</td>");
+                                out.println("<td>" + rs.getString("data") + "</td>");
+                                out.println("<td>" + rs.getString("medicamento") + "</td>");
+                                out.println("<td><button type='submit' name='id'  value=" + rs.getInt("id") + ">PDF</button></td>");
+                                out.println("</tr>");
+                            }
+                        %>
 
 
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </form>
         </div>
         <script src="JS/jquery-3.3.1.slim.min.js"></script>
         <script src="JS/popper.min.js" ></script>
