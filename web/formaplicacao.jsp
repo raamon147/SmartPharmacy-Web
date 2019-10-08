@@ -51,12 +51,14 @@
 
                 <button type="submit" class="btn btn-primary" id="btnCadAplic">Cadastrar</button>
             </form>
+            <form method="post" action="getaplicacao.jsp" target="_blank">
             <%
                 String res = request.getParameter("res");
                 String id = request.getParameter("id");
                 if (res != null) {
                     if (res.equalsIgnoreCase("true")) {
-                        out.println("<div class='alert alert-success' role='alert'>Aplicação Cadastrada </div>");
+                        out.println("<div class='alert alert-success' role='alert'>Aplicação Cadastrada</td> </div>");
+                        out.println("<button type='submit' name='id'  value=" + request.getParameter("id") + ">Imprimir</button>");
                         
                         
                     } else {
@@ -64,6 +66,7 @@
                     }
                 }
             %>
+            </form>
             <script src="JS/jquery-3.3.1.slim.min.js"></script>
             <script src="JS/popper.min.js" ></script>
             <script src="JS/bootstrap.min.js"></script>

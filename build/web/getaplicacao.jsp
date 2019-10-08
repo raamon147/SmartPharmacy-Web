@@ -32,6 +32,7 @@
         medicamento = rs.getString("medicamento");
         tipo = rs.getString("tipo");
         data = rs.getString("data");
+        cpf = rs.getString("cpf");
     }
     response.setContentType("application/pdf");
     try {

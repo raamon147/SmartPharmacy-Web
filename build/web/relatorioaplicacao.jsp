@@ -35,7 +35,7 @@
         <title>SmartPharmacy</title>
     <body>
         <div style="margin: 40px;padding: 10px; background-color: #f8f9fa;border-radius: 10px;">
-            <h2 style="color: red"><b>Ultimas </b>Aplicações</h2><br/>
+            <h2 style="color: red"><b>Consultar </b>Aplicações</h2><br/>
             <div class="input-group md-form form-sm form-2 pl-0">
                 <input class="form-control my-0 py-1 red-border" id="buscar" onkeyup="Buscar()" type="text" placeholder="Digite o nome" aria-label="Search">
                 <div class="input-group-append">
