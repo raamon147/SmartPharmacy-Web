@@ -18,24 +18,24 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputName4">Nome</label>
-                        <input type="text" class="form-control" id="inputnome" name="nome">
+                        <input type="text" class="form-control" required id="inputnome" name="nome">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputCPF">CPF</label>
-                        <input type="text" id="inputCPF" name="cpf" class="form-control" onkeypress="$(this).mask('000.000.000-00');">
+                        <input type="text" id="inputCPF" required name="cpf" class="form-control" onkeypress="$(this).mask('000.000.000-00');">
                     </div>
                     <div class="form-group col-md-2">
                         <label for="inputDtNasc">Data de Nascimento</label>
-                        <input type="text" id="inputDtNasc" name="dtnasc" class="form-control" onkeypress="$(this).mask('00/00/0000')">
+                        <input type="text" id="inputDtNasc" required name="dtnasc" class="form-control" onkeypress="$(this).mask('00/00/0000')">
                     </div>
                     <div class="form-group col-md-2">
                         <label for="inputDtNasc">Celular</label>
-                        <input type="text" id="inputTel" name="tel" class="form-control" onkeypress="$(this).mask('(00)00000-0000')">
+                        <input type="text" id="inputTel" name="tel" required class="form-control" onkeypress="$(this).mask('(00)00000-0000')">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEnd">Endereço</label>
-                    <input type="text" class="form-control" id="inputEnd" name="endereco">
+                    <input type="text" class="form-control" id="inputEnd" required name="endereco">
                 </div>
 
 

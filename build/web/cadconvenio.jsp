@@ -24,11 +24,11 @@
                         <div class="form-row">
                             <div class="form-group col-md-5">
                                 <label for="inputConv">Nome Convênio</label>
-                                <input type="text" class="form-control" id="inputConv" name="nomeConv">
+                                <input type="text" class="form-control" required id="inputConv" name="nomeConv">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="inputConv">Prefixo Convênio</label>
-                                <input type="text" class="form-control" id="inputConv" name="numConv">
+                                <input type="text" class="form-control" required id="inputConv" name="numConv">
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="inputPorc">Desconto Medicamentos</label>

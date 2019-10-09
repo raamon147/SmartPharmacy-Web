@@ -49,7 +49,7 @@
                                         out.print("<tr>");
                                         out.print("<td>" + lista.get(i).getCod_prod() + "</td>");
                                         out.print("<td>" + lista.get(i).getNome_prod() + "</td>");
-                                        out.print("<td width='1'><input id='" + lista.get(i).getCod_prod() + "' name='qtdProd' type='number' min='1' value = " + cartQtd.get(i) + " size = '1'></td>");
+                                        out.print("<td><input style='width:50px;' id='" + lista.get(i).getCod_prod() + "' name='qtdProd' type='number' min='1' value = " + cartQtd.get(i) + " size = '1'></td>");
                                         out.print("<td>" + String.format("%.2f", lista.get(i).getPreco_prod()) + "</td>");
                                         out.print("<td>" + String.format("%.2f", lista.get(i).getPreco_prod() * cartQtd.get(i)) + "</td>");
                                         out.print("<td class='actions'>");
