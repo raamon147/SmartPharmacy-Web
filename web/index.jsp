@@ -20,7 +20,8 @@
 
         <script src="JS/popper.min.js"></script>
         <script src="JS/bootstrap.min.js"></script>
-
+        <script type="text/javascript" src="JS/jsbuscar.js"></script>
+        
         <script>
             function selector() {
                 $(".alert").removeClass('hidden');
@@ -62,11 +63,9 @@
 
             <form method="post" action="buscaritem.jsp">
                 <div class="input-group md-form form-sm form-2 pl-0">
-                    <input class="form-control my-0 py-1 red-border" type="text" placeholder="Digite o nome do produto"
-                           aria-label="Search" name="item">
-                    <div class="input-group-append">
-                        <input type="submit" class="btn btn-primary" id="btnBuscarProd" value="Buscar">
-                    </div>
+                    <input class="form-control my-0 py-1 red-border" id="prod" type="text" placeholder="Digite o nome do produto"
+                           aria-label="Search" onkeyup="pesquisar()" autocomplete="off" name="item">
+                    
                 </div>
             </form>
             <form method="post" action="addtocart.jsp">
@@ -85,33 +84,13 @@
                                     <th class="actions">Ações</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <%
-                                    String produto = request.getParameter("resp");
-                                    if (produto != null) {
-                                        ResultSet rs = buscartexto(produto);
-                                        while (rs.next()) {
+                            
+                            <tbody id="listaprodutos">
 
-                                            out.print("<tr>");
-                                            out.print("<td>" + rs.getString("cod_prod") + "</td>");
-                                            out.print("<td>" + rs.getString("nome_prod") + "</td>");
-                                            out.print("<td>" + rs.getString("pr_ativo") + "</td>");
-                                            out.print("<td>" + rs.getString("dos_prod") + "</td>");
-                                            out.print("<td>" + rs.getString("fabr_prod") + "</td>");
-                                            out.print("<td>R$ " + rs.getString("preco_prod") + "</td>");
-                                            out.print("<td class='actions'>");
-                                            out.print("<button type='submit' class='btn btn-success btn-md' p-3 name='cod' value='" + rs.getString("cod_prod") + "'>Adicionar ao carrinho</button>");
-                                            out.print("</td>");
-                                            out.print("</tr>");
-                                        }
-                                    }
-                                %>
                             </tbody>
                         </table>
 
-                        <%
-                                    
-                            String res = request.getParameter("cart");
+                        <%                            String res = request.getParameter("cart");
 
                             if (res != null) {
                                 if (res.equalsIgnoreCase("ok")) {
