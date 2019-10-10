@@ -60,7 +60,7 @@ create table if not exists produto (
 idproduto int not null primary key auto_increment,
 cod_prod varchar(12) not null unique,
 nome_prod varchar(45) not null,
-qtd_prd int not null,
+qtd_prod int not null,
 preco_prod float not null,
 fabr_prod varchar(45) not null,
 pr_ativo varchar(45) not null,
