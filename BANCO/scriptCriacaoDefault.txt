@@ -2,13 +2,13 @@ create database if not exists farmacia;
 
 use farmacia;
 
-drop table aplicacao;
-drop table cliente;
-drop table compra;
-drop table convenio;
-drop table login;
-drop table produto;
-drop table produtos_compra;
+drop table if exists aplicacao;
+drop table if exists cliente;
+drop table if exists compra;
+drop table if exists convenio;
+drop table if exists login;
+drop table if exists produto;
+drop table if exists produtos_compra;
 
 create table if not exists aplicacao (
 id int primary key auto_increment not null,
@@ -34,6 +34,7 @@ c_qtdpontos int
 create table if not exists compra (
 id int not null primary key auto_increment,
 codigo_carrinho varchar(20) not null,
+qtd_total_item int,
 total_compra float not null,
 cpf_comprador varchar(15),
 data_compra date not null
@@ -65,6 +66,7 @@ preco_prod float not null,
 fabr_prod varchar(45) not null,
 pr_ativo varchar(45) not null,
 dos_prod varchar(45) not null,
+categoria varchar(20) not null,
 status_prod varchar(20) not null
 );
 
@@ -77,3 +79,5 @@ total_produto float not null,
 data_compra date not null,
 codigo_carrinho varchar(20) not null
 );
+
+insert into login values (1,'admin','admin','123.456.789-10','admin@farm.com.br',1);

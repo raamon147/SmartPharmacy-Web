@@ -48,9 +48,16 @@
                         <label for="cadPrin">Principio Ativo</label>
                         <input type="text" class="form-control" id="inputPreco" name="cadPrin"  required>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-2">
                         <label for="cadDos">Dosagem</label>
                         <input type="search" class="form-control" id="inputDosagem" name="cadDos" required>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="cadCat">Categoria</label>
+                        <select class="form-control" name="cadCat" id="inputCat">
+                            <option value="Medicamento">Medicamento</option>
+                            <option value="Outros">Outros</option>
+                        </select>
                     </div>
                 </div>
                 <%

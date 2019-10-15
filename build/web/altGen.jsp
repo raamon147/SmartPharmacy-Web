@@ -12,6 +12,7 @@
     String dos = request.getParameter("cadDos");
     String fab = request.getParameter("cadFab");
     String prin = request.getParameter("cadPrin");
+    String cat = request.getParameter("cadCat");
 
     prod.setCod_prod(cod);
     prod.setNome_prod(nome);
@@ -20,6 +21,7 @@
     prod.setDos_prod(dos);
     prod.setFabr_prod(fab);
     prod.setPr_ativo(prin);
+    prod.setCategoria(cat);
 
     if (req != null) {
         if (req.equalsIgnoreCase("alterar")) {

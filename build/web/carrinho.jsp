@@ -145,9 +145,25 @@
                         </div>
                         <div class="form-group col-md-4 ">
                             <label for="btnCPF">&nbsp;&nbsp;&nbsp;</label>
-                            <input type="button" value="Aplicar ao Total" id="btnCPF" class="form-control btn btn-primary float-right">
+                            <input type="button" value="Consultar" id="btnCPF" class="form-control btn btn-primary float-right">
+                            
                         </div>
                     </div>
+                    <%
+                                String ponto = request.getParameter("ponto");
+                                if(ponto != null){
+                                    if(ponto.equals("erro")){
+                                        out.println("<div class='alert alert-danger' role='alert'>Erro ao Consultar</div>");
+                                    } else if(ponto.equals("nexist")){
+                                        out.println("<div class='form-row'>");
+                                        out.println("Não foi encontrado nenhum registro com esse CPF<br>Deseja realizar o cadastro do cliente?<br><br>");
+                                        out.println("</div>");
+                                        out.println("<input type='button' class='btn btn-warning ' value='SIM' id='cadNewCli'>&nbsp;&nbsp;&nbsp;");
+                                    } else {
+                                        int pontuacao = Integer.parseInt(ponto);
+                                    }
+                                }
+                            %>
                 </div>
 
                 <div class="tab-pane fade" id="nav-gerente" role="tabpanel" aria-labelledby="nav-gerente-tab" style="padding: 10px;">
@@ -217,7 +233,13 @@
 
                                 document.location.href = "carrinho.jsp?apply=" + desc;
 
-                            })
+                            });
+                            
+                            $("#btnCPF").click(function (){
+                                var cpf = $("#numCPF").val();
+                                
+                                document.location.href = "clienteConsulta.jsp?cpf=" + cpf;
+                            });
 
                             $(document).on('keypress', ':input:not(text):not([type=submit])', function (e) {
                                 if (e.which == 13)

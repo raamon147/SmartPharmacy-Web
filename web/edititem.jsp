@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="DAO.ProdutoDAO"%>
 <%@page import="Classes.Produto"%>
 <%@page import="Classes.Conexao"%>
@@ -63,6 +64,7 @@
                             <th>Principio Ativo</th>
                             <th>Dosagem</th>
                             <th>Quantidade</th>
+                            <th>Categoria</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -70,24 +72,22 @@
 
                         <%
                             try {
-                                Connection conn = Conexao.getConexao();
-                                PreparedStatement ps = conn.prepareStatement("select cod_prod,nome_prod,fabr_prod,pr_ativo,dos_prod,qtd_prod,status_prod,format(preco_prod,2) as preco_prod from produto");
-                                ResultSet rs;
-                                rs = ps.executeQuery();
-                                while (rs.next()) {
+                                ArrayList<Produto> lista = new ProdutoDAO().getProdutos();
+                                for(Produto p : lista){
                                     out.println("<tr>");
-                                    out.println("<td><a href='edititem.jsp?cod=" + rs.getString("cod_prod") + "'>" + rs.getString("cod_prod") + "</a></td>");
-                                    out.println("<td>" + rs.getString("nome_prod") + "</td>");
-                                    out.println("<td>" + rs.getString("preco_prod") + "</td>");
-                                    out.println("<td>" + rs.getString("fabr_prod") + "</td>");
-                                    out.println("<td>" + rs.getString("pr_ativo") + "</td>");
-                                    out.println("<td>" + rs.getString("dos_prod") + "</td>");
-                                    out.println("<td>" + rs.getString("qtd_prod") + "</td>");
-                                    out.println("<td>" + rs.getString("status_prod") + "</td>");
+                                    out.println("<td><a href='edititem.jsp?cod=" + p.getCod_prod() + "'>" + p.getCod_prod()+ "</a></td>");
+                                    out.println("<td>" + p.getNome_prod() + "</td>");
+                                    out.println("<td>" + p.getPreco_prod() + "</td>");
+                                    out.println("<td>" + p.getFabr_prod() + "</td>");
+                                    out.println("<td>" + p.getPr_ativo() + "</td>");
+                                    out.println("<td>" + p.getDos_prod() + "</td>");
+                                    out.println("<td>" + p.getQtd_prod() + "</td>");
+                                    out.println("<td>" + p.getCategoria() + "</td>");
+                                    out.println("<td>" + p.getStatus_prod() + "</td>");
                                     out.println("</tr>");
                                 }
                             } catch (Exception e) {
-                                out.print(e.getMessage());
+                                out.print(e.toString());
                             }
 
                         %>
@@ -111,6 +111,7 @@
                     prod.setDos_prod("");
                     prod.setFabr_prod("");
                     prod.setPr_ativo("");
+                    prod.setCategoria("");
                 }
 
                 String res = (String) request.getParameter("res");
@@ -153,9 +154,16 @@
                         <label for="cadPrin">Principio Ativo</label>
                         <input type="text" class="form-control" id="inputPreco" name="cadPrin" value="<%=prod.getPr_ativo()%>">
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-2">
                         <label for="cadDos">Dosagem</label>
                         <input type="search" class="form-control" id="inputDosagem" name="cadDos" value="<%=prod.getDos_prod()%>">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="cadCat">Categoria</label>
+                        <select class="form-control" id="inputCat" name="cadCat">
+                            <option value="Medicamento">Medicamento</option>
+                            <option value="Outros">Outros</option>
+                        </select>
                     </div>
                 </div>
                 <input type="hidden" name="func" value="" id="func">

@@ -9,6 +9,7 @@
         String fab = request.getParameter("cadFab");
         String prin = request.getParameter("cadPrin");
         String dos = request.getParameter("cadDos");
+        String cat = request.getParameter("cadCat");
 
         Produto produto = new Produto();
         produto.setCod_prod(cod);
@@ -18,6 +19,7 @@
         produto.setFabr_prod(fab);
         produto.setPr_ativo(prin);
         produto.setDos_prod(dos);
+        produto.setCategoria(cat);
 
         String stts = new ProdutoDAO().insereProduto(produto);
 

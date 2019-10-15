@@ -10,8 +10,9 @@ public class Produto{
     private String pr_ativo;
     private String dos_prod;
     private String status_prod;
+    private String categoria;
 
-    public Produto(String cod_prod, String nome_prod, int qtd_prod, float preco_prod, String fabr_prod, String pr_ativo, String dos_prod, String status_prod) {
+    public Produto(String cod_prod, String nome_prod, int qtd_prod, float preco_prod, String fabr_prod, String pr_ativo, String dos_prod, String status_prod,String categoria) {
         this.cod_prod = cod_prod;
         this.nome_prod = nome_prod;
         this.qtd_prod = qtd_prod;
@@ -20,11 +21,22 @@ public class Produto{
         this.pr_ativo = pr_ativo;
         this.dos_prod = dos_prod;
         this.status_prod = status_prod;
+        this.categoria = categoria;
     }
     
     public Produto(){
         
     }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+    
+    
 
     public String getCod_prod() {
         return cod_prod;
