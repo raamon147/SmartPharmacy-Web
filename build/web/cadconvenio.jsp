@@ -38,13 +38,6 @@
                                     <option>50</option>
                                 </select>
                             </div>
-                            <div class="form-group col-md-2">
-                                <label for="inputPorc">Desconto Perfumaria</label>
-                                <select id="inputPorc" class="form-control" name="descPerf">
-                                    <option selected>5</option>
-                                    <option>15</option>
-                                </select>
-                            </div>
 
                         </div>
                         <button type="submit" class="btn btn-primary" id="btnCadConv" >Cadastrar</button>

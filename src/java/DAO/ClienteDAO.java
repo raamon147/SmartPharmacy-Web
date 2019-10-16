@@ -41,7 +41,7 @@ public class ClienteDAO {
               if(rs.first()){
                   pontos = rs.getInt("c_qtdpontos");
               }else {
-                  pontos = 0;
+                  pontos = -2;
               }
           }catch(Exception e){
               e.printStackTrace();

@@ -4,6 +4,7 @@ import Classes.Conexao;
 import Classes.Convenio;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class ConvenioDAO {
     
@@ -12,12 +13,11 @@ public class ConvenioDAO {
         try{
             
             Connection con = Conexao.getConexao();
-            String sql = "INSERT INTO convenio (nome_conv,cod_conv,desc_med,desc_perf) VALUES (?,?,?,?)";
+            String sql = "insert into convenio (nome_conv,cod_conv,desc_conv) values (?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1,conv.getNome_conv());
             ps.setString(2, conv.getCod_conv());
-            ps.setFloat(3, conv.getDesc_med());
-            ps.setFloat(4, conv.getDesc_perf());
+            ps.setInt(3, conv.getDesc());
             
             ps.execute();
             
@@ -27,6 +27,26 @@ public class ConvenioDAO {
         }catch(Exception e){
             res = e.toString();
             return res;
+        }
+    }
+    
+    public String getConvenio(String nome){
+        String res ="";
+        try{
+            Connection con = Conexao.getConexao();
+            String sql = "SELECT * from convenio where nome_conv = ? ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, nome);
+            ResultSet rs = ps.executeQuery();
+            if(rs.first()){
+                res = rs.getString("desc_conv");
+            } else {
+                res = "nexist";
+            }
+            return res;
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
         }
     }
 }

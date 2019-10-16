@@ -4,13 +4,11 @@
     String nome = request.getParameter("nomeConv");
     String num = request.getParameter("numConv");
     String descM = request.getParameter("descMed");
-    String descP = request.getParameter("descPerf");
     
     Convenio con = new Convenio();
     con.setNome_conv(nome);
     con.setCod_conv(num);
-    con.setDesc_med(Float.parseFloat(descM));
-    con.setDesc_perf(Float.parseFloat(descP));
+    con.setDesc(Integer.parseInt(descM));
     
     String res = "";
     

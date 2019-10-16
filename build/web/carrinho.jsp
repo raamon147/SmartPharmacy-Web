@@ -40,6 +40,7 @@
                                 <%
                                     ArrayList<String> cart = (ArrayList) session.getAttribute("cart");
                                     ArrayList<Integer> cartQtd = (ArrayList) session.getAttribute("cartQtd");
+                                    ArrayList<Float> desconto = (ArrayList) session.getAttribute("desconto");
 
                                     ArrayList<Produto> lista = new CarrinhoDAO().getCart(cart, cartQtd);
 
@@ -60,18 +61,18 @@
 
                                         totalItens += lista.get(i).getPreco_prod() * cartQtd.get(i);
                                     }
+
+                                    float iDesc = 0;
+
+                                    if (desconto.isEmpty()) {
+                                        iDesc = 0;
+                                    } else {
+                                        iDesc = desconto.get(0);
+                                    }
                                 %>
                             </tbody>
                         </table>
                         <%
-                            String desc = request.getParameter("apply");
-
-                            if (desc != null) {
-                                float fdesc = Float.valueOf(desc);
-                                totalItens = totalItens - ((totalItens * fdesc) / 100);
-                                response.sendRedirect("carrinho.jsp?total=" + totalItens);
-                            }
-
                             String tt = request.getParameter("total");
 
                             if (tt != null) {
@@ -79,8 +80,10 @@
 
                                 totalItens = tTotal;
 
+                                iDesc = ((totalItens * iDesc) / 100);
+
                                 if (totalItens != 0) {
-                                    out.println("<h1 class='display-4 float-right col-md-5'><div>Total: R$" + String.format("%.2f", totalItens) + "</h1> ");
+                                    out.println("<div class='display-4 float-right col-md-5'><h1 >Total Parcial: R$" + String.format("%.2f", totalItens) + "</h1><h5>&nbsp;&nbsp;Desconto: R$ " + iDesc + "</h5></div>");
                                     out.println("<input type='button' class='btn btn-warning float-left' id='btnVoltar' value='Voltar'>");
                                     out.println("&nbsp;&nbsp;&nbsp;&nbsp;<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalfin'>Finalizar Compra</button>");
 
@@ -88,7 +91,10 @@
                                     out.println("<h1 class='display-4 float-right col-md-5'><div>Não há itens no carrinho</h1> <input type='button' class='btn btn-warning float-left' id='btnVoltar' value='Voltar'>");
                                 }
                             } else if (totalItens != 0) {
-                                out.println("<h1 class='display-4 float-right col-md-5'><div>Total: R$" + String.format("%.2f", totalItens) + "</h1> ");
+
+                                iDesc = ((totalItens * iDesc) / 100);
+
+                                out.println("<div class='display-4 float-right col-md-5'><h1 >Total Parcial: R$" + String.format("%.2f", totalItens) + "</h1><h5>&nbsp;&nbsp;Desconto: R$ " + iDesc + "</h5></div>");
                                 out.println("<input type='button' class='btn btn-warning float-left' id='btnVoltar' value='Voltar'>");
                                 out.println("&nbsp;&nbsp;&nbsp;&nbsp;<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalfin'>Finalizar Compra</button>");
 
@@ -103,8 +109,11 @@
                 </div>
                 <%                    String pedido = request.getParameter("pedido");
                     if (pedido != null) {
-                        if (pedido.equalsIgnoreCase("ok")) {
-                            out.println("<div class='alert alert-success' role='alert'>Pedido finalizado</div>");
+                        if (pedido.equalsIgnoreCase("ult")) {
+                            out.println("<div class='alert alert-danger' role='alert'>A quantidade de itens no estoque não condiz com o pedido</div>");
+                        } else {
+                            out.println("<div class='alert alert-success' role='alert'>Pedido finalizado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='geracupom.jsp?cod_compra="+pedido+"'>Gerar Cupom</a></div>");
+                            out.println("");
                         }
                     }
                 %>
@@ -114,56 +123,96 @@
             <h3>Descontos</h3>
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link active" id="nav-conv-tab" data-toggle="tab" href="#nav-conv" role="tab" aria-controls="nav-conv" aria-selected="true">DESCONTO DE CONVÊNIO</a>
-                    <a class="nav-item nav-link" id="nav-cpf-tab" data-toggle="tab" href="#nav-cpf" role="tab" aria-controls="nav-cpf" aria-selected="false">DESCONTO CPF</a>
+                    <a class="nav-item nav-link active" id="nav-cpf-tab" data-toggle="tab" href="#nav-cpf" role="tab" aria-controls="nav-cpf" aria-selected="true">DESCONTO CPF</a>
+                    <a class="nav-item nav-link" id="nav-conv-tab" data-toggle="tab" href="#nav-conv" role="tab" aria-controls="nav-conv" aria-selected="false">DESCONTO DE CONVÊNIO</a>
                     <a class="nav-item nav-link" id="nav-gerente-tab" data-toggle="tab" href="#nav-gerente" role="tab" aria-controls="nav-gerente" aria-selected="false">DESCONTO DO GERENTE</a>
                 </div>
             </nav>
 
             <div class="tab-content" id="nav-tabContent">
 
-                <div class="tab-pane fade show active" id="nav-conv" role="tabpanel" aria-labelledby="nav-conv-tab" style="padding: 10px;">
+                <div class="tab-pane fade " id="nav-conv" role="tabpanel" aria-labelledby="nav-conv-tab" style="padding: 10px;">
                     <div class="form-row">
                         <div class="form-group col-md-4 ">
-                            <label for="numConv">Numero de identificação</label>
+                            <label for="numConv">Nome do Convênio</label>
                             <input type="text" class="form-control" id="numConv">
 
                         </div>
                         <div class="form-group col-md-4 ">
                             <label for="btnConvenio">&nbsp;&nbsp;&nbsp;</label>
-                            <input type="button" value="Aplicar ao Total" id="btnConvenio" class="form-control btn btn-primary float-right">
+                            <input type="button" value="Consultar" id="btnConvenio" class="form-control btn btn-primary float-right">
                         </div>
                     </div>
+                    <%
+                        String conv = request.getParameter("convenio");
+                        if (conv != null) {
+                            if (conv.equals("nexist")) {
+                                out.println("<div class='form-row'>");
+                                out.println("A farmacia não possui planos com esse Convenio");
+                                out.println("</div>");
+                            } else {
+                                out.println("<div class='form-row'>");
+                                out.println("Esse Convenio permite " + conv + "% de desconto, deseja utilizar?");
+                                out.println("</div>");
+                                out.println("<input type='button' class='btn btn-success' value='SIM' id='useConve'>&nbsp;&nbsp;&nbsp;");
+                            }
+
+                        }
+
+                    %>
                 </div>
 
-                <div class="tab-pane fade" id="nav-cpf" role="tabpanel" aria-labelledby="nav-cpf-tab" style="padding: 10px;">
+                <div class="tab-pane fade show active" id="nav-cpf" role="tabpanel" aria-labelledby="nav-cpf-tab" style="padding: 10px;">
                     <div class="form-row">
                         <div class="form-group col-md-4 ">
                             <label for="numCPF">Numero do CPF</label>
-                            <input type="text" onkeypress="$(this).mask('000.000.000-00');" class="form-control" id="numCPF">
+                            <input type="text" required onkeypress="$(this).mask('000.000.000-00');" class="form-control" id="numCPF">
 
                         </div>
                         <div class="form-group col-md-4 ">
                             <label for="btnCPF">&nbsp;&nbsp;&nbsp;</label>
                             <input type="button" value="Consultar" id="btnCPF" class="form-control btn btn-primary float-right">
-                            
+
                         </div>
+                        <%                            String descErro = request.getParameter("descErro");
+                            if (descErro != null) {
+                                if (descErro.equals("erro")) {
+                                    out.println("<div class='alert alert-danger' role='alert'>Desconto não pode ultrapassar 50% do total da compra</div>");
+                                }
+                            }
+                        %>
                     </div>
                     <%
-                                String ponto = request.getParameter("ponto");
-                                if(ponto != null){
-                                    if(ponto.equals("erro")){
-                                        out.println("<div class='alert alert-danger' role='alert'>Erro ao Consultar</div>");
-                                    } else if(ponto.equals("nexist")){
-                                        out.println("<div class='form-row'>");
-                                        out.println("Não foi encontrado nenhum registro com esse CPF<br>Deseja realizar o cadastro do cliente?<br><br>");
-                                        out.println("</div>");
-                                        out.println("<input type='button' class='btn btn-warning ' value='SIM' id='cadNewCli'>&nbsp;&nbsp;&nbsp;");
-                                    } else {
-                                        int pontuacao = Integer.parseInt(ponto);
-                                    }
+                        String ponto = request.getParameter("ponto");
+
+                        int p = 0;
+
+                        if (ponto != null) {
+                            if (ponto.equals("erro")) {
+                                out.println("<div class='alert alert-danger' role='alert'>Erro ao Consultar</div>");
+                            } else if (ponto.equals("nexist")) {
+                                out.println("<div class='form-row'>");
+                                out.println("Não foi encontrado nenhum registro com esse CPF<br>Deseja realizar o cadastro do cliente?<br><br>");
+                                out.println("</div>");
+                                out.println("<input type='button' class='btn btn-success' value='SIM' id='cadNewCli'>&nbsp;&nbsp;&nbsp;");
+                            } else {
+                                p = Integer.parseInt(ponto);
+                                if (p == 0) {
+                                    out.println("<div class='form-row'>");
+                                    out.println("Você possui " + ponto + " ponto(s)<br><br>");
+                                    out.println("</div>");
+                                } else {
+                                    out.println("<div class='form-row'>");
+                                    out.println("Você possui " + ponto + " ponto(s)<br><br>");
+                                    out.println("Deseja utiliza-lo para obter desconto?<br>");
+                                    out.println("</div>");
+                                    out.println("<input type='button' class='btn btn-success' data-toggle='modal' data-target='#modaldesc' value='SIM' id='btnCliPont'>&nbsp;&nbsp;&nbsp;");
+
                                 }
-                            %>
+
+                            }
+                        }
+                    %>
                 </div>
 
                 <div class="tab-pane fade" id="nav-gerente" role="tabpanel" aria-labelledby="nav-gerente-tab" style="padding: 10px;">
@@ -200,11 +249,34 @@
                         <label for='simE'>Sim</label>
                         <input type="radio" name='escolha' id='naoE' value='nao'>
                         <label for='simE'>Não</label><br><br>
-                        <input type='text' id='cpfEscolha' value='' name="cpfEscolha" onkeypress="$(this).mask('000.000.000-00');" >
+                        <input type='text' id='cpfIn' name="cpfIn" onkeypress="$(this).mask('000.000.000-00');" >
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                         <input type='button' class='btn btn-primary' id='btnFin' value='Concluir' name='btnFin' >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modaldesc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Aplicando Desconto</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h3>Quantos pontos deseja utilizar?</h3>
+                        <h6 id="totalCompra">Total: <%=p%></h6>
+                        <input type='text' id='descInsert' value='' required name="descInsert" >
+                        <div id="alertaDesconto"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <input type='button' class='btn btn-primary' id='btnDesconto' value='Aplicar' name='btnDesconto' >
                     </div>
                 </div>
             </div>
@@ -218,26 +290,38 @@
                             $(document).ready(function () {
                                 $('input[name="escolha"]').click(function (e) {
                                     if (e.target.value === 'sim') {
-                                        $('#cpfEscolha').show();
+                                        $('#cpfIn').show();
                                     } else {
-                                        $('#cpfEscolha').val("");
-                                        $('#cpfEscolha').hide();
+                                        $('#cpfIn').val("");
+                                        $('#cpfIn').hide();
                                     }
                                 })
 
-                                $('#cpfEscolha').hide();
+                                $('#cpfIn').hide();
+                            });
+
+                            $("#btnDesconto").click(function () {
+                                var d = $("#descInsert").val();
+                                var t = <%=p%>
+
+                                if (parseInt(d) > parseInt(t)) {
+                                    document.getElementById("alertaDesconto").innerHTML = "Insira um numero menor ou igual ao total de pontos";
+                                } else {
+                                    document.location.href = "cpfdesconto.jsp?apply=" + d + "&total=" +<%=totalItens%>;
+
+                                }
                             });
 
                             $("#btnGerente").click(function () {
                                 var desc = $("#numGerente").val();
 
-                                document.location.href = "carrinho.jsp?apply=" + desc;
+                                document.location.href = "gerenteDesconto.jsp?apply=" + desc;
 
                             });
-                            
-                            $("#btnCPF").click(function (){
+
+                            $("#btnCPF").click(function () {
                                 var cpf = $("#numCPF").val();
-                                
+
                                 document.location.href = "clienteConsulta.jsp?cpf=" + cpf;
                             });
 
@@ -256,18 +340,19 @@
                                 var keycode = '13';
                                 if (keycode == '13') {
                                     document.location.href = "carrinho.jsp?change=" + cod + "&qtd=" + qtd;
-            <%                String change = request.getParameter("change");
-                String qtd = request.getParameter("qtd");
-                int nQtd = 0;
-                if (change != null) {
-                    if (cart.contains(change)) {
-                        int n = cart.indexOf(change);
-                        if (n != -1) {
-                            cartQtd.set(n, Integer.parseInt(qtd));
-                            response.sendRedirect("carrinho.jsp?nchange=ok");
-                        }
-                    }
-                }
+            <%
+                                    String change = request.getParameter("change");
+                                    String qtd = request.getParameter("qtd");
+                                    int nQtd = 0;
+                                    if (change != null) {
+                                        if (cart.contains(change)) {
+                                            int n = cart.indexOf(change);
+                                            if (n != -1) {
+                                                cartQtd.set(n, Integer.parseInt(qtd));
+                                                response.sendRedirect("carrinho.jsp?nchange=ok");
+                                            }
+                                        }
+                                    }
 
             %>
                                 }
@@ -275,16 +360,31 @@
                             });
 
                             $("#btnFin").click(function () {
-                                var cpf = document.getElementById("cpfEscolha").value;
-                                
-                                if(cpf != null || cpf != ""){
-                                    document.location.href = "closeCart.jsp?cpf=" + cpf + "&total=" +<%=totalItens%>;
-                                } else {
-                                    document.location.href = "closeCart.jsp?total=" +<%=totalItens%>;
+                                var cpf = document.getElementById("cpfIn").value;
+
+                                var desconto = <%=iDesc%>
+
+                                if (cpf != "")
+                                    document.location.href = "closeCart.jsp?cpf=" + cpf + "&desc=" + desconto + "&total=" +<%=totalItens%>
+                                else
+                                    document.location.href = "closeCart.jsp?desc=" + desconto + "&total=" +<%=totalItens%>
+                            });
+
+                            $("#cadNewCli").click(function () {
+                                document.location.href = "cadcliente.jsp";
+                            });
+
+                            $("#btnConvenio").click(function () {
+                                var nome = document.getElementById("numConv").value;
+
+                                if (nome != "") {
+                                    document.location.href = "convenioDesconto.jsp?nome=" + nome;
                                 }
-
-
-                            })
+                            });
+                            
+                            $("#useConve").click(function (){
+                                document.location.href = "gerenteDesconto.jsp?apply=" + <%=conv%>;
+                            });
         </script>
     </body>
 </html>

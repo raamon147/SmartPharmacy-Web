@@ -3,12 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/caion/Desktop/git/aps2/web/edititem.jsp</file>
-            <file>file:/C:/Users/caion/Desktop/git/aps2/src/java/DAO/ProdutoDAO.java</file>
+            <file>file:/C:/Users/caion/Desktop/git/aps2/web/geracupom.jsp</file>
+            <file>file:/C:/Users/caion/Desktop/git/aps2/web/getaplicacao.jsp</file>
             <file>file:/C:/Users/caion/Desktop/git/aps2/web/carrinho.jsp</file>
-            <file>file:/C:/Users/caion/Desktop/git/aps2/web/altGen.jsp</file>
-            <file>file:/C:/Users/caion/Desktop/git/aps2/web/caditem.jsp</file>
-            <file>file:/C:/Users/caion/Desktop/git/aps2/web/clienteConsulta.jsp</file>
+            <file>file:/C:/Users/caion/Desktop/git/aps2/web/gerenteDesconto.jsp</file>
+            <file>file:/C:/Users/caion/Desktop/git/aps2/web/closeCart.jsp</file>
+            <file>file:/C:/Users/caion/Desktop/git/aps2/web/relatorioaplicacao.jsp</file>
+            <file>file:/C:/Users/caion/Desktop/git/aps2/src/java/DAO/CompraDAO.java</file>
+            <file>file:/C:/Users/caion/Desktop/git/aps2/src/java/Classes/Compra.java</file>
+            <file>file:/C:/Users/caion/Desktop/git/aps2/src/java/DAO/ConvenioDAO.java</file>
+            <file>file:/C:/Users/caion/Desktop/git/aps2/src/java/DAO/CarrinhoDAO.java</file>
         </group>
     </open-files>
 </project-private>
