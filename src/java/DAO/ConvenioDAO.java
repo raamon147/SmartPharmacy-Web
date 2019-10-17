@@ -13,11 +13,10 @@ public class ConvenioDAO {
         try{
             
             Connection con = Conexao.getConexao();
-            String sql = "insert into convenio (nome_conv,cod_conv,desc_conv) values (?,?,?)";
+            String sql = "insert into convenio (nome_conv,desc_conv) values (?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1,conv.getNome_conv());
-            ps.setString(2, conv.getCod_conv());
-            ps.setInt(3, conv.getDesc());
+            ps.setInt(2, conv.getDesc());
             
             ps.execute();
             
@@ -46,6 +45,22 @@ public class ConvenioDAO {
             return res;
         }catch(Exception e){
             e.printStackTrace();
+            return null;
+        }
+    }
+    
+     
+    
+        
+        public ResultSet getNomeConvenio(){
+        try {
+            Connection conn = Conexao.getConexao();
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM convenio");
+            ResultSet rs;
+            rs = ps.executeQuery();
+            return rs;
+
+        } catch (Exception e) {
             return null;
         }
     }

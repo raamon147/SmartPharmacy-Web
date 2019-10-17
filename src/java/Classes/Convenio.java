@@ -2,7 +2,6 @@ package Classes;
 
 public class Convenio {
     private String nome_conv;
-    private String cod_conv;
     private int desc;
             
     public String getNome_conv() {
@@ -13,13 +12,6 @@ public class Convenio {
         this.nome_conv = nome_conv;
     }
 
-    public String getCod_conv() {
-        return cod_conv;
-    }
-
-    public void setCod_conv(String cod_conv) {
-        this.cod_conv = cod_conv;
-    }
 
     public int getDesc() {
         return desc;

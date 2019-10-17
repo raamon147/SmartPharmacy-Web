@@ -1,3 +1,4 @@
+<%@page import="DAO.ConvenioDAO"%>
 <%@page import="java.util.Random"%>
 <%@page import="Classes.Conexao"%>
 <%@page import="java.util.ArrayList"%>
@@ -81,9 +82,11 @@
                                 totalItens = tTotal;
 
                                 iDesc = ((totalItens * iDesc) / 100);
+                                
+                                
 
                                 if (totalItens != 0) {
-                                    out.println("<div class='display-4 float-right col-md-5'><h1 >Total Parcial: R$" + String.format("%.2f", totalItens) + "</h1><h5>&nbsp;&nbsp;Desconto: R$ " + String.format("%.2f", iDesc) + "</h5></div>");
+                                    out.println("<div class='display-4 float-right col-md-5'><h1 >Total: R$" + String.format("%.2f", totalItens) + "</h1><h5>&nbsp;&nbsp;Desconto: R$ " + String.format("%.2f", iDesc) + "</h5></div>");
                                     out.println("<input type='button' class='btn btn-warning float-left' id='btnVoltar' value='Voltar'>");
                                     out.println("&nbsp;&nbsp;&nbsp;&nbsp;<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalfin'>Finalizar Compra</button>");
 
@@ -94,7 +97,7 @@
 
                                 iDesc = ((totalItens * iDesc) / 100);
 
-                                out.println("<div class='display-4 float-right col-md-5'><h1 >Total Parcial: R$" + String.format("%.2f", totalItens) + "</h1><h5>&nbsp;&nbsp;Desconto: R$ " + String.format("%.2f", iDesc) + "</h5></div>");
+                                out.println("<div class='display-4 float-right col-md-5'><br/><h3 >Subtotal: R$" + String.format("%.2f", totalItens) + "</h3><h1 >Total: R$" + String.format("%.2f", totalItens-iDesc) + "</h1><h5>&nbsp;&nbsp;Desconto: R$ " + String.format("%.2f", iDesc) + "</h5></div>");
                                 out.println("<input type='button' class='btn btn-warning float-left' id='btnVoltar' value='Voltar'>");
                                 out.println("&nbsp;&nbsp;&nbsp;&nbsp;<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalfin'>Finalizar Compra</button>");
 
@@ -135,8 +138,16 @@
                     <div class="form-row">
                         <div class="form-group col-md-4 ">
                             <label for="numConv">Nome do Convênio</label>
-                            <input type="text" class="form-control" id="numConv">
-
+                            <select class="form-control" id="numConv">
+                                <% 
+                                ResultSet rs = new ConvenioDAO().getNomeConvenio();
+                                
+                                while(rs.next()){
+                                        out.println("<option>" + rs.getString("nome_conv")+ "</option>");
+                                }
+                                
+                                %>
+                            </select>
                         </div>
                         <div class="form-group col-md-4 ">
                             <label for="btnConvenio">&nbsp;&nbsp;&nbsp;</label>

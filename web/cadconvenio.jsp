@@ -26,15 +26,14 @@
                                 <label for="inputConv">Nome Convênio</label>
                                 <input type="text" class="form-control" required id="inputConv" name="nomeConv">
                             </div>
-                            <div class="form-group col-md-3">
-                                <label for="inputConv">Prefixo Convênio</label>
-                                <input type="text" class="form-control" required id="inputConv" name="numConv">
-                            </div>
+                            
                             <div class="form-group col-md-2">
                                 <label for="inputPorc">Desconto Medicamentos</label>
                                 <select id="inputPorc" class="form-control" name="descMed">
                                     <option selected>10</option>
                                     <option>20</option>
+                                    <option>30</option>
+                                    <option>40</option>
                                     <option>50</option>
                                 </select>
                             </div>
