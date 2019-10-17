@@ -37,9 +37,6 @@
         String res = new CarrinhoDAO().setOrder(cart, cartQtd, ftotal);
         
         if(res!= null){
-            cart.clear();
-            cartQtd.clear();
-            desconto.clear();
         }
         
         response.sendRedirect("carrinho.jsp?pedido="+res);

@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="CSS/bootstrap.min.css">
         <title>SmartPharmacy</title>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.jsp"><strong><font COLOR="red">Smart</strong>Pharmacy</font></a>
+        <a class="navbar-brand" href="index.jsp" title="Ir para a página inicial"><strong><font COLOR="red">Smart</strong>Pharmacy</font></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -74,11 +74,19 @@
                         <a class="dropdown-item" href="relatorioVendas.jsp">Relatórios Vendas</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link active" href="logout.jsp">Sair</a>
-                </li>
+               
+                
             </div>
+                
         </div>
+        
+        
+                
+        <form action="carrinho.jsp" method="post"> 
+            
+            <input type=image src="shopping-cart.png" width="30" height="=30" title="Abrir Carrinho" style="float: right;margin-top: 10px; margin-right: 30px;"> 
+            </form>
+                <a class="nav-link active" href="logout.jsp" style="color: black">Sair</a>
     </nav>
 </head>
 </html>

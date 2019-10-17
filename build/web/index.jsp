@@ -21,7 +21,7 @@
         <script src="JS/popper.min.js"></script>
         <script src="JS/bootstrap.min.js"></script>
         <script type="text/javascript" src="JS/jsbuscar.js"></script>
-        
+
         <script>
             function selector() {
                 $(".alert").removeClass('hidden');
@@ -61,14 +61,14 @@
             }
         %>
         <br/>
-
+             
         <div style="margin: 40px;padding: 10px; padding-left: 30px; background-color: #f8f9fa;border-radius: 10px;">
-
+            
             <form method="post" action="buscaritem.jsp">
                 <div class="input-group md-form form-sm form-2 pl-0">
                     <input class="form-control my-0 py-1 red-border" id="prod" type="text" placeholder="Digite o nome do produto"
                            aria-label="Search" onkeyup="pesquisar()" autocomplete="off" name="item">
-                    
+
                 </div>
             </form>
             <form method="post" action="addtocart.jsp">
@@ -87,7 +87,7 @@
                                     <th class="actions">Ações</th>
                                 </tr>
                             </thead>
-                            
+
                             <tbody id="listaprodutos">
 
                             </tbody>
@@ -118,6 +118,7 @@
                     </div>
                 </div>
             </form>
+
 
             <a class="btn btn-primary" href="carrinho.jsp" role="button">Abrir Carrinho</a>
 
