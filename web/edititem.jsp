@@ -135,33 +135,33 @@
                 <div class="form-row">
                     <div class="form-group col-md-2">
                         <label for="cadCod">Codigo</label>
-                        <input type="text" class="form-control" id="inputCod" name="cadCod" readonly value="<%=prod.getCod_prod()%>">
+                        <input type="text" class="form-control" required="" id="inputCod" name="cadCod" readonly value="<%=prod.getCod_prod()%>">
                     </div>
                     <div class="form-group col-md-5">
                         <label for="cadNome">Produto</label>
-                        <input type="text" class="form-control" id="inputNomeProd" name="cadNome" value="<%=prod.getNome_prod()%>">
+                        <input type="text" class="form-control" required="" id="inputNomeProd" name="cadNome" value="<%=prod.getNome_prod()%>">
                     </div>
                     <div class="form-group col-md-2">
                         <label for="cadQtd">Quantidade</label>
-                        <input type="text" class="form-control" id="inputPreco"  name="cadQtd" value="<%=prod.getQtd_prod()%>">
+                        <input type="text" class="form-control" required="" id="inputPreco"  name="cadQtd" value="<%=prod.getQtd_prod()%>">
                     </div>
                     <div class="form-group col-md-2">
                         <label for="cadPreco">Preço</label>
-                        <input type="text" class="form-control" id="inputPreco" onkeypress="$(this).mask('000000000000000.00', {reverse: true});" name="cadPreco" value="<%=prod.getPreco_prod()%>">
+                        <input type="text" class="form-control" required="" id="inputPreco" onkeypress="$(this).mask('000000000000000.00', {reverse: true});" name="cadPreco" value="<%=prod.getPreco_prod()%>">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label for="cadFab">Fabricante</label>
-                        <input type="text" class="form-control" id="inputPreco" name="cadFab" value="<%=prod.getFabr_prod()%>">
+                        <input type="text" class="form-control" required="" id="inputPreco" name="cadFab" value="<%=prod.getFabr_prod()%>">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="cadPrin">Principio Ativo</label>
-                        <input type="text" class="form-control" id="inputPreco" name="cadPrin" value="<%=prod.getPr_ativo()%>">
+                        <input type="text" class="form-control" required="" id="inputPreco" name="cadPrin" value="<%=prod.getPr_ativo()%>">
                     </div>
                     <div class="form-group col-md-2">
                         <label for="cadDos">Dosagem</label>
-                        <input type="search" class="form-control" id="inputDosagem" name="cadDos" value="<%=prod.getDos_prod()%>">
+                        <input type="search" class="form-control" required="" id="inputDosagem" name="cadDos" value="<%=prod.getDos_prod()%>">
                     </div>
                     <div class="form-group col-md-2">
                         <label for="cadCat">Categoria</label>
