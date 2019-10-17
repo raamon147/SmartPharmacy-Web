@@ -32,7 +32,7 @@ CREATE TABLE `cliente` (
   `c_qtdpontos` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `cpf` (`cpf`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -44,4 +44,4 @@ CREATE TABLE `cliente` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-16 17:23:41
+-- Dump completed on 2019-10-16 22:56:13

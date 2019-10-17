@@ -21,7 +21,7 @@ public class ProdutoDAO {
             if (rs.first()) {
                 res = "exist";
             } else {
-                String sql = "INSERT INTO produto (cod_prod,nome_prod,qtd_prod,preco_prod,fabr_prod,pr_ativo,dos_prod,status_prod,categoria) VALUES (?,?,?,?,?,?,?,'DISPONIVEL',?)";
+                String sql = "INSERT INTO produto (cod_prod,nome_prod,qtd_prod,preco_prod,fabr_prod,pr_ativo,dos_prod,categoria) VALUES (?,?,?,?,?,?,?,?)";
                 ps = con.prepareStatement(sql);
                 ps.setString(1, produto.getCod_prod());
                 ps.setString(2, produto.getNome_prod());
@@ -158,7 +158,6 @@ public class ProdutoDAO {
                 prod.setPr_ativo(rs.getString("pr_ativo"));
                 prod.setDos_prod(rs.getString("dos_prod"));
                 prod.setQtd_prod(rs.getInt("qtd_prod"));
-                prod.setStatus_prod(rs.getString("status_prod"));
                 prod.setPreco_prod(rs.getFloat("preco_prod"));
                 prod.setCategoria(rs.getString("categoria"));
                 

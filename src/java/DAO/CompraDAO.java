@@ -30,7 +30,7 @@ public class CompraDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Compra compra = new Compra();
-                compra.setCodigo(rs.getInt("codigo_carrinho"));
+                compra.setCodigo(rs.getString("codigo_carrinho"));
                 compra.setQtdTotal(rs.getInt("qtd_total_item"));
                 compra.setTotal(rs.getFloat("total_compra"));
                 compra.setCpf(rs.getString("cpf_comprador"));
@@ -39,17 +39,40 @@ public class CompraDAO {
                 compra.setNome_prod(rs.getString("nome_produto"));
                 compra.setQtdProd(rs.getInt("qtd_produto"));
                 compra.setTotalPrecoProd(rs.getFloat("total_produto"));
-                compra.setPrecoProd(rs.getFloat("preco_compra"));
+                compra.setPrecoProd(rs.getFloat("preco_prod"));
                 
                 lista.add(compra);
                 
             }
             
-            return lista;
+            
         }catch(Exception e){
             e.printStackTrace();
             return null;
         }
+        return lista;
+    }
+    
+    public ArrayList<Compra> getList(){
+        ArrayList<Compra> lista = new ArrayList<>();
+        try{
+            Connection con = Conexao.getConexao();
+            String sql = "select codigo_carrinho, data_compra,total_compra from compra order by data_compra desc";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Compra c = new Compra();
+                c.setCodigo(rs.getString("codigo_carrinho"));
+                c.setDataCompra(rs.getString("data_compra"));
+                c.setTotal(rs.getFloat("total_compra"));
+                
+                lista.add(c);
+            }
+            
+        }catch(Exception e){
+            return null;
+        }
+        return lista;
     }
     
 }

@@ -83,7 +83,7 @@
                                 iDesc = ((totalItens * iDesc) / 100);
 
                                 if (totalItens != 0) {
-                                    out.println("<div class='display-4 float-right col-md-5'><h1 >Total Parcial: R$" + String.format("%.2f", totalItens) + "</h1><h5>&nbsp;&nbsp;Desconto: R$ " + iDesc + "</h5></div>");
+                                    out.println("<div class='display-4 float-right col-md-5'><h1 >Total Parcial: R$" + String.format("%.2f", totalItens) + "</h1><h5>&nbsp;&nbsp;Desconto: R$ " + String.format("%.2f", iDesc) + "</h5></div>");
                                     out.println("<input type='button' class='btn btn-warning float-left' id='btnVoltar' value='Voltar'>");
                                     out.println("&nbsp;&nbsp;&nbsp;&nbsp;<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalfin'>Finalizar Compra</button>");
 
@@ -94,7 +94,7 @@
 
                                 iDesc = ((totalItens * iDesc) / 100);
 
-                                out.println("<div class='display-4 float-right col-md-5'><h1 >Total Parcial: R$" + String.format("%.2f", totalItens) + "</h1><h5>&nbsp;&nbsp;Desconto: R$ " + iDesc + "</h5></div>");
+                                out.println("<div class='display-4 float-right col-md-5'><h1 >Total Parcial: R$" + String.format("%.2f", totalItens) + "</h1><h5>&nbsp;&nbsp;Desconto: R$ " + String.format("%.2f", iDesc) + "</h5></div>");
                                 out.println("<input type='button' class='btn btn-warning float-left' id='btnVoltar' value='Voltar'>");
                                 out.println("&nbsp;&nbsp;&nbsp;&nbsp;<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalfin'>Finalizar Compra</button>");
 
@@ -112,7 +112,7 @@
                         if (pedido.equalsIgnoreCase("ult")) {
                             out.println("<div class='alert alert-danger' role='alert'>A quantidade de itens no estoque não condiz com o pedido</div>");
                         } else {
-                            out.println("<div class='alert alert-success' role='alert'>Pedido finalizado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='geracupom.jsp?cod_compra="+pedido+"'>Gerar Cupom</a></div>");
+                            out.println("<div class='alert alert-success' role='alert'>Pedido finalizado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target ='_blank' href='geracupom.jsp?cod_compra="+pedido+"'>Gerar Cupom</a></div>");
                             out.println("");
                         }
                     }

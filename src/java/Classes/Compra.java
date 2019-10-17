@@ -2,7 +2,7 @@ package Classes;
 
 public class Compra {
     
-    private int codigo;
+    private String codigo;
     private int qtdTotal;
     private float total;
     private String cpf;
@@ -13,11 +13,11 @@ public class Compra {
     private float precoProd;
     private float totalPrecoProd;
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 

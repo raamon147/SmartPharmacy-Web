@@ -83,7 +83,12 @@
                                     out.println("<td>" + p.getDos_prod() + "</td>");
                                     out.println("<td>" + p.getQtd_prod() + "</td>");
                                     out.println("<td>" + p.getCategoria() + "</td>");
-                                    out.println("<td>" + p.getStatus_prod() + "</td>");
+                                    if(p.getQtd_prod() == 0){
+                                        out.println("<td>INDISPONIVEL</td>");
+                                        
+                                    } else{
+                                       out.println("<td>DISPONIVEL</td>"); 
+                                    }
                                     out.println("</tr>");
                                 }
                             } catch (Exception e) {

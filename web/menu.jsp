@@ -71,6 +71,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="relatorioaplicacao.jsp">Relatórios Aplicações</a>
+                        <a class="dropdown-item" href="relatorioVendas.jsp">Relatórios Vendas</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

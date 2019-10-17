@@ -92,5 +92,42 @@ public class UsuarioDAO {
 
         return res;
     }
+        
+    public String newPassByCPF(String cpf,String senha){
+        String res = "";
+        try{
+            Connection con = Conexao.getConexao();
+            String sql = "update login set senha = ? where cpf = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, senha);
+            ps.setString(2, cpf);
+            ps.executeUpdate();
+            
+            res = "ok";
+        }catch(Exception e){
+            res = "erro";
+            e.printStackTrace();
+        }
+        
+        return res;
+    }
     
+    public String newPassByEmail(String email,String senha){
+        String res = "";
+        try{
+            Connection con = Conexao.getConexao();
+            String sql = "update login set senha = ? where email = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, senha);
+            ps.setString(2, email);
+            ps.executeUpdate();
+            
+            res = "ok";
+        }catch(Exception e){
+            res = "erro";
+            e.printStackTrace();
+        }
+        
+        return res;
+    }
 }

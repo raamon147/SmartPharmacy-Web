@@ -16,10 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping events for database 'farmacia'
---
-
---
 -- Dumping routines for database 'farmacia'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -32,4 +28,4 @@
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-16 17:23:43
+-- Dump completed on 2019-10-16 22:56:14

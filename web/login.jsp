@@ -54,7 +54,7 @@
 
         %>
         <div id="formFooter">
-            <a class="underlineHover" href="">Esqueci a senha</a>
+            <a class="underlineHover" href="newSenha.jsp">Esqueci a senha</a>
         </div>
 
     </div>
