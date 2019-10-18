@@ -50,11 +50,11 @@
 
             ArrayList<String> cart = (ArrayList) session.getAttribute("cart");
             ArrayList<Integer> cartQtd = (ArrayList) session.getAttribute("cartQtd");
-            ArrayList<Float> desconto = (ArrayList) session.getAttribute("desconto");
+            ArrayList<Double> desconto = (ArrayList) session.getAttribute("desconto");
             if (cart == null && cartQtd == null && desconto == null) {
                 cart = new ArrayList<String>();
                 cartQtd = new ArrayList<Integer>();
-                desconto = new ArrayList<Float>();
+                desconto = new ArrayList<Double>();
                 session.setAttribute("cart", cart);
                 session.setAttribute("cartQtd", cartQtd);
                 session.setAttribute("desconto", desconto);

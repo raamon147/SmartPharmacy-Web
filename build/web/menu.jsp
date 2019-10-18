@@ -27,6 +27,7 @@
                     </a>
                     
                     <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
+                        
                         <a class="dropdown-item disabled"  href="caditem.jsp">Adicionar Produtos</a>
                         <a class="dropdown-item " href="edititem.jsp">Listar/Editar Produtos</a>
                         <a class="dropdown-item disabled"  href="cadconvenio.jsp">Cadastrar Convênios</a>
@@ -36,10 +37,12 @@
                     </div>
                 </li>
                 <%} else {%>
+                <a class="nav-link active" href="index.jsp" style="color: black">Inicio</a>
                 <li class="nav-item dropdown">
                     
                     <a class="nav-link dropdown-toggle active"  href="#" id="navbarDropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        
                         Administrador
                     </a>
                     

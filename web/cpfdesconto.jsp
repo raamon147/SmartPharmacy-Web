@@ -4,20 +4,27 @@
     String total = request.getParameter("total");
     ArrayList desconto = (ArrayList) session.getAttribute("desconto");
 
-    float fDesc = 0;
-    float tot = 0;
-
+    double fDesc = 0;
+    double tot = 0;
+    double value = 0;
+    
     if (desc != null && total != null) {
-        fDesc = Float.parseFloat(desc) * 0.1f;
-        tot = Float.parseFloat(total);
-
-        if (fDesc > (tot - ((tot * 50) / 100))) {
+        fDesc = Double.parseDouble(desc);
+        tot = Double.parseDouble(total);
+        
+        
+        value = ((fDesc*0.10) /tot)*100;
+        
+        
+        
+        
+        if (fDesc*0.10 > (tot / 2)) {
             response.sendRedirect("carrinho.jsp?descErro=erro");;
         } else {
             if (desconto.isEmpty()) {
-                desconto.add(Float.parseFloat(desc));
+                desconto.add(value);
             } else {
-                desconto.set(0, Float.parseFloat(desc));
+                desconto.set(0, value);
             }
             response.sendRedirect("carrinho.jsp");
         }

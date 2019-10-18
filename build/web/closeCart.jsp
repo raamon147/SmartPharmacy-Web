@@ -36,7 +36,9 @@
         
         String res = new CarrinhoDAO().setOrder(cart, cartQtd, ftotal);
         
-        if(res!= null){
+        if(res== "ult"){
+            
+        }else{
             cart.clear();
             cartQtd.clear();
             desconto.clear();

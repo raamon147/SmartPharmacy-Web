@@ -37,11 +37,12 @@ public class CarrinhoDAO {
 
                 ResultSet rs = ps.executeQuery();
                 Produto prod = new Produto();
-                if (rs.first()) {
+                while (rs.next()) {
                     prod.setCod_prod(rs.getString("cod_prod"));
                     prod.setNome_prod(rs.getString("nome_prod"));
                     prod.setQtd_prod(Integer.parseInt(cartQtd.get(i).toString()));
                     prod.setPreco_prod(rs.getFloat("preco_prod"));
+                    prod.setQtd_prod(rs.getInt("qtd_prod"));
                 }
 
                 lista.add(lista.size(), prod);
@@ -71,7 +72,7 @@ public class CarrinhoDAO {
                 ps = con.prepareStatement(sql);
                 ps.setString(1, cart.get(i));
                 ResultSet re = ps.executeQuery();
-                if (re.first()) {
+                while (re.next()) {
                     if (re.getInt("qtd_prod") < cartQtd.get(i)) {
                         res = "ult";
                     } else {
@@ -90,7 +91,7 @@ public class CarrinhoDAO {
                     ps.setString(1, cart.get(i));
 
                     ResultSet rs = ps.executeQuery();
-                    if (rs.first()) {
+                    while (rs.next()) {
                         Produto prod = new Produto();
                         prod.setCod_prod(rs.getString("cod_prod"));
                         prod.setNome_prod(rs.getString("nome_prod"));
@@ -181,8 +182,8 @@ public class CarrinhoDAO {
                 ps = con.prepareStatement(sql);
                 ps.setString(1, cart.get(i));
                 ResultSet re = ps.executeQuery();
-                if (re.first()) {
-                    if (re.getInt("qtd_prod") < cartQtd.get(i)) {
+                while (re.next()) {
+                    if (re.getInt("qtd_prod") <= cartQtd.get(i)) {
                         res = "ult";
                     } else {
                         res = "continua";

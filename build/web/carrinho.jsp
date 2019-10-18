@@ -41,17 +41,17 @@
                                 <%
                                     ArrayList<String> cart = (ArrayList) session.getAttribute("cart");
                                     ArrayList<Integer> cartQtd = (ArrayList) session.getAttribute("cartQtd");
-                                    ArrayList<Float> desconto = (ArrayList) session.getAttribute("desconto");
+                                    ArrayList<Double>  desconto = (ArrayList) session.getAttribute("desconto");
 
                                     ArrayList<Produto> lista = new CarrinhoDAO().getCart(cart, cartQtd);
 
-                                    float totalItens = 0;
+                                    double totalItens = 0;
 
                                     for (int i = 0; i < lista.size(); i++) {
                                         out.print("<tr>");
                                         out.print("<td>" + lista.get(i).getCod_prod() + "</td>");
                                         out.print("<td>" + lista.get(i).getNome_prod() + "</td>");
-                                        out.print("<td><input style='width:50px;' id='" + lista.get(i).getCod_prod() + "' name='qtdProd' type='number' min='1' value = " + cartQtd.get(i) + " size = '1'></td>");
+                                        out.print("<td><input style='width:50px;' id='" + lista.get(i).getCod_prod() + "' name='qtdProd' type='number' min='1' value = " + cartQtd.get(i) + " max='"+lista.get(i).getQtd_prod()+"' size = '1'></td>");
                                         out.print("<td>" + String.format("%.2f", lista.get(i).getPreco_prod()) + "</td>");
                                         out.print("<td>" + String.format("%.2f", lista.get(i).getPreco_prod() * cartQtd.get(i)) + "</td>");
                                         out.print("<td class='actions'>");
@@ -63,7 +63,7 @@
                                         totalItens += lista.get(i).getPreco_prod() * cartQtd.get(i);
                                     }
 
-                                    float iDesc = 0;
+                                    double iDesc = 0;
 
                                     if (desconto.isEmpty()) {
                                         iDesc = 0;
@@ -253,12 +253,14 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <form>
                     <div class="modal-body">
+                        
                         Deseja Inserir o CPF na compra?
                         <br>
                         <input type="radio" name='escolha' id='simE' value='sim'>
                         <label for='simE'>Sim</label>
-                        <input type="radio" name='escolha' id='naoE' value='nao'>
+                        <input type="radio" name='escolha' id='naoE' value='nao' checked="checked">
                         <label for='simE'>Não</label><br><br>
                         <input type='text' id='cpfIn' name="cpfIn" onkeypress="$(this).mask('000.000.000-00');" >
                     </div>
@@ -266,10 +268,11 @@
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                         <input type='button' class='btn btn-primary' id='btnFin' value='Concluir' name='btnFin' >
                     </div>
+                   </form>
                 </div>
             </div>
         </div>
-
+<
         <div class="modal fade" id="modaldesc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -353,7 +356,12 @@
                                     document.location.href = "carrinho.jsp?change=" + cod + "&qtd=" + qtd;
             <%
                                     String change = request.getParameter("change");
+                                    
                                     String qtd = request.getParameter("qtd");
+                                    
+                                    if (qtd == ""){
+                                        
+                                    }else{
                                     int nQtd = 0;
                                     if (change != null) {
                                         if (cart.contains(change)) {
@@ -364,6 +372,7 @@
                                             }
                                         }
                                     }
+                                    }
 
             %>
                                 }
@@ -371,6 +380,9 @@
                             });
 
                             $("#btnFin").click(function () {
+                                
+                                
+                            
                                 var cpf = document.getElementById("cpfIn").value;
 
                                 var desconto = <%=iDesc%>

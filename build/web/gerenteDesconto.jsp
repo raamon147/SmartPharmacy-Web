@@ -6,9 +6,9 @@
     
     if(desc != null){
         if(desconto.isEmpty()){
-            desconto.add(Float.parseFloat(desc));
+            desconto.add(Double.parseDouble(desc));
         } else {
-            desconto.set(0, Float.parseFloat(desc));
+            desconto.set(0, Double.parseDouble(desc));
         }
         response.sendRedirect("carrinho.jsp");
     }
