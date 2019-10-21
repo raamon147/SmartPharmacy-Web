@@ -23,6 +23,10 @@
         <script type="text/javascript" src="JS/jsbuscar.js"></script>
 
         <script>
+            
+            window.onload = function(){
+                pesquisar();
+            }
             function selector() {
                 $(".alert").removeClass('hidden');
                 window.setTimeout(function () {
@@ -61,13 +65,34 @@
             }
         %>
         <br/>
-             
-        <div style="margin: 40px;padding: 10px; padding-left: 30px; background-color: #f8f9fa;border-radius: 10px;">
             
+        <div style="margin: 40px;padding: 10px; padding-left: 30px; background-color: #f8f9fa;border-radius: 10px;">
+            <%                            String res = request.getParameter("cart");
+
+                            if (res != null) {
+                                if (res.equalsIgnoreCase("ok")) {
+                        %><div class="alert alert-success hidden" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            Produto Adicionado ao Carrinho
+                        </div> 
+                        <script>$(selector).click();</script><%
+                        } else if (res.equalsIgnoreCase("fail")) {
+                            out.println("<div class='alert alert-danger' role='alert'> Erro ao Adicionar</div>");
+                        } else if (res.equalsIgnoreCase("exist")) {%>
+                        <div class="alert alert-danger hidden" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            Esse Produto ja esta no carrinho
+                        </div> 
+                        <script>$(selector).click();</script><%
+
+                                } else {
+                                }
+                            }
+                        %> 
             <form method="post" action="buscaritem.jsp">
                 <div class="input-group md-form form-sm form-2 pl-0">
                     <input class="form-control my-0 py-1 red-border" id="prod" type="text" placeholder="Digite o nome do produto"
-                           aria-label="Search" onkeyup="pesquisar()" autocomplete="off" name="item">
+                           aria-label="Search" onkeyup="pesquisar()" autocomplete="off" name="item" id="item">
 
                 </div>
             </form>
@@ -93,28 +118,7 @@
                             </tbody>
                         </table>
 
-                        <%                            String res = request.getParameter("cart");
-
-                            if (res != null) {
-                                if (res.equalsIgnoreCase("ok")) {
-                        %><div class="alert alert-success hidden" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            Produto Adicionado ao Carrinho
-                        </div> 
-                        <script>$(selector).click();</script><%
-                        } else if (res.equalsIgnoreCase("fail")) {
-                            out.println("<div class='alert alert-danger' role='alert'> Erro ao Adicionar</div>");
-                        } else if (res.equalsIgnoreCase("exist")) {%>
-                        <div class="alert alert-danger hidden" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            Esse Produto ja esta no carrinho
-                        </div> 
-                        <script>$(selector).click();</script><%
-
-                                } else {
-                                }
-                            }
-                        %>
+                        
                     </div>
                 </div>
             </form>

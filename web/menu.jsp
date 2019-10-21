@@ -1,4 +1,5 @@
 
+<%@page import="java.util.ArrayList"%>
 <html>
     <head>
         <meta charset="utf-8">
@@ -14,6 +15,8 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <%
+                    ArrayList<String> cart2 = (ArrayList) session.getAttribute("cart");
+                    int cont = cart2.size();
                     try{
                     String key = (String) session.getAttribute("key");
                     
@@ -87,7 +90,8 @@
                 
         <form action="carrinho.jsp" method="post"> 
             
-            <input type=image src="shopping-cart.png" width="30" height="=30" title="Abrir Carrinho" style="float: right;margin-top: 10px; margin-right: 30px;"> 
+            <input type=image src="shopping-cart.png" width="30" height="=30" title="Abrir Carrinho" style="float: left; margin-top: 10px;">
+            <a class="nav-link active" href="carrinho.jsp" style="color: red; float: left"><%=cont%></a>
             </form>
                 <a class="nav-link active" href="logout.jsp" style="color: black">Sair</a>
     </nav>

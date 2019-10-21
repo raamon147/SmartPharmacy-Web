@@ -35,6 +35,7 @@
                     if (xmlHttp.status == 200) {
                         xmlDoc = xmlHttp.responseText;
                         document.getElementById("listaprodutos").innerHTML = xmlDoc;
+                        
                     }
                 }
             }
