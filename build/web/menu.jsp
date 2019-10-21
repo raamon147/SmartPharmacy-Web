@@ -15,11 +15,12 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <%
-                    ArrayList<String> cart2 = (ArrayList) session.getAttribute("cart");
-                    int cont = cart2.size();
+                    int cont = 0;
+                    
                     try{
                     String key = (String) session.getAttribute("key");
-                    
+                    ArrayList<String> cart2 = (ArrayList) session.getAttribute("cart");
+                    cont = cart2.size();
                 %>
                 <%if(key.equals("2")){%>
                 <li class="nav-item dropdown">
