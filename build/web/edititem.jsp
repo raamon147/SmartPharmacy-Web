@@ -130,7 +130,7 @@
 
             %>
             <%if (key.equals("1")) {%>
-            <h5>Selecione o codigo do Produto acima para começar a alterar</h5>
+            <h5>Clique no codigo do Produto acima para começar a alterar</h5>
             <form method="POST" action="altGen.jsp">
                 <div class="form-row">
                     <div class="form-group col-md-2">

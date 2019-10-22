@@ -24,7 +24,7 @@ public class ConvenioDAO {
             
             return res;
         }catch(Exception e){
-            res = e.toString();
+            res = "exist";
             return res;
         }
     }
