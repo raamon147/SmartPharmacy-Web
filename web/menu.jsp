@@ -16,11 +16,15 @@
             <div class="navbar-nav">
                 <%
                     int cont = 0;
-                    
+                    try{
+                        ArrayList<String> cart2 = (ArrayList) session.getAttribute("cart");
+                        cont = cart2.size();
+                    }catch(Exception a){
+                        
+                    }
                     try{
                     String key = (String) session.getAttribute("key");
-                    ArrayList<String> cart2 = (ArrayList) session.getAttribute("cart");
-                    cont = cart2.size();
+                    
                 %>
                 <%if(key.equals("2")){%>
                 <li class="nav-item dropdown">
