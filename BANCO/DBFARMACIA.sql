@@ -11,13 +11,6 @@ CREATE TABLE `aplicacao` (
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `carrinhocompras` (
-  `codprod` int(11) NOT NULL,
-  `prod` varchar(45) NOT NULL,
-  `qtd` int(11) NOT NULL,
-  `valor` double NOT NULL,
-  PRIMARY KEY (`codprod`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 CREATE TABLE `cliente` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cpf` varchar(15) NOT NULL,
