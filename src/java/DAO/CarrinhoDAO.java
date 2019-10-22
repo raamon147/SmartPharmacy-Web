@@ -183,7 +183,7 @@ public class CarrinhoDAO {
                 ps.setString(1, cart.get(i));
                 ResultSet re = ps.executeQuery();
                 while (re.next()) {
-                    if (re.getInt("qtd_prod") <= cartQtd.get(i)) {
+                    if (re.getInt("qtd_prod") < cartQtd.get(i)) {
                         res = "ult";
                     } else {
                         res = "continua";
