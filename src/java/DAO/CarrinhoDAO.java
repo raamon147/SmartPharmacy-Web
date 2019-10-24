@@ -41,7 +41,7 @@ public class CarrinhoDAO {
                     prod.setCod_prod(rs.getString("cod_prod"));
                     prod.setNome_prod(rs.getString("nome_prod"));
                     prod.setQtd_prod(Integer.parseInt(cartQtd.get(i).toString()));
-                    prod.setPreco_prod(rs.getFloat("preco_prod"));
+                    prod.setPreco_prod(rs.getDouble("preco_prod"));
                     prod.setQtd_prod(rs.getInt("qtd_prod"));
                 }
 
@@ -56,7 +56,7 @@ public class CarrinhoDAO {
         }
     }
 
-    public String setOrderWCpf(ArrayList<String> cart, ArrayList<Integer> cartQtd, float total, String cpf, ArrayList<Float> desconto) throws SQLException {
+    public String setOrderWCpf(ArrayList<String> cart, ArrayList<Integer> cartQtd, double total, String cpf, ArrayList<Double> desconto) throws SQLException {
         String sql = "";
         PreparedStatement ps = null;
         Connection con = Conexao.getConexao();
@@ -95,14 +95,14 @@ public class CarrinhoDAO {
                         Produto prod = new Produto();
                         prod.setCod_prod(rs.getString("cod_prod"));
                         prod.setNome_prod(rs.getString("nome_prod"));
-                        prod.setPreco_prod(rs.getFloat("preco_prod"));
+                        prod.setPreco_prod(rs.getDouble("preco_prod"));
 
                         String sqln = "insert into produtos_compra(cod_prod,nome_produto,qtd_produto,total_produto,codigo_carrinho,data_compra) values(?,?,?,?,?,now())";
                         ps = con.prepareStatement(sqln);
                         ps.setString(1, prod.getCod_prod());
                         ps.setString(2, prod.getNome_prod());
                         ps.setInt(3, cartQtd.get(i));
-                        ps.setFloat(4, (prod.getPreco_prod() * cartQtd.get(i)));
+                        ps.setDouble(4, (prod.getPreco_prod() * cartQtd.get(i)));
                         ps.setString(5, sValue);
 
                         totalitem += cartQtd.get(i);
@@ -114,7 +114,7 @@ public class CarrinhoDAO {
                 String sqlt = "insert into compra(codigo_carrinho,total_compra,cpf_comprador,data_compra,qtd_total_item) values (?,?,?,now(),?)";
                 PreparedStatement ps2 = con.prepareStatement(sqlt);
                 ps2.setString(1, sValue);
-                ps2.setFloat(2, total);
+                ps2.setDouble(2, total);
                 ps2.setString(3, cpf);
                 ps2.setInt(4, totalitem);
 
@@ -166,7 +166,7 @@ public class CarrinhoDAO {
         return res;
     }
 
-    public String setOrder(ArrayList<String> cart, ArrayList<Integer> cartQtd, float total) throws SQLException {
+    public String setOrder(ArrayList<String> cart, ArrayList<Integer> cartQtd, double total) throws SQLException {
         String sql = "";
         PreparedStatement ps = null;
         Connection con = Conexao.getConexao();
@@ -204,14 +204,14 @@ public class CarrinhoDAO {
                     if (rs.first()) {
                         prod.setCod_prod(rs.getString("cod_prod"));
                         prod.setNome_prod(rs.getString("nome_prod"));
-                        prod.setPreco_prod(rs.getFloat("preco_prod"));
+                        prod.setPreco_prod(rs.getDouble("preco_prod"));
 
                         sql = "insert into produtos_compra(cod_prod,nome_produto,qtd_produto,total_produto,codigo_carrinho,data_compra) values (?,?,?,?,?,now())";
                         ps = con.prepareStatement(sql);
                         ps.setString(1, prod.getCod_prod());
                         ps.setString(2, prod.getNome_prod());
                         ps.setInt(3, cartQtd.get(n));
-                        ps.setFloat(4, (prod.getPreco_prod() * cartQtd.get(n)));
+                        ps.setDouble(4, (prod.getPreco_prod() * cartQtd.get(n)));
                         ps.setString(5, sValue);
 
                         totalitem += cartQtd.get(n);
@@ -223,7 +223,7 @@ public class CarrinhoDAO {
                 String sqln = "insert into compra(codigo_carrinho,total_compra,data_compra,qtd_total_item) values(?,?,now(),?)";
                 PreparedStatement ps2 = con.prepareStatement(sqln);
                 ps2.setString(1, sValue);
-                ps2.setFloat(2, total);
+                ps2.setDouble(2, total);
                 ps2.setInt(3, totalitem);
 
                 ps2.executeUpdate();

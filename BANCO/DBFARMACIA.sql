@@ -26,11 +26,11 @@ CREATE TABLE `compra` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `codigo_carrinho` varchar(20) NOT NULL,
   `qtd_total_item` int(11) DEFAULT NULL,
-  `total_compra` float NOT NULL,
+  `total_compra` double NOT NULL,
   `cpf_comprador` varchar(15) DEFAULT NULL,
   `data_compra` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 CREATE TABLE `convenio` (
   `idconvenio` int(11) NOT NULL AUTO_INCREMENT,
   `nome_conv` varchar(45) NOT NULL,
@@ -56,21 +56,21 @@ CREATE TABLE `produto` (
   `cod_prod` varchar(12) NOT NULL,
   `nome_prod` varchar(45) NOT NULL,
   `qtd_prod` int(11) NOT NULL,
-  `preco_prod` float NOT NULL,
+  `preco_prod` double NOT NULL,
   `fabr_prod` varchar(45) NOT NULL,
   `pr_ativo` varchar(45) NOT NULL,
   `dos_prod` varchar(45) NOT NULL,
   `categoria` varchar(20) NOT NULL,
   PRIMARY KEY (`idproduto`),
   UNIQUE KEY `cod_prod` (`cod_prod`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 CREATE TABLE `produtos_compra` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cod_prod` varchar(20) NOT NULL,
   `nome_produto` varchar(50) NOT NULL,
   `qtd_produto` int(11) NOT NULL,
-  `total_produto` float NOT NULL,
+  `total_produto` double NOT NULL,
   `data_compra` date NOT NULL,
   `codigo_carrinho` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=957340 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=957378 DEFAULT CHARSET=latin1;

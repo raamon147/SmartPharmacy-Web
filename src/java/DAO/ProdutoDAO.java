@@ -26,7 +26,7 @@ public class ProdutoDAO {
                 ps.setString(1, produto.getCod_prod());
                 ps.setString(2, produto.getNome_prod());
                 ps.setInt(3, produto.getQtd_prod());
-                ps.setFloat(4, produto.getPreco_prod());
+                ps.setDouble(4, produto.getPreco_prod());
                 ps.setString(5, produto.getFabr_prod());
                 ps.setString(6, produto.getPr_ativo());
                 ps.setString(7, produto.getDos_prod());
@@ -61,7 +61,7 @@ public class ProdutoDAO {
                 prod.setCod_prod(cod);
                 prod.setNome_prod(rs.getString("nome_prod"));
                 prod.setQtd_prod(rs.getInt("qtd_prod"));
-                prod.setPreco_prod(rs.getFloat("preco_prod"));
+                prod.setPreco_prod(rs.getDouble("preco_prod"));
                 prod.setFabr_prod(rs.getString("fabr_prod"));
                 prod.setPr_ativo(rs.getString("pr_ativo"));
                 prod.setDos_prod(rs.getString("dos_prod"));
@@ -105,7 +105,7 @@ public class ProdutoDAO {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, prod.getNome_prod());
             ps.setInt(2, prod.getQtd_prod());
-            ps.setFloat(3, prod.getPreco_prod());
+            ps.setDouble(3, prod.getPreco_prod());
             ps.setString(4, prod.getFabr_prod());
             ps.setString(5, prod.getPr_ativo());
             ps.setString(6, prod.getDos_prod());
@@ -158,7 +158,36 @@ public class ProdutoDAO {
                 prod.setPr_ativo(rs.getString("pr_ativo"));
                 prod.setDos_prod(rs.getString("dos_prod"));
                 prod.setQtd_prod(rs.getInt("qtd_prod"));
-                prod.setPreco_prod(rs.getFloat("preco_prod"));
+                prod.setPreco_prod(rs.getDouble("preco_prod"));
+                prod.setCategoria(rs.getString("categoria"));
+                
+                lista.add(prod);
+            }
+            
+            return lista;
+            
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public ArrayList<Produto> getProdutosNome(String medicamento){
+        ArrayList<Produto> lista = new ArrayList<Produto>();
+        try{
+            Connection conn = Conexao.getConexao();
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM produto WHERE nome_prod like ?");
+            ps.setString(1, "%" + medicamento + "%");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Produto prod = new Produto();
+                prod.setCod_prod(rs.getString("cod_prod"));
+                prod.setNome_prod(rs.getString("nome_prod"));
+                prod.setFabr_prod(rs.getString("fabr_prod"));
+                prod.setPr_ativo(rs.getString("pr_ativo"));
+                prod.setDos_prod(rs.getString("dos_prod"));
+                prod.setQtd_prod(rs.getInt("qtd_prod"));
+                prod.setPreco_prod(rs.getDouble("preco_prod"));
                 prod.setCategoria(rs.getString("categoria"));
                 
                 lista.add(prod);

@@ -7,14 +7,14 @@
     
     ArrayList<String> cart = (ArrayList) session.getAttribute("cart");
     ArrayList<Integer> cartQtd = (ArrayList) session.getAttribute("cartQtd");
-    ArrayList<Float> desconto = (ArrayList) session.getAttribute("desconto");
+    ArrayList<Double> desconto = (ArrayList) session.getAttribute("desconto");
     
-    float ftotal = 0;
-    float d = 0;
+    double ftotal = 0;
+    double d = 0;
     
     if(cpf != null){
         
-        d = Float.parseFloat(desc);
+        d = Double.parseDouble(desc);
         
         ftotal = Float.parseFloat(total) - d;
         

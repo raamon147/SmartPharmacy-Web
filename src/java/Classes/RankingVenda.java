@@ -3,7 +3,7 @@ package Classes;
 public class RankingVenda {
     private String nome;
     private int qtd;
-    private float preco;
+    private double preco;
 
     public String getNome() {
         return nome;
@@ -21,11 +21,11 @@ public class RankingVenda {
         this.qtd = qtd;
     }
 
-    public float getPreco() {
+    public double getPreco() {
         return preco;
     }
 
-    public void setPreco(float preco) {
+    public void setPreco(double preco) {
         this.preco = preco;
     }
     

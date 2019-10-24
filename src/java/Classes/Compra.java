@@ -4,14 +4,14 @@ public class Compra {
     
     private String codigo;
     private int qtdTotal;
-    private float total;
+    private double total;
     private String cpf;
     private String dataCompra;
     private String cod_prod;
     private String nome_prod;
     private int qtdProd;
-    private float precoProd;
-    private float totalPrecoProd;
+    private double precoProd;
+    private double totalPrecoProd;
 
     public String getCodigo() {
         return codigo;
@@ -29,11 +29,11 @@ public class Compra {
         this.qtdTotal = qtdTotal;
     }
 
-    public float getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(float total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 
@@ -77,19 +77,19 @@ public class Compra {
         this.qtdProd = qtdProd;
     }
 
-    public float getPrecoProd() {
+    public double getPrecoProd() {
         return precoProd;
     }
 
-    public void setPrecoProd(float precoProd) {
+    public void setPrecoProd(double precoProd) {
         this.precoProd = precoProd;
     }
 
-    public float getTotalPrecoProd() {
+    public double getTotalPrecoProd() {
         return totalPrecoProd;
     }
 
-    public void setTotalPrecoProd(float totalPrecoProd) {
+    public void setTotalPrecoProd(double totalPrecoProd) {
         this.totalPrecoProd = totalPrecoProd;
     }
     

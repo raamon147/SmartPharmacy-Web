@@ -5,14 +5,14 @@ public class Produto{
     private String cod_prod;
     private String nome_prod;
     private int qtd_prod;
-    private float preco_prod;
+    private double preco_prod;
     private String fabr_prod;
     private String pr_ativo;
     private String dos_prod;
     private String status_prod;
     private String categoria;
 
-    public Produto(String cod_prod, String nome_prod, int qtd_prod, float preco_prod, String fabr_prod, String pr_ativo, String dos_prod, String status_prod,String categoria) {
+    public Produto(String cod_prod, String nome_prod, int qtd_prod, double preco_prod, String fabr_prod, String pr_ativo, String dos_prod, String status_prod,String categoria) {
         this.cod_prod = cod_prod;
         this.nome_prod = nome_prod;
         this.qtd_prod = qtd_prod;
@@ -62,11 +62,11 @@ public class Produto{
         this.qtd_prod = qtd_prod;
     }
 
-    public float getPreco_prod() {
+    public double getPreco_prod() {
         return preco_prod;
     }
 
-    public void setPreco_prod(float preco_prod) {
+    public void setPreco_prod(double preco_prod) {
         this.preco_prod = preco_prod;
     }
 

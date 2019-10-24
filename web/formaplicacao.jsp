@@ -7,6 +7,59 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="CSS/bootstrap.min.css">
         <title>SmartPharmacy</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+        <script src="JS/popper.min.js"></script>
+        <script src="JS/bootstrap.min.js"></script>
+        <script src="JS/jquery.mask.min.js"></script>
+        <style>
+
+            div#resultado {
+                display: block;
+                overflow:auto;
+                width:100%;
+                height:150%;
+                top:10px;
+                left:0px;
+                margin-top: 65px;
+                position:absolute;
+                background-color: white;
+                z-index: 999;
+            }
+
+        </style>
+        <script language="Javascript">
+            $(document).ready(function () {
+                
+                
+                $("#medicamento").keyup(function () {
+                    medicamentos = $("#medicamento").val();
+                    $.ajax({
+                        url: "medicamentos.jsp",
+                        type: "post",
+                        data: {
+                            "medicamento": medicamentos,
+                        },
+                        success: function (data) {
+                            $("#resultado").html(data);
+                            $("#resultado").show();
+                        }
+                    })
+                });
+                
+                });
+                
+                
+                function Ver(nome, codigo) {
+                    $("#medicamento").val(nome);
+                    $("#medicamento").val(codigo);
+                    $("#resultado").hide();
+                }
+                
+                    
+
+        </script>
     <body>
         <div style="margin: 40px;padding: 10px; background-color: #f8f9fa;border-radius: 10px;">
             <h2 style="color: red"><b>Nova </b>Aplicação</h2><br/>
@@ -33,8 +86,9 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputMed">Medicamento</label>
-                        <input type="text" class="form-control" name="medicamento" required id="inputMed">
-                    </div>
+                        <input type="text" class="form-control" autocomplete="off" id="medicamento" name="medicamento" required>
+                    <div id="resultado" style="display: none">&nbsp;</div></div>
+                    
                     <div class="form-group col-md-4">
                         <label for="inputApli">Tipo Aplicação</label>
                         <select id="inputApli" class="form-control" required name="tipo">
@@ -67,9 +121,6 @@
                 }
             %>
             </form>
-            <script src="JS/jquery-3.3.1.slim.min.js"></script>
-            <script src="JS/popper.min.js" ></script>
-            <script src="JS/bootstrap.min.js"></script>
-            <script src="JS/jquery.mask.min.js"></script>
+            
     </body>
 </html>

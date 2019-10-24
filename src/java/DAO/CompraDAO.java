@@ -32,14 +32,14 @@ public class CompraDAO {
                 Compra compra = new Compra();
                 compra.setCodigo(rs.getString("codigo_carrinho"));
                 compra.setQtdTotal(rs.getInt("qtd_total_item"));
-                compra.setTotal(rs.getFloat("total_compra"));
+                compra.setTotal(rs.getDouble("total_compra"));
                 compra.setCpf(rs.getString("cpf_comprador"));
                 compra.setDataCompra(String.valueOf(rs.getDate("data_compra")));
                 compra.setCod_prod(rs.getString("cod_prod"));
                 compra.setNome_prod(rs.getString("nome_produto"));
                 compra.setQtdProd(rs.getInt("qtd_produto"));
-                compra.setTotalPrecoProd(rs.getFloat("total_produto"));
-                compra.setPrecoProd(rs.getFloat("preco_prod"));
+                compra.setTotalPrecoProd(rs.getDouble("total_produto"));
+                compra.setPrecoProd(rs.getDouble("preco_prod"));
                 
                 lista.add(compra);
                 
@@ -64,7 +64,7 @@ public class CompraDAO {
                 Compra c = new Compra();
                 c.setCodigo(rs.getString("codigo_carrinho"));
                 c.setDataCompra(rs.getString("data_compra"));
-                c.setTotal(rs.getFloat("total_compra"));
+                c.setTotal(rs.getDouble("total_compra"));
                 
                 lista.add(c);
             }
