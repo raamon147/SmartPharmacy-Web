@@ -28,7 +28,15 @@
 
     </head>
     <body><br/>
-        <%
+        <%try {
+                String usuario = (String) session.getAttribute("usuario");
+                if (usuario == null) {
+                    response.sendRedirect("login.jsp");
+                }
+            } catch (Exception e) {
+                response.sendRedirect("login.jsp");
+            }
+        try{
             if (session.getAttribute("key").equals("2")) {
                 response.sendRedirect("index.jsp");
             }%>
@@ -68,6 +76,7 @@
                 <button type="submit" class="btn btn-primary" id="btnCadUser" >Cadastrar</button><br/>
                 <%
                     
+                    
                     String res = request.getParameter("status");
 
                     if (res != null) {
@@ -88,28 +97,30 @@
 
                         } else {
                         }
+                    }}catch(Exception sse){
+                        
                     }
                 %>
             </form>
         </div>
 
-        
+
         <script>
-                            var password = document.getElementById("password")
-                                    , confirm_password = document.getElementById("confirm_password");
+            var password = document.getElementById("password")
+                    , confirm_password = document.getElementById("confirm_password");
 
-                            function validatePassword() {
-                                if (password.value != confirm_password.value) {
-                                    confirm_password.setCustomValidity("As senhas digitadas não conferem");
-                                } else {
-                                    confirm_password.setCustomValidity('');
-                                }
-                            }
+            function validatePassword() {
+                if (password.value != confirm_password.value) {
+                    confirm_password.setCustomValidity("As senhas digitadas não conferem");
+                } else {
+                    confirm_password.setCustomValidity('');
+                }
+            }
 
-                            password.onchange = validatePassword;
-                            confirm_password.onkeyup = validatePassword;
+            password.onchange = validatePassword;
+            confirm_password.onkeyup = validatePassword;
 
         </script>
     </body>
-    
+
 </html>

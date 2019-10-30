@@ -12,9 +12,21 @@
     </head>
     <body><br/>
         <%
+            try {
+                String usuario = (String) session.getAttribute("usuario");
+                if (usuario == null) {
+                    response.sendRedirect("login.jsp");
+                }
+            } catch (Exception e) {
+                response.sendRedirect("login.jsp");
+            }
+            
+            try{
             if (session.getAttribute("key").equals("2")) {
                 response.sendRedirect("index.jsp");
-            }%>
+            }}catch(Exception ss){
+                
+    }%>
         <div style="margin: 40px;padding: 10px; padding-left: 30px; background-color: #f8f9fa;border-radius: 10px;">    
             <h2 style="color: red"><b>Cadastrar</b> Produtos</h2>
             <br/>

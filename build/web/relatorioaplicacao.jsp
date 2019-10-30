@@ -54,7 +54,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <%
+                        <%try {
+                                String usuario = (String) session.getAttribute("usuario");
+                                if (usuario == null) {
+                                    response.sendRedirect("login.jsp");
+                                }
+                            } catch (Exception e) {
+                                response.sendRedirect("login.jsp");
+                            }
                             AplicacaoDAO a = new AplicacaoDAO();
                             ResultSet rs = a.buscarapp();
                             while (rs.next()) {

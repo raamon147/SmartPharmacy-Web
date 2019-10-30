@@ -42,6 +42,14 @@
                 <button type="submit" class="btn btn-primary" id="btnCadCliente">Cadastrar</button>
             </form>
             <%
+                try {
+                    String usuario = (String) session.getAttribute("usuario");
+                    if (usuario == null) {
+                        response.sendRedirect("login.jsp");
+                    }
+                } catch (Exception e) {
+                    response.sendRedirect("login.jsp");
+                }
                 String res = request.getParameter("res");
                 if (res != null) {
                     if (res.equalsIgnoreCase("true")) {

@@ -72,10 +72,21 @@
 
                         <%
                             try {
+                                String usuario = (String) session.getAttribute("usuario");
+                                if (usuario == null) {
+                                    response.sendRedirect("login.jsp");
+                                }
+                            } catch (Exception e) {
+                                response.sendRedirect("login.jsp");
+                            }
+                            
+                            try{
+                            
+                            try {
                                 ArrayList<Produto> lista = new ProdutoDAO().getProdutos();
-                                for(Produto p : lista){
+                                for (Produto p : lista) {
                                     out.println("<tr>");
-                                    out.println("<td><a href='edititem.jsp?cod=" + p.getCod_prod() + "'>" + p.getCod_prod()+ "</a></td>");
+                                    out.println("<td><a href='edititem.jsp?cod=" + p.getCod_prod() + "'>" + p.getCod_prod() + "</a></td>");
                                     out.println("<td>" + p.getNome_prod() + "</td>");
                                     out.println("<td>" + p.getPreco_prod() + "</td>");
                                     out.println("<td>" + p.getFabr_prod() + "</td>");
@@ -83,11 +94,11 @@
                                     out.println("<td>" + p.getDos_prod() + "</td>");
                                     out.println("<td>" + p.getQtd_prod() + "</td>");
                                     out.println("<td>" + p.getCategoria() + "</td>");
-                                    if(p.getQtd_prod() == 0){
+                                    if (p.getQtd_prod() == 0) {
                                         out.println("<td>INDISPONIVEL</td>");
-                                        
-                                    } else{
-                                       out.println("<td>DISPONIVEL</td>"); 
+
+                                    } else {
+                                        out.println("<td>DISPONIVEL</td>");
                                     }
                                     out.println("</tr>");
                                 }
@@ -205,26 +216,27 @@
                     }
                 }
 
-            %>
+                            }catch(Exception ese){
+                            }%>
         </div>
         <script src="JS/jquery-3.3.1.slim.min.js"></script>
         <script src="JS/popper.min.js" ></script>
         <script src="JS/bootstrap.min.js"></script>
         <script src="JS/jquery.mask.min.js"></script>
         <script>
-            jQuery(function () {
-                $("#alt").click(function () {
-                    $('#func').val("alterar");
-                })
+                            jQuery(function () {
+                                $("#alt").click(function () {
+                                    $('#func').val("alterar");
+                                })
 
-                $("#exc").click(function () {
-                    $("#func").val("excluir");
-                })
+                                $("#exc").click(function () {
+                                    $("#func").val("excluir");
+                                })
 
-                $("#alt2").click(function () {
-                    $('#func2').val("alterar");
-                })
-            })
+                                $("#alt2").click(function () {
+                                    $('#func2').val("alterar");
+                                })
+                            })
         </script>
     </body>
 </html>

@@ -3,9 +3,16 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import DAO.CompraDAO;
+import Classes.Compra;
+import DAO.RankingDAO;
+import Classes.RankingVenda;
 import java.util.ArrayList;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import DAO.AplicacaoDAO;
 
-public final class formaplicacao_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class relatorioVendas_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -47,8 +54,13 @@ public final class formaplicacao_jsp extends org.apache.jasper.runtime.HttpJspBa
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write('\r');
-      out.write('\n');
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("<html>\r\n");
@@ -164,6 +176,8 @@ if(key.equals("2")){
       out.write("</head>\r\n");
       out.write("</html>\r\n");
       out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("﻿<!DOCTYPE HTML>\r\n");
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
@@ -171,118 +185,81 @@ if(key.equals("2")){
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\r\n");
       out.write("        <link rel=\"stylesheet\" href=\"CSS/bootstrap.min.css\">\r\n");
       out.write("        <title>SmartPharmacy</title>\r\n");
-      out.write("        <script type=\"text/javascript\">\r\n");
-      out.write("\r\n");
-      out.write("            $(document).ready(function () {\r\n");
-      out.write("                $(\"#data\").datepicker({dateFormat: 'dd/mm/yy'});\r\n");
-      out.write("                //esconde o retorno da pesquisa do paciente\r\n");
-      out.write("                $(\"#form1\").click(function () {\r\n");
-      out.write("                    $(\"#resultado\").hide();\r\n");
-      out.write("                });\r\n");
-      out.write("\r\n");
-      out.write("                $(\"#nm_paciente\").keyup(function () {\r\n");
-      out.write("                    paciente = $(\"#nm_paciente\").val();\r\n");
-      out.write("                    $.ajax({\r\n");
-      out.write("                        url: \"ajax/paciente.jsp\",\r\n");
-      out.write("                        type: \"post\",\r\n");
-      out.write("                        data: {\r\n");
-      out.write("                            \"nm_paciente\": paciente,\r\n");
-      out.write("                        },\r\n");
-      out.write("                        success: function (data) {\r\n");
-      out.write("                            $(\"#resultado\").html(data);\r\n");
-      out.write("                            $(\"#resultado\").show();\r\n");
-      out.write("                        }\r\n");
-      out.write("                    })\r\n");
-      out.write("                });\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                $(\"#btnGravar\").click(function () {\r\n");
-      out.write("                    $.ajax({\r\n");
-      out.write("                        url: \"ajax/gravaragendamento.jsp\",\r\n");
-      out.write("                        type: \"post\",\r\n");
-      out.write("                        data: $(\"#form1\").serialize(),\r\n");
-      out.write("                        success: function (data) {\r\n");
-      out.write("                            if (data.sucesso) {\r\n");
-      out.write("                                alert(data.mensagem);\r\n");
-      out.write("                                $('#form1').each(function () {\r\n");
-      out.write("                                    this.reset();\r\n");
-      out.write("                                });\r\n");
-      out.write("                            }\r\n");
-      out.write("                            else {\r\n");
-      out.write("                                alert(data.mensagem);\r\n");
-      out.write("                            }\r\n");
-      out.write("                        }\r\n");
-      out.write("                    })\r\n");
-      out.write("                });\r\n");
-      out.write("            });\r\n");
-      out.write("    </head>\r\n");
       out.write("    <body>\r\n");
       out.write("        <div style=\"margin: 40px;padding: 10px; background-color: #f8f9fa;border-radius: 10px;\">\r\n");
-      out.write("            <h2 style=\"color: red\"><b>Nova </b>Aplicação</h2><br/>\r\n");
-      out.write("            <form method=\"post\" action=\"aplicacao.jsp\">\r\n");
-      out.write("                <div class=\"form-row\">\r\n");
+      out.write("            <h2 style=\"color: red\"><b>Consultar </b>Vendas</h2><br/>\r\n");
+      out.write("            <nav>\r\n");
+      out.write("                <div class=\"nav nav-tabs\" id=\"nav-tab\" role=\"tablist\">\r\n");
+      out.write("                    <a class=\"nav-item nav-link active\" id=\"nav-prod-tab\" data-toggle=\"tab\" href=\"#nav-prod\" role=\"tab\" aria-controls=\"nav-prod\" aria-selected=\"true\">RANKING PRODUTOS MAIS VENDIDOS</a>\r\n");
+      out.write("                    <a class=\"nav-item nav-link\" id=\"nav-cup-tab\" data-toggle=\"tab\" href=\"#nav-cup\" role=\"tab\" aria-controls=\"nav-cup\" aria-selected=\"false\">CUPOM DE COMPRAS FINALIZADAS</a></div>\r\n");
+      out.write("            </nav>\r\n");
       out.write("\r\n");
-      out.write("                    <div class=\"form-group col-md-6\">\r\n");
-      out.write("                        <label for=\"inputName4\">Nome</label>\r\n");
-      out.write("                        <input type=\"text\" class=\"form-control\" id=\"inputnome\" name=\"nome\" required>\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                    <div class=\"form-group col-md-6\">\r\n");
-      out.write("                        <label for=\"inputName4\">CPF</label>\r\n");
-      out.write("                        <input type=\"text\" class=\"form-control\" name=\"cpf\" required onkeypress=\"$(this).mask('000.000.000-00');\">\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                    <div class=\"form-group col-md-2\">\r\n");
-      out.write("                        <label for=\"inputZip\">Data de Nascimento</label>\r\n");
-      out.write("                        <input type=\"text\" name=\"dtnasc\" class=\"form-control\" required onkeypress=\"$(this).mask('00/00/0000')\">\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                </div>\r\n");
-      out.write("                <div class=\"form-group\">\r\n");
-      out.write("                    <label for=\"inputAddress\">Endereço</label>\r\n");
-      out.write("                    <input type=\"text\" class=\"form-control\" name=\"endereco\" required id=\"inputAddress\">\r\n");
-      out.write("                </div>\r\n");
-      out.write("                <div class=\"form-row\">\r\n");
-      out.write("                    <div class=\"form-group col-md-6\">\r\n");
-      out.write("                        <label for=\"inputMed\">Medicamento</label>\r\n");
-      out.write("                        <input type=\"text\" class=\"form-control\" name=\"medicamento\" required id=\"inputMed\">\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                    <div class=\"form-group col-md-4\">\r\n");
-      out.write("                        <label for=\"inputApli\">Tipo Aplicação</label>\r\n");
-      out.write("                        <select id=\"inputApli\" class=\"form-control\" required name=\"tipo\">\r\n");
-      out.write("                            <option selected>Intramuscular</option>\r\n");
-      out.write("                            <option>Subcutânea</option>\r\n");
-      out.write("                        </select>\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                    <div class=\"form-group col-md-2\">\r\n");
-      out.write("                        <label for=\"dtApli\">Data da Aplicação</label>\r\n");
-      out.write("                        <input type=\"text\" name=\"data\" id=\"data\" class=\"form-control\" required onkeypress=\"$(this).mask('00/00/0000')\">\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                   \r\n");
-      out.write("                </div>\r\n");
+      out.write("            <div class=\"tab-content\" id=\"nav-tabContent\">\r\n");
       out.write("\r\n");
-      out.write("                <button type=\"submit\" class=\"btn btn-primary\" id=\"btnCadAplic\">Cadastrar</button>\r\n");
-      out.write("            </form>\r\n");
-      out.write("            <form method=\"post\" action=\"getaplicacao.jsp\" target=\"_blank\">\r\n");
-      out.write("            ");
+      out.write("                <div class=\"tab-pane fade show active\" id=\"nav-prod\" role=\"tabpanel\" aria-labelledby=\"nav-prod-tab\" style=\"padding: 10px;\">\r\n");
+      out.write("                    <div class=\"form-row\">\r\n");
+      out.write("                        <table class=\"table table-striped\" cellspacing=\"0\" cellpadding=\"0\">\r\n");
+      out.write("                            <thead>\r\n");
+      out.write("                                <tr>\r\n");
+      out.write("                                    <th>Posição</th>\r\n");
+      out.write("                                    <th>Nome</th>\r\n");
+      out.write("                                    <th>Preço</th>\r\n");
+      out.write("                                    <th>Quantidade</th>\r\n");
+      out.write("                                </tr>\r\n");
+      out.write("                            </thead>\r\n");
+      out.write("                            <tbody>\r\n");
+      out.write("                                ");
 
-                String res = request.getParameter("res");
-                String id = request.getParameter("id");
-                if (res != null) {
-                    if (res.equalsIgnoreCase("true")) {
-                        out.println("<div class='alert alert-success' role='alert'>Aplicação Cadastrada</td> </div>");
-                        out.println("<button type='submit' name='id'  value=" + request.getParameter("id") + ">Imprimir</button>");
-                        
-                        
-                    } else {
-                        out.println("<div class='alert alert-danger' role='alert'>Erro ao Cadastrar</div>");
-                    }
-                }
-            
+                                    ArrayList<RankingVenda> lista = new RankingDAO().getRanking();
+                                    int index = 1;
+                                    for (RankingVenda r : lista) {
+                                        out.println("<tr>");
+                                        out.println("<td>" + (index++) + "°</td>");
+                                        out.println("<td>" + r.getNome() + "</td>");
+                                        out.println("<td>" + r.getPreco() + "</td>");
+                                        out.println("<td>" + r.getQtd() + "</td>");
+                                        out.println("</tr>");
+                                    }
+
+                                
       out.write("\r\n");
-      out.write("            </form>\r\n");
-      out.write("            <script src=\"JS/jquery-3.3.1.slim.min.js\"></script>\r\n");
-      out.write("            <script src=\"JS/popper.min.js\" ></script>\r\n");
-      out.write("            <script src=\"JS/bootstrap.min.js\"></script>\r\n");
-      out.write("            <script src=\"JS/jquery.mask.min.js\"></script>\r\n");
-      out.write("            <script src=\"js/jquery-ui.js\"></script>\r\n");
+      out.write("                            </tbody>\r\n");
+      out.write("                        </table>\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                </div>\r\n");
+      out.write("                <div class=\"tab-pane fade\" id=\"nav-cup\" role=\"tabpanel\" aria-labelledby=\"nav-cup-tab\" style=\"padding: 10px;\">\r\n");
+      out.write("                    <div class=\"form-row\">\r\n");
+      out.write("                        <table class=\"table table-striped\" cellspacing=\"0\" cellpadding=\"0\">\r\n");
+      out.write("                            <thead>\r\n");
+      out.write("                                <tr>\r\n");
+      out.write("                                    <th>Data</th>\r\n");
+      out.write("                                    <th>Total</th>\r\n");
+      out.write("                                    <th>Código</th>\r\n");
+      out.write("                                </tr>\r\n");
+      out.write("                            </thead>\r\n");
+      out.write("                            <tbody>\r\n");
+      out.write("                                ");
+                               ArrayList<Compra> lis = new CompraDAO().getList();
+                                    for (Compra c : lis) {
+                                        out.println("<tr>");
+                                        out.println("<td>" + c.getDataCompra() + "</td>");
+                                        out.println("<td>" + c.getTotal() + "</td>");
+                                        out.println("<td><a target='_blank' href='geracupom.jsp?cod_compra=" + c.getCodigo() + "'>" + c.getCodigo() + "</a></td>");
+                                        out.println("</tr>");
+                                    }
+
+                                
+      out.write("\r\n");
+      out.write("                            </tbody>\r\n");
+      out.write("                        </table>\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                </div>\r\n");
+      out.write("            </div>\r\n");
+      out.write("        </div>\r\n");
+      out.write("        <script src=\"JS/jquery-3.3.1.slim.min.js\"></script>\r\n");
+      out.write("        <script src=\"JS/popper.min.js\" ></script>\r\n");
+      out.write("        <script src=\"JS/bootstrap.min.js\"></script>\r\n");
+      out.write("        <script src=\"JS/jquery.mask.min.js\"></script>\r\n");
       out.write("    </body>\r\n");
       out.write("</html>");
     } catch (Throwable t) {

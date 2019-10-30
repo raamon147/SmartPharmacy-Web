@@ -39,6 +39,16 @@
                             </thead>
                             <tbody>
                                 <%
+                                    try {
+                                        String usuario = (String) session.getAttribute("usuario");
+                                        if (usuario == null) {
+                                            response.sendRedirect("login.jsp");
+                                        }
+                                    } catch (Exception e) {
+                                        response.sendRedirect("login.jsp");
+                                    }
+                                    
+                                    try{
                                     ArrayList<RankingVenda> lista = new RankingDAO().getRanking();
                                     int index = 1;
                                     for (RankingVenda r : lista) {
@@ -75,7 +85,9 @@
                                         out.println("</tr>");
                                     }
 
-                                %>
+                                    }catch(Exception e){
+                                        
+                                    }%>
                             </tbody>
                         </table>
                     </div>

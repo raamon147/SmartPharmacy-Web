@@ -31,8 +31,8 @@
         </style>
         <script language="Javascript">
             $(document).ready(function () {
-                
-                
+
+
                 $("#medicamento").keyup(function () {
                     medicamentos = $("#medicamento").val();
                     $.ajax({
@@ -47,17 +47,17 @@
                         }
                     })
                 });
-                
-                });
-                
-                
-                function Ver(nome, codigo) {
-                    $("#medicamento").val(nome);
-                    $("#medicamento").val(codigo);
-                    $("#resultado").hide();
-                }
-                
-                    
+
+            });
+
+
+            function Ver(nome, codigo) {
+                $("#medicamento").val(nome);
+                $("#medicamento").val(codigo);
+                $("#resultado").hide();
+            }
+
+
 
         </script>
     <body>
@@ -87,8 +87,8 @@
                     <div class="form-group col-md-6">
                         <label for="inputMed">Medicamento</label>
                         <input type="text" class="form-control" autocomplete="off" id="medicamento" name="medicamento" required>
-                    <div id="resultado" style="display: none">&nbsp;</div></div>
-                    
+                        <div id="resultado" style="display: none">&nbsp;</div></div>
+
                     <div class="form-group col-md-4">
                         <label for="inputApli">Tipo Aplicação</label>
                         <select id="inputApli" class="form-control" required name="tipo">
@@ -100,27 +100,34 @@
                         <label for="dtApli">Data da Aplicação</label>
                         <input type="text" name="data" id="dtApli" class="form-control" required onkeypress="$(this).mask('00/00/0000')">
                     </div>
-                   
+
                 </div>
 
                 <button type="submit" class="btn btn-primary" id="btnCadAplic">Cadastrar</button>
             </form>
             <form method="post" action="getaplicacao.jsp" target="_blank">
-            <%
-                String res = request.getParameter("res");
-                String id = request.getParameter("id");
-                if (res != null) {
-                    if (res.equalsIgnoreCase("true")) {
-                        out.println("<div class='alert alert-success' role='alert'>Aplicação Cadastrada</td> </div>");
-                        out.println("<button type='submit' name='id'  value=" + request.getParameter("id") + ">Imprimir</button>");
-                        
-                        
-                    } else {
-                        out.println("<div class='alert alert-danger' role='alert'>Erro ao Cadastrar</div>");
+                <%
+                    try {
+                        String usuario = (String) session.getAttribute("usuario");
+                        if (usuario == null) {
+                            response.sendRedirect("login.jsp");
+                        }
+                    } catch (Exception e) {
+                        response.sendRedirect("login.jsp");
                     }
-                }
-            %>
+                    String res = request.getParameter("res");
+                    String id = request.getParameter("id");
+                    if (res != null) {
+                        if (res.equalsIgnoreCase("true")) {
+                            out.println("<div class='alert alert-success' role='alert'>Aplicação Cadastrada</td> </div>");
+                            out.println("<button type='submit' name='id'  value=" + request.getParameter("id") + ">Imprimir</button>");
+
+                        } else {
+                            out.println("<div class='alert alert-danger' role='alert'>Erro ao Cadastrar</div>");
+                        }
+                    }
+                %>
             </form>
-            
+
     </body>
 </html>

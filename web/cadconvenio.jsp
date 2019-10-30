@@ -12,9 +12,20 @@
     </head>
     <body><br/>
         <%
+            try {
+                String usuario = (String) session.getAttribute("usuario");
+                if (usuario == null) {
+                    response.sendRedirect("login.jsp");
+                }
+            } catch (Exception e) {
+                response.sendRedirect("login.jsp");
+            }
+            try{
             if (session.getAttribute("key").equals("2")) {
                 response.sendRedirect("index.jsp");
-            }%>
+            }}catch(Exception aa){
+                
+    }%>
         <div style="margin: 40px;padding: 10px; background-color: #f8f9fa;border-radius: 10px;">
             <h2 style="color: red"><b>Adicionar</b> Convênios</h2><br/>
             <form method="post" action="cadConv.jsp">
@@ -40,39 +51,39 @@
             </form>
             <%                            String res = request.getParameter("res");
 
-                            if (res != null) {
-                                if (res.equalsIgnoreCase("ok")) {
-                        %><div class="alert alert-success hidden" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            Convenio Cadastrado.
-                        </div> 
-                        <script>$(selector).click();</script><%
-                        } else if (res.equalsIgnoreCase("fail")) {
-                            out.println("<div class='alert alert-danger' role='alert'> Erro ao Cadastrar</div>");
-                        } else if (res.equalsIgnoreCase("exist")) {%>
-                        <div class="alert alert-danger hidden" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            Convenio já cadastrado.
-                        </div> 
-                        <script>$(selector).click();</script><%
+                if (res != null) {
+                    if (res.equalsIgnoreCase("ok")) {
+            %><div class="alert alert-success hidden" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                Convenio Cadastrado.
+            </div> 
+            <script>$(selector).click();</script><%
+            } else if (res.equalsIgnoreCase("fail")) {
+                out.println("<div class='alert alert-danger' role='alert'> Erro ao Cadastrar</div>");
+            } else if (res.equalsIgnoreCase("exist")) {%>
+            <div class="alert alert-danger hidden" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                Convenio já cadastrado.
+            </div> 
+            <script>$(selector).click();</script><%
 
-                                } else {
-                                }
-                            }
-                        %> 
+                    } else {
+                    }
+                }
+            %> 
         </div>
 
         <script src="JS/jquery-3.3.1.slim.min.js"></script>
         <script src="JS/popper.min.js"></script>
         <script src="JS/bootstrap.min.js"></script>
-    <script>function selector() {
-                $(".alert").removeClass('hidden');
-                window.setTimeout(function () {
-                    $(".alert").fadeTo(500, 0).slideUp(500, function () {
-                        $(this).remove();
-                    });
-                }, 1000);
-            }
-            </script>
+        <script>function selector() {
+                                    $(".alert").removeClass('hidden');
+                                    window.setTimeout(function () {
+                                        $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                                            $(this).remove();
+                                        });
+                                    }, 1000);
+                                }
+        </script>
     </body>
 </html>
