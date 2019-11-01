@@ -47,6 +47,7 @@
             th, td {
                 padding: 0.1em 1em;
             }
+            
         </style>
     </head>
 
@@ -60,6 +61,7 @@
                             <th>Código</th>
                             <th>Nome</th>
                             <th>Preço</th>
+                            <th>Apresentação</th>
                             <th>Fabricante</th>
                             <th>Principio Ativo</th>
                             <th>Dosagem</th>
@@ -89,6 +91,7 @@
                                     out.println("<td>" + p.getCod_prod() + "</a></td>");
                                     out.println("<td><a href='edititem.jsp?cod=" + p.getCod_prod() + "'>" + p.getNome_prod() + "</td>");
                                     out.println("<td>" + p.getPreco_prod() + "</td>");
+                                    out.println("<td>" + p.getApresentacao() + "</td>");
                                     out.println("<td>" + p.getFabr_prod() + "</td>");
                                     out.println("<td>" + p.getPr_ativo() + "</td>");
                                     out.println("<td>" + p.getDos_prod() + "</td>");

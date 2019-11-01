@@ -105,6 +105,7 @@
                                 <tr>
                                     <th>Codigo</th>
                                     <th>Produto</th>
+                                    <th>Apresentação</th>
                                     <th>Principio Ativo</th>
                                     <th>Dosagem</th>
                                     <th>Fabricante</th>

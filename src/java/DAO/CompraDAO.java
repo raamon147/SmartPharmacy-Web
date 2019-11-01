@@ -23,7 +23,7 @@ public class CompraDAO {
         try{
             Connection con = Conexao.getConexao();
             String sql = "SELECT c.codigo_carrinho,c.qtd_total_item,c.total_compra,c.cpf_comprador,c.data_compra,"
-                    + "pc.cod_prod,pc.nome_produto,pc.qtd_produto,pc.total_produto,p.preco_prod FROM compra c inner join produtos_compra pc on"
+                    + "pc.cod_prod,pc.nome_produto,pc.qtd_produto,pc.total_produto,pc.apresentacao,p.preco_prod FROM compra c inner join produtos_compra pc on"
                     + " c.codigo_carrinho = pc.codigo_carrinho inner join produto p on pc.cod_prod = p.cod_prod where c.codigo_carrinho = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1,codigo);
@@ -40,6 +40,7 @@ public class CompraDAO {
                 compra.setQtdProd(rs.getInt("qtd_produto"));
                 compra.setTotalPrecoProd(rs.getDouble("total_produto"));
                 compra.setPrecoProd(rs.getDouble("preco_prod"));
+                compra.setApresentacao("apresentacao");
                 
                 lista.add(compra);
                 

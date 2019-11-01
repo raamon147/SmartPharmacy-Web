@@ -11,8 +11,9 @@ public class Produto{
     private String dos_prod;
     private String status_prod;
     private String categoria;
+    private String apresentacao;
 
-    public Produto(String cod_prod, String nome_prod, int qtd_prod, double preco_prod, String fabr_prod, String pr_ativo, String dos_prod, String status_prod,String categoria) {
+    public Produto(String cod_prod, String nome_prod, int qtd_prod, double preco_prod, String fabr_prod, String pr_ativo, String dos_prod, String status_prod,String categoria, String apresentacao) {
         this.cod_prod = cod_prod;
         this.nome_prod = nome_prod;
         this.qtd_prod = qtd_prod;
@@ -22,6 +23,7 @@ public class Produto{
         this.dos_prod = dos_prod;
         this.status_prod = status_prod;
         this.categoria = categoria;
+        this.apresentacao = apresentacao;
     }
     
     public Produto(){
@@ -101,4 +103,18 @@ public class Produto{
     public void setStatus_prod(String status_prod) {
         this.status_prod = status_prod;
     }    
+
+    /**
+     * @return the apresentacao
+     */
+    public String getApresentacao() {
+        return apresentacao;
+    }
+
+    /**
+     * @param apresentacao the apresentacao to set
+     */
+    public void setApresentacao(String apresentacao) {
+        this.apresentacao = apresentacao;
+    }
 }

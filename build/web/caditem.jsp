@@ -33,7 +33,7 @@
 
             <form method="POST" action="cadastraritem.jsp">
                 <div class="form-row">
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-1">
                         <label for="cadCod">Codigo</label>
                         <input type="text" class="form-control" id="inputCod" name="cadCod" required
                                >
@@ -42,7 +42,11 @@
                         <label for="cadNome">Produto</label>
                         <input type="text" class="form-control" id="inputNomeProd" name="cadNome" required>
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
+                        <label for="cadApr">Apresentação / Forma Farmacêutica</label>
+                        <input type="text" placeholder="Ex: Cx 20cp, Xarope 100ml, Ampolas" class="form-control" id="inputApr" name="cadApr" required>
+                    </div>
+                    <div class="form-group col-md-1">
                         <label for="cadQtd">Quantidade</label>
                         <input type="number" class="form-control" id="inputPreco" min="10" name="cadQtd" required>
                     </div>
@@ -62,7 +66,7 @@
                     </div>
                     <div class="form-group col-md-2">
                         <label for="cadDos">Dosagem</label>
-                        <input type="search" class="form-control" id="inputDosagem" name="cadDos" required>
+                        <input type="search" placeholder="Ex: 300mg, 40mg/ml " class="form-control" id="inputDosagem" name="cadDos" required>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="cadCat">Categoria</label>

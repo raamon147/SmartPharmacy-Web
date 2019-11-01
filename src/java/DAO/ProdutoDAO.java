@@ -21,7 +21,7 @@ public class ProdutoDAO {
             if (rs.first()) {
                 res = "exist";
             } else {
-                String sql = "INSERT INTO produto (cod_prod,nome_prod,qtd_prod,preco_prod,fabr_prod,pr_ativo,dos_prod,categoria) VALUES (?,?,?,?,?,?,?,?)";
+                String sql = "INSERT INTO produto (cod_prod,nome_prod,qtd_prod,preco_prod,fabr_prod,pr_ativo,dos_prod,categoria,apr_prod) VALUES (?,?,?,?,?,?,?,?,?)";
                 ps = con.prepareStatement(sql);
                 ps.setString(1, produto.getCod_prod());
                 ps.setString(2, produto.getNome_prod());
@@ -31,6 +31,7 @@ public class ProdutoDAO {
                 ps.setString(6, produto.getPr_ativo());
                 ps.setString(7, produto.getDos_prod());
                 ps.setString(8, produto.getCategoria());
+                ps.setString(9, produto.getApresentacao());
 
                 ps.execute();
 
@@ -66,6 +67,7 @@ public class ProdutoDAO {
                 prod.setPr_ativo(rs.getString("pr_ativo"));
                 prod.setDos_prod(rs.getString("dos_prod"));
                 prod.setCategoria(rs.getString("categoria"));
+                prod.setApresentacao(rs.getString("apr_prod"));
             }
 
         } catch (Exception e) {
@@ -160,6 +162,7 @@ public class ProdutoDAO {
                 prod.setQtd_prod(rs.getInt("qtd_prod"));
                 prod.setPreco_prod(rs.getDouble("preco_prod"));
                 prod.setCategoria(rs.getString("categoria"));
+                prod.setApresentacao(rs.getString("apr_prod"));
                 
                 lista.add(prod);
             }
@@ -189,6 +192,7 @@ public class ProdutoDAO {
                 prod.setQtd_prod(rs.getInt("qtd_prod"));
                 prod.setPreco_prod(rs.getDouble("preco_prod"));
                 prod.setCategoria(rs.getString("categoria"));
+                prod.setApresentacao(rs.getString("apr_prod"));
                 
                 lista.add(prod);
             }

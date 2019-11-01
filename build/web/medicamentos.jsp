@@ -8,8 +8,8 @@
     String html = "";
     for (Produto produto : produtos) {
         html += "<a style='cursor:pointer;' class='list-group-item list-group-item-action'";
-        html += " onclick=\"javascript:Ver('" + produto.getNome_prod() + "','" +produto.getNome_prod()+" "+ produto.getDos_prod() + " " + produto.getFabr_prod() + "')\">";
-        html += produto.getNome_prod()+" "+ produto.getDos_prod() + " " + produto.getFabr_prod() + "</a>";
+        html += " onclick=\"javascript:Ver('" + produto.getNome_prod() + "','" +produto.getNome_prod()+" "+ produto.getDos_prod() + " " + produto.getFabr_prod() +" "+ produto.getApresentacao()+ "')\">";
+        html += produto.getNome_prod()+" "+ produto.getDos_prod() + " " +  produto.getApresentacao()+ " " + produto.getFabr_prod()+ "</a>";
         
     }
     out.println(html);

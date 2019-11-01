@@ -43,6 +43,7 @@ public class CarrinhoDAO {
                     prod.setQtd_prod(Integer.parseInt(cartQtd.get(i).toString()));
                     prod.setPreco_prod(rs.getDouble("preco_prod"));
                     prod.setQtd_prod(rs.getInt("qtd_prod"));
+                    prod.setApresentacao("apr_prod");
                 }
 
                 lista.add(lista.size(), prod);
@@ -86,7 +87,7 @@ public class CarrinhoDAO {
             } else {
 
                 for (int i = 0; i < cart.size(); i++) {
-                    sql = "select nome_prod,preco_prod,cod_prod from produto where cod_prod = ?";
+                    sql = "select nome_prod,preco_prod,cod_prod,apr_prod from produto where cod_prod = ?";
                     ps = con.prepareStatement(sql);
                     ps.setString(1, cart.get(i));
 
@@ -96,15 +97,16 @@ public class CarrinhoDAO {
                         prod.setCod_prod(rs.getString("cod_prod"));
                         prod.setNome_prod(rs.getString("nome_prod"));
                         prod.setPreco_prod(rs.getDouble("preco_prod"));
+                        prod.setApresentacao(rs.getString("apr_prod"));
 
-                        String sqln = "insert into produtos_compra(cod_prod,nome_produto,qtd_produto,total_produto,codigo_carrinho,data_compra) values(?,?,?,?,?,now())";
+                        String sqln = "insert into produtos_compra(cod_prod,nome_produto,qtd_produto,total_produto,codigo_carrinho,data_compra,apresentacao) values(?,?,?,?,?,now(),?)";
                         ps = con.prepareStatement(sqln);
                         ps.setString(1, prod.getCod_prod());
                         ps.setString(2, prod.getNome_prod());
                         ps.setInt(3, cartQtd.get(i));
                         ps.setDouble(4, (prod.getPreco_prod() * cartQtd.get(i)));
                         ps.setString(5, sValue);
-
+                        ps.setString(6, prod.getApresentacao());
                         totalitem += cartQtd.get(i);
 
                         ps.executeUpdate();
@@ -195,7 +197,7 @@ public class CarrinhoDAO {
                 return res;
             } else {
                 for (int n = 0; n < cart.size(); n++) {
-                    sql = "select nome_prod,preco_prod,cod_prod from produto Where cod_prod = ?";
+                    sql = "select nome_prod,preco_prod,cod_prod,apr_prod from produto Where cod_prod = ?";
                     ps = con.prepareStatement(sql);
                     ps.setString(1, cart.get(n));
 
@@ -205,14 +207,16 @@ public class CarrinhoDAO {
                         prod.setCod_prod(rs.getString("cod_prod"));
                         prod.setNome_prod(rs.getString("nome_prod"));
                         prod.setPreco_prod(rs.getDouble("preco_prod"));
+                        prod.setApresentacao(rs.getString("apr_prod"));
 
-                        sql = "insert into produtos_compra(cod_prod,nome_produto,qtd_produto,total_produto,codigo_carrinho,data_compra) values (?,?,?,?,?,now())";
+                        sql = "insert into produtos_compra(cod_prod,nome_produto,qtd_produto,total_produto,codigo_carrinho,data_compra,apresentacao) values (?,?,?,?,?,now(),?)";
                         ps = con.prepareStatement(sql);
                         ps.setString(1, prod.getCod_prod());
                         ps.setString(2, prod.getNome_prod());
                         ps.setInt(3, cartQtd.get(n));
                         ps.setDouble(4, (prod.getPreco_prod() * cartQtd.get(n)));
                         ps.setString(5, sValue);
+                        ps.setString(6, prod.getApresentacao());
 
                         totalitem += cartQtd.get(n);
 

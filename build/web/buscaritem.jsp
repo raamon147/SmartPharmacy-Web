@@ -10,6 +10,7 @@
         out.print("<tr>");
         out.print("<td>" + rs.getString("cod_prod") + "</td>");
         out.print("<td>" + rs.getString("nome_prod") + "</td>");
+        out.print("<td>" + rs.getString("apr_prod") + "</td>");
         out.print("<td>" + rs.getString("pr_ativo") + "</td>");
         out.print("<td>" + rs.getString("dos_prod") + "</td>");
         out.print("<td>" + rs.getString("fabr_prod") + "</td>");

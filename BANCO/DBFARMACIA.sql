@@ -69,8 +69,9 @@ CREATE TABLE `produtos_compra` (
   `cod_prod` varchar(20) NOT NULL,
   `nome_produto` varchar(50) NOT NULL,
   `qtd_produto` int(11) NOT NULL,
-  `total_produto` double NOT NULL,
+  `total_produto` double(10,2) NOT NULL,
   `data_compra` date NOT NULL,
   `codigo_carrinho` varchar(20) NOT NULL,
+  `apresentacao` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=957378 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=957391 DEFAULT CHARSET=latin1;

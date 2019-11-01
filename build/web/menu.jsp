@@ -71,8 +71,8 @@
                         Serviços
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="cadcliente.jsp">Cadastrar Cliente</a>
-                        <a class="dropdown-item" href="formaplicacao.jsp">Cadastrar Aplicação</a>
+                        <a class="dropdown-item" href="cadcliente.jsp">Clientes</a>
+                        <a class="dropdown-item" href="formaplicacao.jsp">Aplicação</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

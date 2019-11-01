@@ -14,6 +14,7 @@ public class ItemCarrinho {
     private String prod;
     private int qtd;
     private double valor;
+    private String apresentacao;
 
     /**
      * @return the codprod
@@ -69,6 +70,20 @@ public class ItemCarrinho {
      */
     public void setValor(double valor) {
         this.valor = valor;
+    }
+
+    /**
+     * @return the apresentacao
+     */
+    public String getApresentacao() {
+        return apresentacao;
+    }
+
+    /**
+     * @param apresentacao the apresentacao to set
+     */
+    public void setApresentacao(String apresentacao) {
+        this.apresentacao = apresentacao;
     }
     
 }

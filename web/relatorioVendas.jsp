@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="DAO.CompraDAO"%>
 <%@page import="Classes.Compra"%>
 <%@page import="DAO.RankingDAO"%>
@@ -39,6 +40,7 @@
                             </thead>
                             <tbody>
                                 <%
+                                DecimalFormat df = new DecimalFormat("#,###.00");
                                     try {
                                         String usuario = (String) session.getAttribute("usuario");
                                         if (usuario == null) {
@@ -54,8 +56,8 @@
                                     for (RankingVenda r : lista) {
                                         out.println("<tr>");
                                         out.println("<td>" + (index++) + "°</td>");
-                                        out.println("<td>" + r.getNome() + "</td>");
-                                        out.println("<td>" + r.getPreco() + "</td>");
+                                        out.println("<td>" + r.getNome() +" "+ r.getApresentacao()+ "</td>");
+                                        out.println("<td>" + df.format(r.getPreco()) + "</td>");
                                         out.println("<td>" + r.getQtd() + "</td>");
                                         out.println("</tr>");
                                     }
@@ -80,7 +82,7 @@
                                     for (Compra c : lis) {
                                         out.println("<tr>");
                                         out.println("<td>" + c.getDataCompra() + "</td>");
-                                        out.println("<td>" + c.getTotal() + "</td>");
+                                        out.println("<td>" + df.format(c.getTotal()) + "</td>");
                                         out.println("<td><a target='_blank' href='geracupom.jsp?cod_compra=" + c.getCodigo() + "'>" + c.getCodigo() + "</a></td>");
                                         out.println("</tr>");
                                     }

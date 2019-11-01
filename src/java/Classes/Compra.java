@@ -12,6 +12,7 @@ public class Compra {
     private int qtdProd;
     private double precoProd;
     private double totalPrecoProd;
+    private String apresentacao;
 
     public String getCodigo() {
         return codigo;
@@ -91,6 +92,20 @@ public class Compra {
 
     public void setTotalPrecoProd(double totalPrecoProd) {
         this.totalPrecoProd = totalPrecoProd;
+    }
+
+    /**
+     * @return the apresentacao
+     */
+    public String getApresentacao() {
+        return apresentacao;
+    }
+
+    /**
+     * @param apresentacao the apresentacao to set
+     */
+    public void setApresentacao(String apresentacao) {
+        this.apresentacao = apresentacao;
     }
     
     
