@@ -34,6 +34,8 @@
                                 <tr>
                                     <th>Posição</th>
                                     <th>Nome</th>
+                                    <th>Dosagem</th>
+                                    <th>Apresentação/F.Farmacêutica</th>
                                     <th>Preço</th>
                                     <th>Quantidade</th>
                                 </tr>
@@ -56,7 +58,9 @@
                                     for (RankingVenda r : lista) {
                                         out.println("<tr>");
                                         out.println("<td>" + (index++) + "°</td>");
-                                        out.println("<td>" + r.getNome() +" "+ r.getApresentacao()+ "</td>");
+                                        out.println("<td>" + r.getNome() + "</td>");
+                                        out.println("<td>" + r.getDosagem() + "</td>");
+                                        out.println("<td>" + r.getApresentacao() + "</td>");
                                         out.println("<td>" + df.format(r.getPreco()) + "</td>");
                                         out.println("<td>" + r.getQtd() + "</td>");
                                         out.println("</tr>");

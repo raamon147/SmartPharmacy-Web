@@ -5,6 +5,7 @@ public class RankingVenda {
     private int qtd;
     private double preco;
     private String apresentacao;
+    private String dosagem;
 
     public String getNome() {
         return nome;
@@ -42,6 +43,20 @@ public class RankingVenda {
      */
     public void setApresentacao(String apresentacao) {
         this.apresentacao = apresentacao;
+    }
+
+    /**
+     * @return the dosagem
+     */
+    public String getDosagem() {
+        return dosagem;
+    }
+
+    /**
+     * @param dosagem the dosagem to set
+     */
+    public void setDosagem(String dosagem) {
+        this.dosagem = dosagem;
     }
     
     

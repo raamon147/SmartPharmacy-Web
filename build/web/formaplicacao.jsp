@@ -31,6 +31,10 @@
         </style>
         <script language="Javascript">
             $(document).ready(function () {
+                
+                $(document).click(function(){
+                    $("#resultado").hide();
+                })
 
 
                 $("#medicamento").keyup(function () {
