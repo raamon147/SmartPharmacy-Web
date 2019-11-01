@@ -86,8 +86,8 @@
                                 ArrayList<Produto> lista = new ProdutoDAO().getProdutos();
                                 for (Produto p : lista) {
                                     out.println("<tr>");
-                                    out.println("<td><a href='edititem.jsp?cod=" + p.getCod_prod() + "'>" + p.getCod_prod() + "</a></td>");
-                                    out.println("<td>" + p.getNome_prod() + "</td>");
+                                    out.println("<td>" + p.getCod_prod() + "</a></td>");
+                                    out.println("<td><a href='edititem.jsp?cod=" + p.getCod_prod() + "'>" + p.getNome_prod() + "</td>");
                                     out.println("<td>" + p.getPreco_prod() + "</td>");
                                     out.println("<td>" + p.getFabr_prod() + "</td>");
                                     out.println("<td>" + p.getPr_ativo() + "</td>");
@@ -141,7 +141,7 @@
 
             %>
             <%if (key.equals("1")) {%>
-            <h5>Clique no codigo do Produto acima para começar a alterar</h5>
+            <h5>Clique no nome do Produto acima para começar a alterar</h5>
             <form method="POST" action="altGen.jsp">
                 <div class="form-row">
                     <div class="form-group col-md-2">

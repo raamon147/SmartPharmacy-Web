@@ -1,7 +1,7 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"%>
 <%@include file="menu.jsp" %>
 
-ï»¿<!doctype html>
+?<!doctype html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -27,11 +27,11 @@
                 
     }%>
         <div style="margin: 40px;padding: 10px; background-color: #f8f9fa;border-radius: 10px;">
-            <h2 style="color: red"><b>Adicionar</b> ConvÃªnios</h2><br/>
+            <h2 style="color: red"><b>Adicionar</b> Convênios</h2><br/>
             <form method="post" action="cadConv.jsp">
                 <div class="form-row">
                     <div class="form-group col-md-5">
-                        <label for="inputConv">Nome ConvÃªnio</label>
+                        <label for="inputConv">Nome Convênio</label>
                         <input type="text" class="form-control" required id="inputConv" name="nomeConv">
                     </div>
 
@@ -63,7 +63,7 @@
             } else if (res.equalsIgnoreCase("exist")) {%>
             <div class="alert alert-danger hidden" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                Convenio jÃ¡ cadastrado.
+                Convenio já cadastrado.
             </div> 
             <script>$(selector).click();</script><%
 
