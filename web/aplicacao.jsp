@@ -10,9 +10,12 @@
 <%@page import="com.itextpdf.text.PageSize"%>
 <%@page import="com.itextpdf.text.Document"%>
 <%@page import="DAO.AplicacaoDAO" %>
+<%@page import="util.Acentuacao"%>
 
 <%
      Random r = new Random();
+     
+     Acentuacao acentua = new Acentuacao();
      
      int id = r.nextInt(9999999);
     String nome = request.getParameter("nome");
@@ -24,6 +27,10 @@
     String data = request.getParameter("data");
     AplicacaoDAO a = new AplicacaoDAO();
     String res = "";
+    
+    if(!medicamento.isEmpty()){
+        medicamento = acentua.removeAcento(medicamento);
+    }
 
     res = a.inserirAplicacao(cpf, nome, nascimento, endereco, tipo, medicamento, data,id);
 

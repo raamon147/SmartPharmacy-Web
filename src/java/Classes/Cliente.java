@@ -3,7 +3,7 @@ package Classes;
 
 
 public class Cliente {
-    private String nome,end,dtnasc,cpf;
+    private String nome,end,dtnasc,cpf,tel;
     private int qtdPontos;
 
     /**
@@ -75,4 +75,14 @@ public class Cliente {
     public void setQtdPontos(int qtdPontos) {
         this.qtdPontos = qtdPontos;
     }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+    
+    
 }

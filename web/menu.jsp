@@ -16,26 +16,26 @@
             <div class="navbar-nav">
                 <%
                     int cont = 0;
-                    try{
+                    try {
                         ArrayList<String> cart2 = (ArrayList) session.getAttribute("cart");
                         cont = cart2.size();
-                    }catch(Exception a){
-                        
+                    } catch (Exception a) {
+
                     }
-                    try{
-                    String key = (String) session.getAttribute("key");
-                    
+                    try {
+                        String key = (String) session.getAttribute("key");
+
                 %>
-                <%if(key.equals("2")){%>
+                <%if (key.equals("2")) {%>
                 <li class="nav-item dropdown">
-                    
+
                     <a class="nav-link dropdown-toggle active"  href="#" id="navbarDropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Administrador
                     </a>
-                    
+
                     <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
-                        
+
                         <a class="dropdown-item disabled"  href="caditem.jsp">Adicionar Produtos</a>
                         <a class="dropdown-item " href="edititem.jsp">Listar/Editar Produtos</a>
                         <a class="dropdown-item disabled"  href="cadconvenio.jsp">Cadastrar Convênios</a>
@@ -47,13 +47,13 @@
                 <%} else {%>
                 <a class="nav-link active" href="index.jsp" style="color: black">Inicio</a>
                 <li class="nav-item dropdown">
-                    
+
                     <a class="nav-link dropdown-toggle active"  href="#" id="navbarDropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        
+
                         Administrador
                     </a>
-                    
+
                     <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item "  href="caditem.jsp">Adicionar Produtos</a>
                         <a class="dropdown-item " href="edititem.jsp">Listar/Editar Produtos</a>
@@ -62,17 +62,23 @@
 
                     </div>
                 </li>
-                <%}}catch(Exception f){
-                    
-                }%>
+                <%}
+                    } catch (Exception f) {
+
+                    }%>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Serviços
                     </a>
+                    
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="cadcliente.jsp">Clientes</a>
                         <a class="dropdown-item" href="formaplicacao.jsp">Aplicação</a>
+                        <a class="nav-link dropdown-toggle" href="#" id="navCliente" data-toggle="dropdown">&nbsp;&nbsp;&nbsp;&nbsp;Clientes</a>
+                        <div class='dropdown-menu' aria-labelledby='navCliente'>
+                            <a class="dropdown-item" href="cadcliente.jsp">Cadastrar</a>
+                            <a class="dropdown-item" href="listcliente.jsp">Consultar</a>
+                        </div>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -85,20 +91,20 @@
                         <a class="dropdown-item" href="relatorioVendas.jsp">Relatórios Vendas</a>
                     </div>
                 </li>
-               
-                
+
+
             </div>
-                
+
         </div>
-        
-        
-                
+
+
+
         <form action="carrinho.jsp" method="post"> 
-            
+
             <input type=image src="shopping-cart.png" width="30" height="=30" title="Abrir Carrinho" style="float: left; margin-top: 10px;">
             <a class="nav-link active" href="carrinho.jsp" style="color: red; float: left"><%=cont%></a>
-            </form>
-                <a class="nav-link active" href="logout.jsp" style="color: black">Sair</a>
+        </form>
+        <a class="nav-link active" href="logout.jsp" style="color: black">Sair</a>
     </nav>
 </head>
 </html>

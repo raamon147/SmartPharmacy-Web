@@ -54,6 +54,8 @@
                     if (res != null) {
                         if (res.equals("ok")) {
                             out.println("<div class='alert alert-success' role='alert'>Alterado com Sucesso</div>");
+                        } else if(res.equals("nexist")){
+                            out.println("<div class='alert alert-warning' role='alert'>Usuario não encontrado</div>");
                         } else {
                             out.println("<div class='alert alert-danger' role='alert'>Erro ao Alterar</div>");
                         }

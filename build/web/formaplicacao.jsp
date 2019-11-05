@@ -1,3 +1,5 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="DAO.AplicacaoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="menu.jsp" %>
 ﻿<!DOCTYPE HTML>
@@ -31,8 +33,8 @@
         </style>
         <script language="Javascript">
             $(document).ready(function () {
-                
-                $(document).click(function(){
+
+                $(document).click(function () {
                     $("#resultado").hide();
                 })
 
@@ -51,11 +53,8 @@
                         }
                     })
                 });
-                
-            });
-            
-            
 
+            });
 
             function Ver(nome, codigo) {
                 $("#medicamento").val(nome);
@@ -134,6 +133,6 @@
                     }
                 %>
             </form>
-
+        </div>
     </body>
 </html>

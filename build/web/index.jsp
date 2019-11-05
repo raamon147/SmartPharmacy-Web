@@ -38,7 +38,13 @@
 
 
         </script>   
-
+        <style>
+            #list{
+                overflow: auto;
+                max-height: 300px;
+            }
+            
+        </style>
 
     </head>
     <body>

@@ -1,4 +1,3 @@
-
 package DAO;
 
 import Classes.Conexao;
@@ -13,52 +12,52 @@ import java.sql.ResultSet;
  * @author lcdam
  */
 public class UsuarioDAO {
-    
-    public String logar (Usuario usuario){
+
+    public String logar(Usuario usuario) {
         String ext;
-        try{
+        try {
             Connection con = Conexao.getConexao();
             PreparedStatement ps = con.prepareStatement("SELECT * FROM login where usuario = ? and senha = ?");
-            ps.setString(1,usuario.getUsuario());
+            ps.setString(1, usuario.getUsuario());
             ps.setString(2, usuario.getSenha());
-            
+
             ResultSet rs = ps.executeQuery();
-            if(rs.first()){
+            if (rs.first()) {
                 ext = "Conectado";
                 //usuario.setCodigo(rs.getInt("codigo"));
             } else {
                 ext = "nConectado";
             }
-            
-        }catch(Exception e){
-            ext = "Erro ao logar "+e.getMessage();
+
+        } catch (Exception e) {
+            ext = "Erro ao logar " + e.getMessage();
         }
-        
+
         return ext;
     }
-    
-    public String getKey(Usuario usuario){
-        String key ="";
-        try{
+
+    public String getKey(Usuario usuario) {
+        String key = "";
+        try {
             Connection con = Conexao.getConexao();
             PreparedStatement ps = con.prepareStatement("SELECT * FROM login where usuario = ? and senha = ?");
-            ps.setString(1,usuario.getUsuario());
+            ps.setString(1, usuario.getUsuario());
             ps.setString(2, usuario.getSenha());
-            
+
             ResultSet rs = ps.executeQuery();
-            if(rs.first()){
+            if (rs.first()) {
                 key = rs.getString("codigo");
                 //usuario.setCodigo(rs.getInt("codigo"));
             }
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return key;
     }
-    
-        public String insereUsuario(Usuario usuario) {
+
+    public String insereUsuario(Usuario usuario) {
         String res = "";
 
         try {
@@ -92,42 +91,84 @@ public class UsuarioDAO {
 
         return res;
     }
-        
-    public String newPassByCPF(String cpf,String senha){
-        String res = "";
-        try{
+
+    boolean findUserByCpf(String cpf) {
+        try {
             Connection con = Conexao.getConexao();
-            String sql = "update login set senha = ? where cpf = ?";
+            String sql = "select * from login where cpf = ?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, senha);
-            ps.setString(2, cpf);
-            ps.executeUpdate();
-            
-            res = "ok";
-        }catch(Exception e){
+            ps.setString(1, cpf);
+            ResultSet rs = ps.executeQuery();
+            if (rs.first()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    boolean findUserByEmail(String email) {
+        try {
+            Connection con = Conexao.getConexao();
+            String sql = "select * from login where email = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            if (rs.first()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public String newPassByCPF(String cpf, String senha) {
+        String res = "";
+        try {
+            if (findUserByCpf(cpf)) {
+                Connection con = Conexao.getConexao();
+                String sql = "update login set senha = ? where cpf = ?";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1, senha);
+                ps.setString(2, cpf);
+                ps.executeUpdate();
+
+                res = "ok";
+            } else {
+                res = "nexist";
+            }
+        } catch (Exception e) {
             res = "erro";
             e.printStackTrace();
         }
-        
+
         return res;
     }
-    
-    public String newPassByEmail(String email,String senha){
+
+    public String newPassByEmail(String email, String senha) {
         String res = "";
-        try{
-            Connection con = Conexao.getConexao();
-            String sql = "update login set senha = ? where email = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, senha);
-            ps.setString(2, email);
-            ps.executeUpdate();
-            
-            res = "ok";
-        }catch(Exception e){
+        try {
+            if (findUserByEmail(email)) {
+                Connection con = Conexao.getConexao();
+                String sql = "update login set senha = ? where email = ?";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1, senha);
+                ps.setString(2, email);
+                ps.executeUpdate();
+
+                res = "ok";
+            } else {
+                res = "nexist";
+            }
+        } catch (Exception e) {
             res = "erro";
             e.printStackTrace();
         }
-        
+
         return res;
     }
 }

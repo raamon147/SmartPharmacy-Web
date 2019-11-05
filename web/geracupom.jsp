@@ -1,3 +1,4 @@
+<%@page import="DAO.ClienteDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.ArrayList"%>
@@ -27,13 +28,22 @@
         String cpf = lista.get(0).getCpf();
         String qtdTotalProd = String.valueOf(lista.get(0).getQtdTotal());
         String txt ="";
+        String vendedor =(String) session.getAttribute("usuario");
+        
+        double ponto = new ClienteDAO().getPontosCpf(cpf);
 
         for (Compra c : lista) {
             txt += ""+c.getCod_prod()+" "+c.getNome_prod()+"   R$"+c.getPrecoProd()+"    qtd:"+c.getQtdProd()+"    Total: R$"+c.getTotalPrecoProd()+"\n";
             tt += c.getTotalPrecoProd();
         }
-        String desconto = String.valueOf(tt - lista.get(0).getTotal());
+        
+        double a = lista.get(0).getTotal();
+        
+        
+        double desconto = tt - a;
         String totalCompra = String.valueOf(lista.get(0).getTotal());
+        
+        double x = lista.get(0).getTotal();
         
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         
@@ -55,12 +65,19 @@
             document.add(new Paragraph("Codigo da Compra: " + codigoCompra));
             document.add(new Paragraph("Data da Compra: " + data));
             document.add(new Paragraph("CPF do Cliente: " + cpf));
+            document.add(new Paragraph("Nome do Vendedor: "+ vendedor));
             document.add(new Paragraph(" "));
-            document.add(new Paragraph(txt));
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("Pontuação Anterior: "+ (ponto - ((int) Math.floor(x)))));
+            document.add(new Paragraph("Pontuação ganha "+ ((int) Math.floor(x))));
+            document.add(new Paragraph("Pontuação Final: "+ ponto));
             document.add(new Paragraph(" "));
             document.add(new Paragraph("Quantidade Total de Produtos: " + qtdTotalProd));
             document.add(new Paragraph("Total Desconto: " + desconto));
-            document.add(new Paragraph("Total da Compra: " + totalCompra));
+            document.add(new Paragraph("Total da Compra: " +totalCompra));
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("Produtos: "));
+            document.add(new Paragraph(txt));
             document.close();
         } catch (DocumentException de) {
             de.printStackTrace();
