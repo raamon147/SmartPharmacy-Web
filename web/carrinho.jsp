@@ -132,88 +132,91 @@
                 %>
             </div>
         </form>
-        <div style="margin: 40px;padding: 10px; padding-left: 30px; background-color: #f8f9fa;border-radius: 10px; width: 40%">
-            <h3>Descontos</h3>
-            <div class="form-row">
-                <div class="form-group col-md-3 ">
-                    <label for="numGerente">Desconto do Gerente</label>
-                    <input type="text" class="form-control" id="numGerente">
-                </div>
-                <div class="form-group col-md-4 ">
-                    <label for="btnGerente">&nbsp;&nbsp;&nbsp;</label>
-                    <input type="button" value="Aplicar" id="btnGerente" class="form-control btn btn-primary float-right">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4 ">
-                    <label for="numConv">Desconto por Convênio</label>
-                    <select class="form-control" id="numConv">
-                        <%
-                            ResultSet rs = new ConvenioDAO().getNomeConvenio();
+        <div style="margin: 40px;padding: 10px; padding-left: 30px; background-color: #f8f9fa;border-radius: 10px; width: 80%">
+            <table><tr>
+                <h3>Descontos</h3>
+                <td>
+                    <div class="form-row">
+                        <div class="form-group col-md-10 "><br/><br/>
+                            <label for="numGerente">Desconto do Gerente</label>
+                            <input type="text" class="form-control col-md-6" id="numGerente">
 
-                            while (rs.next()) {
-                                out.println("<option value='" + rs.getString("desc_conv") + "'>" + rs.getString("nome_conv") + " - " + rs.getString("desc_conv") + "% de desconto</option>");
+                        </div>
+                        <div class="form-row">
+                            <label for="btnGerente">&nbsp;&nbsp;&nbsp;</label>
+                            <input type="button" value="Aplicar" id="btnGerente" class="form-control btn btn-primary float-right">
+                        </div>
+                    </div></td><td>
+                    <div class="form-row">
+                        <div class="form-group col-md-10 "><br/><br/>
+                            <label for="numConv">Desconto por Convênio</label>
+                            <select class="form-control col-md-15" id="numConv">
+                                <%
+                                    ResultSet rs = new ConvenioDAO().getNomeConvenio();
+
+                                    while (rs.next()) {
+                                        out.println("<option value='" + rs.getString("desc_conv") + "'>" + rs.getString("nome_conv") + " - " + rs.getString("desc_conv") + "% de desconto</option>");
+                                    }
+
+                                %>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-8 ">
+                            <label for="btnConvenio">&nbsp;&nbsp;&nbsp;</label>
+                            <input type="button" value="Aplicar" id="btnConvenio" class="form-control btn btn-primary float-right">
+                        </div>
+                    </div>
+                </td><td><br/><br/>
+                    <div class="form-row">
+                        <div class="form-group col-md-10 ">
+                            <label for="numCPF">Desconto por CPF</label>
+                            <input type="text" required onkeypress="$(this).mask('000.000.000-00');" class="form-control" id="numCPF">
+
+                        </div><br/>
+                        <div class="form-group col-md-8 ">
+                            <label for="btnCPF">&nbsp;&nbsp;&nbsp;</label>
+                            <input type="button" value="Consultar" id="btnCPF" class="form-control btn btn-primary float-right">
+
+                        </div></td><td>
+                        <%                        String descErro = request.getParameter("descErro");
+                            if (descErro != null) {
+                                if (descErro.equals("erro")) {
+                                    out.println("<div class='alert alert-danger' role='alert'>Desconto não pode ultrapassar 50% do total da compra</div>");
+                                }
                             }
-
                         %>
-                    </select>
-                </div>
-                <div class="form-group col-md-4 ">
-                    <label for="btnConvenio">&nbsp;&nbsp;&nbsp;</label>
-                    <input type="button" value="Aplicar" id="btnConvenio" class="form-control btn btn-primary float-right">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4 ">
-                    <label for="numCPF">Desconto por CPF</label>
-                    <input type="text" required onkeypress="$(this).mask('000.000.000-00');" class="form-control" id="numCPF">
+                        <%
+                            String ponto = request.getParameter("ponto");
 
-                </div>
-                <div class="form-group col-md-4 ">
-                    <label for="btnCPF">&nbsp;&nbsp;&nbsp;</label>
-                    <input type="button" value="Consultar" id="btnCPF" class="form-control btn btn-primary float-right">
+                            int p = 0;
 
-                </div>
-            </div>
-            <%                        String descErro = request.getParameter("descErro");
-                if (descErro != null) {
-                    if (descErro.equals("erro")) {
-                        out.println("<div class='alert alert-danger' role='alert'>Desconto não pode ultrapassar 50% do total da compra</div>");
-                    }
-                }
-            %>
-            <%
-                String ponto = request.getParameter("ponto");
+                            if (ponto != null) {
+                                if (ponto.equals("erro")) {
+                                    out.println("<div class='alert alert-danger' role='alert'>Erro ao Consultar</div>");
+                                } else if (ponto.equals("nexist")) {
+                                    out.println("<div class='form-row'>");
+                                    out.println("Não foi encontrado nenhum registro com esse CPF<br>Deseja realizar o cadastro do cliente?<br><br>");
+                                    out.println("</div>");
+                                    out.println("<input type='button' class='btn btn-success' value='SIM' id='cadNewCli'>&nbsp;&nbsp;&nbsp;");
+                                } else {
+                                    p = Integer.parseInt(ponto);
+                                    if (p == 0) {
+                                        out.println("<div class='form-row'>");
+                                        out.println("Você possui " + ponto + " ponto(s)<br><br>");
+                                        out.println("</div>");
+                                    } else {
+                                        out.println("<div class='form-row'>");
+                                        out.println("Você possui " + ponto + " ponto(s)<br><br>");
+                                        out.println("Deseja utiliza-lo para obter desconto?<br>");
+                                        out.println("</div>");
+                                        out.println("<input type='button' class='btn btn-success' data-toggle='modal' data-target='#modaldesc' value='SIM' id='btnCliPont'>&nbsp;&nbsp;&nbsp;");
 
-                int p = 0;
+                                    }
 
-                if (ponto != null) {
-                    if (ponto.equals("erro")) {
-                        out.println("<div class='alert alert-danger' role='alert'>Erro ao Consultar</div>");
-                    } else if (ponto.equals("nexist")) {
-                        out.println("<div class='form-row'>");
-                        out.println("Não foi encontrado nenhum registro com esse CPF<br>Deseja realizar o cadastro do cliente?<br><br>");
-                        out.println("</div>");
-                        out.println("<input type='button' class='btn btn-success' value='SIM' id='cadNewCli'>&nbsp;&nbsp;&nbsp;");
-                    } else {
-                        p = Integer.parseInt(ponto);
-                        if (p == 0) {
-                            out.println("<div class='form-row'>");
-                            out.println("Você possui " + ponto + " ponto(s)<br><br>");
-                            out.println("</div>");
-                        } else {
-                            out.println("<div class='form-row'>");
-                            out.println("Você possui " + ponto + " ponto(s)<br><br>");
-                            out.println("Deseja utiliza-lo para obter desconto?<br>");
-                            out.println("</div>");
-                            out.println("<input type='button' class='btn btn-success' data-toggle='modal' data-target='#modaldesc' value='SIM' id='btnCliPont'>&nbsp;&nbsp;&nbsp;");
-
-                        }
-
-                    }
-                }
-            %>
-        </div>
+                                }
+                            }
+                        %>
+                </td></div>
 
         <div class="modal fade" id="modalfin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -264,12 +267,38 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <script src="JS/jquery-3.3.1.slim.min.js"></script>
-        <script src="JS/popper.min.js" ></script>
-        <script src="JS/bootstrap.min.js"></script>
-        <script src="JS/jquery.mask.min.js"></script>
-        <script>
+        </div></tr>
+</table>
+<script src="JS/jquery-3.3.1.slim.min.js"></script>
+<script src="JS/popper.min.js" ></script>
+<script src="JS/bootstrap.min.js"></script>
+<script src="JS/jquery.mask.min.js"></script>
+    <%                
+    try{
+    String change = request.getParameter("change");
+
+        String qtd = request.getParameter("qtd");
+
+        if (qtd == "") {
+
+        } else {
+            int nQtd = 0;
+            if (change != null) {
+                if (cart.contains(change)) {
+                    int n = cart.indexOf(change);
+                    if (n != -1) {
+                        cartQtd.set(n, Integer.parseInt(qtd));
+                        response.sendRedirect("carrinho.jsp?nchange=ok");
+                        
+                        
+                    }
+                }
+            }
+        }
+    }catch(Exception e2){
+    }
+    %>
+<script>
 
                                 $(document).ready(function () {
                                     $('input[name="escolha"]').click(function (e) {
@@ -333,33 +362,18 @@
                                 jQuery('input[type="number"]').focusout(function (event) {
                                     var cod = $(this).attr("id");
                                     var qtd = $(this).val();
-                                    var keycode = '13';
-                                    if (keycode == '13') {
-                                        document.location.href = "carrinho.jsp?change=" + cod + "&qtd=" + qtd;
-            <%                String change = request.getParameter("change");
+                                    if(parseInt(qtd) > parseInt($(this).attr("max"))){
+                                    alert("Quantidade maior que disponivel no estoque (" + $(this).attr("max") + " Itens)");
+                                    
+                                    $(this).val($(this).attr("max"));
+                                    document.location.href = "carrinho.jsp?change=" + cod + "&qtd=" + $(this).attr("max");
+                                    
+                                    }else{
+                                     document.location.href = "carrinho.jsp?change=" + cod + "&qtd=" + qtd;
 
-                String qtd = request.getParameter("qtd");
 
-                if (qtd == "") {
 
-                } else {
-                    int nQtd = 0;
-                    if (change != null) {
-                        if (cart.contains(change)) {
-                            int n = cart.indexOf(change);
-                            if (n != -1) {
-                                cartQtd.set(n, Integer.parseInt(qtd));
-                                response.sendRedirect("carrinho.jsp?nchange=ok");
-                            }
-                        }
-                    }
-                }
-
-            %>
-                                    }
-
-                                });
-
+}  } );
                                 $("#btnFin").click(function () {
 
 
@@ -385,6 +399,6 @@
                                         document.location.href = "gerenteDesconto.jsp?apply=" + desc;
                                     }
                                 });
-        </script>
-    </body>
+</script>
+</body>
 </html>

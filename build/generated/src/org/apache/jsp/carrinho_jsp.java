@@ -112,29 +112,29 @@ public final class carrinho_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                ");
 
                     int cont = 0;
-                    try{
+                    try {
                         ArrayList<String> cart2 = (ArrayList) session.getAttribute("cart");
                         cont = cart2.size();
-                    }catch(Exception a){
-                        
+                    } catch (Exception a) {
+
                     }
-                    try{
-                    String key = (String) session.getAttribute("key");
-                    
+                    try {
+                        String key = (String) session.getAttribute("key");
+
                 
       out.write("\r\n");
       out.write("                ");
-if(key.equals("2")){
+if (key.equals("2")) {
       out.write("\r\n");
       out.write("                <li class=\"nav-item dropdown\">\r\n");
-      out.write("                    \r\n");
+      out.write("\r\n");
       out.write("                    <a class=\"nav-link dropdown-toggle active\"  href=\"#\" id=\"navbarDropdownMenuLink\"\r\n");
       out.write("                       data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n");
       out.write("                        Administrador\r\n");
       out.write("                    </a>\r\n");
-      out.write("                    \r\n");
+      out.write("\r\n");
       out.write("                    <div class=\"dropdown-menu\"  aria-labelledby=\"navbarDropdownMenuLink\">\r\n");
-      out.write("                        \r\n");
+      out.write("\r\n");
       out.write("                        <a class=\"dropdown-item disabled\"  href=\"caditem.jsp\">Adicionar Produtos</a>\r\n");
       out.write("                        <a class=\"dropdown-item \" href=\"edititem.jsp\">Listar/Editar Produtos</a>\r\n");
       out.write("                        <a class=\"dropdown-item disabled\"  href=\"cadconvenio.jsp\">Cadastrar Convênios</a>\r\n");
@@ -148,13 +148,13 @@ if(key.equals("2")){
       out.write("\r\n");
       out.write("                <a class=\"nav-link active\" href=\"index.jsp\" style=\"color: black\">Inicio</a>\r\n");
       out.write("                <li class=\"nav-item dropdown\">\r\n");
-      out.write("                    \r\n");
+      out.write("\r\n");
       out.write("                    <a class=\"nav-link dropdown-toggle active\"  href=\"#\" id=\"navbarDropdownMenuLink\"\r\n");
       out.write("                       data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n");
-      out.write("                        \r\n");
+      out.write("\r\n");
       out.write("                        Administrador\r\n");
       out.write("                    </a>\r\n");
-      out.write("                    \r\n");
+      out.write("\r\n");
       out.write("                    <div class=\"dropdown-menu\"  aria-labelledby=\"navbarDropdownMenuLink\">\r\n");
       out.write("                        <a class=\"dropdown-item \"  href=\"caditem.jsp\">Adicionar Produtos</a>\r\n");
       out.write("                        <a class=\"dropdown-item \" href=\"edititem.jsp\">Listar/Editar Produtos</a>\r\n");
@@ -164,18 +164,24 @@ if(key.equals("2")){
       out.write("                    </div>\r\n");
       out.write("                </li>\r\n");
       out.write("                ");
-}}catch(Exception f){
-                    
-                }
+}
+                    } catch (Exception f) {
+
+                    }
       out.write("\r\n");
       out.write("                <li class=\"nav-item dropdown\">\r\n");
       out.write("                    <a class=\"nav-link dropdown-toggle active\" href=\"#\" id=\"navbarDropdownMenuLink\"\r\n");
       out.write("                       data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n");
       out.write("                        Serviços\r\n");
       out.write("                    </a>\r\n");
+      out.write("                    \r\n");
       out.write("                    <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">\r\n");
-      out.write("                        <a class=\"dropdown-item\" href=\"cadcliente.jsp\">Clientes</a>\r\n");
       out.write("                        <a class=\"dropdown-item\" href=\"formaplicacao.jsp\">Aplicação</a>\r\n");
+      out.write("                        <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navCliente\" data-toggle=\"dropdown\">&nbsp;&nbsp;&nbsp;&nbsp;Clientes</a>\r\n");
+      out.write("                        <div class='dropdown-menu' aria-labelledby='navCliente'>\r\n");
+      out.write("                            <a class=\"dropdown-item\" href=\"cadcliente.jsp\">Cadastrar</a>\r\n");
+      out.write("                            <a class=\"dropdown-item\" href=\"listcliente.jsp\">Consultar</a>\r\n");
+      out.write("                        </div>\r\n");
       out.write("                    </div>\r\n");
       out.write("                </li>\r\n");
       out.write("                <li class=\"nav-item dropdown\">\r\n");
@@ -188,22 +194,22 @@ if(key.equals("2")){
       out.write("                        <a class=\"dropdown-item\" href=\"relatorioVendas.jsp\">Relatórios Vendas</a>\r\n");
       out.write("                    </div>\r\n");
       out.write("                </li>\r\n");
-      out.write("               \r\n");
-      out.write("                \r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("            </div>\r\n");
-      out.write("                \r\n");
+      out.write("\r\n");
       out.write("        </div>\r\n");
-      out.write("        \r\n");
-      out.write("        \r\n");
-      out.write("                \r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("        <form action=\"carrinho.jsp\" method=\"post\"> \r\n");
-      out.write("            \r\n");
+      out.write("\r\n");
       out.write("            <input type=image src=\"shopping-cart.png\" width=\"30\" height=\"=30\" title=\"Abrir Carrinho\" style=\"float: left; margin-top: 10px;\">\r\n");
       out.write("            <a class=\"nav-link active\" href=\"carrinho.jsp\" style=\"color: red; float: left\">");
       out.print(cont);
       out.write("</a>\r\n");
-      out.write("            </form>\r\n");
-      out.write("                <a class=\"nav-link active\" href=\"logout.jsp\" style=\"color: black\">Sair</a>\r\n");
+      out.write("        </form>\r\n");
+      out.write("        <a class=\"nav-link active\" href=\"logout.jsp\" style=\"color: black\">Sair</a>\r\n");
       out.write("    </nav>\r\n");
       out.write("</head>\r\n");
       out.write("</html>\r\n");
@@ -228,7 +234,7 @@ if(key.equals("2")){
       out.write("        <style>\r\n");
       out.write("            #list{\r\n");
       out.write("                overflow: auto;\r\n");
-      out.write("                max-height: 300px;\r\n");
+      out.write("                max-height: 450px;\r\n");
       out.write("            }\r\n");
       out.write("        </style>\r\n");
       out.write("    </head>\r\n");
@@ -256,7 +262,7 @@ if(key.equals("2")){
 
                                     ArrayList<String> cart = (ArrayList) session.getAttribute("cart");
                                     ArrayList<Integer> cartQtd = (ArrayList) session.getAttribute("cartQtd");
-                                    ArrayList<Double>  desconto = (ArrayList) session.getAttribute("desconto");
+                                    ArrayList<Double> desconto = (ArrayList) session.getAttribute("desconto");
 
                                     ArrayList<Produto> lista = new CarrinhoDAO().getCart(cart, cartQtd);
 
@@ -266,7 +272,7 @@ if(key.equals("2")){
                                         out.print("<tr>");
                                         out.print("<td>" + lista.get(i).getCod_prod() + "</td>");
                                         out.print("<td>" + lista.get(i).getNome_prod() + "</td>");
-                                        out.print("<td><input style='width:50px;' id='" + lista.get(i).getCod_prod() + "' name='qtdProd' type='number' min='1' value = " + cartQtd.get(i) + " max='"+lista.get(i).getQtd_prod()+"' size = '1'></td>");
+                                        out.print("<td><input style='width:50px;' id='" + lista.get(i).getCod_prod() + "' name='qtdProd' type='number' min='1' value = " + cartQtd.get(i) + " max='" + lista.get(i).getQtd_prod() + "' size = '1'></td>");
                                         out.print("<td>" + String.format("%.2f", lista.get(i).getPreco_prod()) + "</td>");
                                         out.print("<td>" + String.format("%.2f", lista.get(i).getPreco_prod() * cartQtd.get(i)) + "</td>");
                                         out.print("<td class='actions'>");
@@ -289,6 +295,11 @@ if(key.equals("2")){
       out.write("\r\n");
       out.write("                            </tbody>\r\n");
       out.write("                        </table>\r\n");
+      out.write("\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                </div>\r\n");
+      out.write("                <div class=\"row\">\r\n");
+      out.write("                    <div class=\"col-md-12\">\r\n");
       out.write("                        ");
 
                             String tt = request.getParameter("total");
@@ -299,13 +310,11 @@ if(key.equals("2")){
                                 totalItens = tTotal;
 
                                 iDesc = ((totalItens * iDesc) / 100);
-                                
-                                
 
                                 if (totalItens != 0) {
-                                    out.println("<div class='display-4 float-right col-md-5'><h1 >Total: R$" + String.format("%.2f", totalItens) + "</h1><h5>&nbsp;&nbsp;Desconto: R$ " + String.format("%.2f", iDesc) + "</h5></div>");
+                                    out.println("<div class='display-4 float-right col-md-5'><br/><h3 >Subtotal: R$" + String.format("%.2f", totalItens) + "</h3><h5>&nbsp;&nbsp;Desconto: R$ " + String.format("%.2f", iDesc) + "</h5><h1 >Total: R$" + String.format("%.2f", totalItens - iDesc) + "</h1></div>");
                                     out.println("<input type='button' class='btn btn-warning float-left' id='btnVoltar' value='Voltar'>");
-                                    out.println("&nbsp;&nbsp;<input type='button' value='Limpar Carrinho' class='btn btn-primary float-left' id='eraseCart' />");
+                                    out.println("&nbsp;&nbsp;<input type='button' value='Limpar Carrinho' class='btn btn-primary' id='eraseCart' />");
                                     out.println("&nbsp;&nbsp;&nbsp;&nbsp;<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalfin'>Finalizar Compra</button>");
 
                                 } else {
@@ -315,9 +324,9 @@ if(key.equals("2")){
 
                                 iDesc = ((totalItens * iDesc) / 100);
 
-                                out.println("<div class='display-4 float-right col-md-5'><br/><h3 >Subtotal: R$" + String.format("%.2f", totalItens) + "</h3><h1 >Total: R$" + String.format("%.2f", totalItens-iDesc) + "</h1><h5>&nbsp;&nbsp;Desconto: R$ " + String.format("%.2f", iDesc) + "</h5></div>");
+                                out.println("<div class='display-4 float-right col-md-5'><br/><h3 >Subtotal: R$" + String.format("%.2f", totalItens) + "</h3><h5>&nbsp;&nbsp;Desconto: R$ " + String.format("%.2f", iDesc) + "</h5><h1 >Total: R$" + String.format("%.2f", totalItens - iDesc) + "</h1></div>");
                                 out.println("<input type='button' class='btn btn-warning float-left' id='btnVoltar' value='Voltar'>");
-                                out.println("&nbsp;&nbsp;<input type='button' value='Limpar Carrinho' class='btn btn-primary float-left' id='eraseCart' />");
+                                out.println("&nbsp;&nbsp;<input type='button' value='Limpar Carrinho' class='btn btn-primary' id='eraseCart' />");
                                 out.println("&nbsp;&nbsp;&nbsp;&nbsp;<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalfin'>Finalizar Compra</button>");
 
                             } else {
@@ -326,8 +335,7 @@ if(key.equals("2")){
 
 
                         
-      out.write("\r\n");
-      out.write("\r\n");
+      out.write("                        \r\n");
       out.write("                    </div>\r\n");
       out.write("                </div>\r\n");
       out.write("                ");
@@ -336,7 +344,7 @@ if(key.equals("2")){
                         if (pedido.equalsIgnoreCase("ult")) {
                             out.println("<div class='alert alert-danger' role='alert'>A quantidade de itens no estoque não condiz com o pedido</div>");
                         } else {
-                            out.println("<div class='alert alert-success' role='alert'>Pedido finalizado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target ='_blank' href='geracupom.jsp?cod_compra="+pedido+"'>Gerar Cupom</a></div>");
+                            out.println("<div class='alert alert-success' role='alert'>Pedido finalizado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target ='_blank' href='geracupom.jsp?cod_compra=" + pedido + "'>Gerar Cupom</a></div>");
                             out.println("");
                         }
                     }
@@ -344,75 +352,56 @@ if(key.equals("2")){
       out.write("\r\n");
       out.write("            </div>\r\n");
       out.write("        </form>\r\n");
-      out.write("        <div style=\"margin: 40px;padding: 10px; padding-left: 30px; background-color: #f8f9fa;border-radius: 10px; width: 40%\">\r\n");
-      out.write("            <h3>Descontos</h3>\r\n");
-      out.write("            <nav>\r\n");
-      out.write("                <div class=\"nav nav-tabs\" id=\"nav-tab\" role=\"tablist\">\r\n");
-      out.write("                    <a class=\"nav-item nav-link active\" id=\"nav-cpf-tab\" data-toggle=\"tab\" href=\"#nav-cpf\" role=\"tab\" aria-controls=\"nav-cpf\" aria-selected=\"true\">DESCONTO CPF</a>\r\n");
-      out.write("                    <a class=\"nav-item nav-link\" id=\"nav-conv-tab\" data-toggle=\"tab\" href=\"#nav-conv\" role=\"tab\" aria-controls=\"nav-conv\" aria-selected=\"false\">DESCONTO DE CONVÊNIO</a>\r\n");
-      out.write("                    <a class=\"nav-item nav-link\" id=\"nav-gerente-tab\" data-toggle=\"tab\" href=\"#nav-gerente\" role=\"tab\" aria-controls=\"nav-gerente\" aria-selected=\"false\">DESCONTO DO GERENTE</a>\r\n");
-      out.write("                </div>\r\n");
-      out.write("            </nav>\r\n");
-      out.write("\r\n");
-      out.write("            <div class=\"tab-content\" id=\"nav-tabContent\">\r\n");
-      out.write("\r\n");
-      out.write("                <div class=\"tab-pane fade \" id=\"nav-conv\" role=\"tabpanel\" aria-labelledby=\"nav-conv-tab\" style=\"padding: 10px;\">\r\n");
+      out.write("        <div style=\"margin: 40px;padding: 10px; padding-left: 30px; background-color: #f8f9fa;border-radius: 10px; width: 80%\">\r\n");
+      out.write("            <table><tr>\r\n");
+      out.write("                <h3>Descontos</h3>\r\n");
+      out.write("                <td>\r\n");
       out.write("                    <div class=\"form-row\">\r\n");
-      out.write("                        <div class=\"form-group col-md-4 \">\r\n");
-      out.write("                            <label for=\"numConv\">Nome do Convênio</label>\r\n");
-      out.write("                            <select class=\"form-control\" id=\"numConv\">\r\n");
+      out.write("                        <div class=\"form-group col-md-10 \"><br/><br/>\r\n");
+      out.write("                            <label for=\"numGerente\">Desconto do Gerente</label>\r\n");
+      out.write("                            <input type=\"text\" class=\"form-control col-md-6\" id=\"numGerente\">\r\n");
+      out.write("\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"form-row\">\r\n");
+      out.write("                            <label for=\"btnGerente\">&nbsp;&nbsp;&nbsp;</label>\r\n");
+      out.write("                            <input type=\"button\" value=\"Aplicar\" id=\"btnGerente\" class=\"form-control btn btn-primary float-right\">\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                    </div></td><td>\r\n");
+      out.write("                    <div class=\"form-row\">\r\n");
+      out.write("                        <div class=\"form-group col-md-10 \"><br/><br/>\r\n");
+      out.write("                            <label for=\"numConv\">Desconto por Convênio</label>\r\n");
+      out.write("                            <select class=\"form-control col-md-15\" id=\"numConv\">\r\n");
       out.write("                                ");
- 
-                                ResultSet rs = new ConvenioDAO().getNomeConvenio();
-                                
-                                while(rs.next()){
-                                        out.println("<option>" + rs.getString("nome_conv")+ "</option>");
-                                }
-                                
+
+                                    ResultSet rs = new ConvenioDAO().getNomeConvenio();
+
+                                    while (rs.next()) {
+                                        out.println("<option value='" + rs.getString("desc_conv") + "'>" + rs.getString("nome_conv") + " - " + rs.getString("desc_conv") + "% de desconto</option>");
+                                    }
+
                                 
       out.write("\r\n");
       out.write("                            </select>\r\n");
       out.write("                        </div>\r\n");
-      out.write("                        <div class=\"form-group col-md-4 \">\r\n");
+      out.write("                        <div class=\"form-group col-md-8 \">\r\n");
       out.write("                            <label for=\"btnConvenio\">&nbsp;&nbsp;&nbsp;</label>\r\n");
-      out.write("                            <input type=\"button\" value=\"Consultar\" id=\"btnConvenio\" class=\"form-control btn btn-primary float-right\">\r\n");
+      out.write("                            <input type=\"button\" value=\"Aplicar\" id=\"btnConvenio\" class=\"form-control btn btn-primary float-right\">\r\n");
       out.write("                        </div>\r\n");
       out.write("                    </div>\r\n");
-      out.write("                    ");
-
-                        String conv = request.getParameter("convenio");
-                        if (conv != null) {
-                            if (conv.equals("nexist")) {
-                                out.println("<div class='form-row'>");
-                                out.println("A farmacia não possui planos com esse Convenio");
-                                out.println("</div>");
-                            } else {
-                                out.println("<div class='form-row'>");
-                                out.println("Esse Convenio permite " + conv + "% de desconto, deseja utilizar?");
-                                out.println("</div>");
-                                out.println("<input type='button' class='btn btn-success' value='SIM' id='useConve'>&nbsp;&nbsp;&nbsp;");
-                            }
-
-                        }
-
-                    
-      out.write("\r\n");
-      out.write("                </div>\r\n");
-      out.write("\r\n");
-      out.write("                <div class=\"tab-pane fade show active\" id=\"nav-cpf\" role=\"tabpanel\" aria-labelledby=\"nav-cpf-tab\" style=\"padding: 10px;\">\r\n");
+      out.write("                </td><td><br/><br/>\r\n");
       out.write("                    <div class=\"form-row\">\r\n");
-      out.write("                        <div class=\"form-group col-md-4 \">\r\n");
-      out.write("                            <label for=\"numCPF\">Numero do CPF</label>\r\n");
+      out.write("                        <div class=\"form-group col-md-10 \">\r\n");
+      out.write("                            <label for=\"numCPF\">Desconto por CPF</label>\r\n");
       out.write("                            <input type=\"text\" required onkeypress=\"$(this).mask('000.000.000-00');\" class=\"form-control\" id=\"numCPF\">\r\n");
       out.write("\r\n");
-      out.write("                        </div>\r\n");
-      out.write("                        <div class=\"form-group col-md-4 \">\r\n");
+      out.write("                        </div><br/>\r\n");
+      out.write("                        <div class=\"form-group col-md-8 \">\r\n");
       out.write("                            <label for=\"btnCPF\">&nbsp;&nbsp;&nbsp;</label>\r\n");
       out.write("                            <input type=\"button\" value=\"Consultar\" id=\"btnCPF\" class=\"form-control btn btn-primary float-right\">\r\n");
       out.write("\r\n");
-      out.write("                        </div>\r\n");
+      out.write("                        </div></td><td>\r\n");
       out.write("                        ");
-                            String descErro = request.getParameter("descErro");
+                        String descErro = request.getParameter("descErro");
                             if (descErro != null) {
                                 if (descErro.equals("erro")) {
                                     out.println("<div class='alert alert-danger' role='alert'>Desconto não pode ultrapassar 50% do total da compra</div>");
@@ -420,60 +409,41 @@ if(key.equals("2")){
                             }
                         
       out.write("\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                    ");
+      out.write("                        ");
 
-                        String ponto = request.getParameter("ponto");
+                            String ponto = request.getParameter("ponto");
 
-                        int p = 0;
+                            int p = 0;
 
-                        if (ponto != null) {
-                            if (ponto.equals("erro")) {
-                                out.println("<div class='alert alert-danger' role='alert'>Erro ao Consultar</div>");
-                            } else if (ponto.equals("nexist")) {
-                                out.println("<div class='form-row'>");
-                                out.println("Não foi encontrado nenhum registro com esse CPF<br>Deseja realizar o cadastro do cliente?<br><br>");
-                                out.println("</div>");
-                                out.println("<input type='button' class='btn btn-success' value='SIM' id='cadNewCli'>&nbsp;&nbsp;&nbsp;");
-                            } else {
-                                p = Integer.parseInt(ponto);
-                                if (p == 0) {
+                            if (ponto != null) {
+                                if (ponto.equals("erro")) {
+                                    out.println("<div class='alert alert-danger' role='alert'>Erro ao Consultar</div>");
+                                } else if (ponto.equals("nexist")) {
                                     out.println("<div class='form-row'>");
-                                    out.println("Você possui " + ponto + " ponto(s)<br><br>");
+                                    out.println("Não foi encontrado nenhum registro com esse CPF<br>Deseja realizar o cadastro do cliente?<br><br>");
                                     out.println("</div>");
+                                    out.println("<input type='button' class='btn btn-success' value='SIM' id='cadNewCli'>&nbsp;&nbsp;&nbsp;");
                                 } else {
-                                    out.println("<div class='form-row'>");
-                                    out.println("Você possui " + ponto + " ponto(s)<br><br>");
-                                    out.println("Deseja utiliza-lo para obter desconto?<br>");
-                                    out.println("</div>");
-                                    out.println("<input type='button' class='btn btn-success' data-toggle='modal' data-target='#modaldesc' value='SIM' id='btnCliPont'>&nbsp;&nbsp;&nbsp;");
+                                    p = Integer.parseInt(ponto);
+                                    if (p == 0) {
+                                        out.println("<div class='form-row'>");
+                                        out.println("Você possui " + ponto + " ponto(s)<br><br>");
+                                        out.println("</div>");
+                                    } else {
+                                        out.println("<div class='form-row'>");
+                                        out.println("Você possui " + ponto + " ponto(s)<br><br>");
+                                        out.println("Deseja utiliza-lo para obter desconto?<br>");
+                                        out.println("</div>");
+                                        out.println("<input type='button' class='btn btn-success' data-toggle='modal' data-target='#modaldesc' value='SIM' id='btnCliPont'>&nbsp;&nbsp;&nbsp;");
+
+                                    }
 
                                 }
-
                             }
-                        }
-                    
+                        
       out.write("\r\n");
-      out.write("                </div>\r\n");
+      out.write("                </td></div>\r\n");
       out.write("\r\n");
-      out.write("                <div class=\"tab-pane fade\" id=\"nav-gerente\" role=\"tabpanel\" aria-labelledby=\"nav-gerente-tab\" style=\"padding: 10px;\">\r\n");
-      out.write("                    <div class=\"form-row\">\r\n");
-      out.write("                        <div class=\"form-group col-md-4 \">\r\n");
-      out.write("                            <label for=\"numGerente\">Desconto do Gerente</label>\r\n");
-      out.write("                            <input type=\"text\" class=\"form-control\" id=\"numGerente\">\r\n");
-      out.write("\r\n");
-      out.write("                        </div>\r\n");
-      out.write("                        <div class=\"form-group col-md-4 \">\r\n");
-      out.write("                            <label for=\"btnGerente\">&nbsp;&nbsp;&nbsp;</label>\r\n");
-      out.write("                            <input type=\"button\" value=\"Aplicar ao Total\" id=\"btnGerente\" class=\"form-control btn btn-primary float-right\">\r\n");
-      out.write("                        </div>\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                </div>\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("            </div>\r\n");
-      out.write("\r\n");
-      out.write("        </div>\r\n");
       out.write("        <div class=\"modal fade\" id=\"modalfin\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n");
       out.write("            <div class=\"modal-dialog\" role=\"document\">\r\n");
       out.write("                <div class=\"modal-content\">\r\n");
@@ -484,25 +454,24 @@ if(key.equals("2")){
       out.write("                        </button>\r\n");
       out.write("                    </div>\r\n");
       out.write("                    <form>\r\n");
-      out.write("                    <div class=\"modal-body\">\r\n");
-      out.write("                        \r\n");
-      out.write("                        Deseja Inserir o CPF na compra?\r\n");
-      out.write("                        <br>\r\n");
-      out.write("                        <input type=\"radio\" name='escolha' id='simE' value='sim'>\r\n");
-      out.write("                        <label for='simE'>Sim</label>\r\n");
-      out.write("                        <input type=\"radio\" name='escolha' id='naoE' value='nao' checked=\"checked\">\r\n");
-      out.write("                        <label for='simE'>Não</label><br><br>\r\n");
-      out.write("                        <input type='text' id='cpfIn' name=\"cpfIn\" onkeypress=\"$(this).mask('000.000.000-00');\" >\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                    <div class=\"modal-footer\">\r\n");
-      out.write("                        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Fechar</button>\r\n");
-      out.write("                        <input type='button' class='btn btn-primary' id='btnFin' value='Concluir' name='btnFin' >\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                   </form>\r\n");
+      out.write("                        <div class=\"modal-body\">\r\n");
+      out.write("\r\n");
+      out.write("                            Deseja Inserir o CPF na compra?\r\n");
+      out.write("                            <br>\r\n");
+      out.write("                            <input type=\"radio\" name='escolha' id='simE' value='sim'>\r\n");
+      out.write("                            <label for='simE'>Sim</label>\r\n");
+      out.write("                            <input type=\"radio\" name='escolha' id='naoE' value='nao' checked=\"checked\">\r\n");
+      out.write("                            <label for='simE'>Não</label><br><br>\r\n");
+      out.write("                            <input type='text' id='cpfIn' name=\"cpfIn\" onkeypress=\"$(this).mask('000.000.000-00');\" >\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"modal-footer\">\r\n");
+      out.write("                            <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Fechar</button>\r\n");
+      out.write("                            <input type='button' class='btn btn-primary' id='btnFin' value='Concluir' name='btnFin' >\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                    </form>\r\n");
       out.write("                </div>\r\n");
       out.write("            </div>\r\n");
       out.write("        </div>\r\n");
-      out.write("<\r\n");
       out.write("        <div class=\"modal fade\" id=\"modaldesc\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n");
       out.write("            <div class=\"modal-dialog\" role=\"document\">\r\n");
       out.write("                <div class=\"modal-content\">\r\n");
@@ -526,136 +495,151 @@ if(key.equals("2")){
       out.write("                    </div>\r\n");
       out.write("                </div>\r\n");
       out.write("            </div>\r\n");
-      out.write("        </div>\r\n");
-      out.write("        <script src=\"JS/jquery-3.3.1.slim.min.js\"></script>\r\n");
-      out.write("        <script src=\"JS/popper.min.js\" ></script>\r\n");
-      out.write("        <script src=\"JS/bootstrap.min.js\"></script>\r\n");
-      out.write("        <script src=\"JS/jquery.mask.min.js\"></script>\r\n");
-      out.write("        <script>\r\n");
+      out.write("        </div></tr>\r\n");
+      out.write("</table>\r\n");
+      out.write("<script src=\"JS/jquery-3.3.1.slim.min.js\"></script>\r\n");
+      out.write("<script src=\"JS/popper.min.js\" ></script>\r\n");
+      out.write("<script src=\"JS/bootstrap.min.js\"></script>\r\n");
+      out.write("<script src=\"JS/jquery.mask.min.js\"></script>\r\n");
+      out.write("<script>\r\n");
       out.write("\r\n");
-      out.write("                            $(document).ready(function () {\r\n");
-      out.write("                                $('input[name=\"escolha\"]').click(function (e) {\r\n");
-      out.write("                                    if (e.target.value === 'sim') {\r\n");
-      out.write("                                        $('#cpfIn').show();\r\n");
-      out.write("                                    } else {\r\n");
-      out.write("                                        $('#cpfIn').val(\"\");\r\n");
-      out.write("                                        $('#cpfIn').hide();\r\n");
-      out.write("                                    }\r\n");
-      out.write("                                })\r\n");
+      out.write("                                $(document).ready(function () {\r\n");
+      out.write("                                    $('input[name=\"escolha\"]').click(function (e) {\r\n");
+      out.write("                                        if (e.target.value === 'sim') {\r\n");
+      out.write("                                            $('#cpfIn').show();\r\n");
+      out.write("                                        } else {\r\n");
+      out.write("                                            $('#cpfIn').val(\"\");\r\n");
+      out.write("                                            $('#cpfIn').hide();\r\n");
+      out.write("                                        }\r\n");
+      out.write("                                    })\r\n");
       out.write("\r\n");
-      out.write("                                $('#cpfIn').hide();\r\n");
-      out.write("                            });\r\n");
+      out.write("                                    $('#cpfIn').hide();\r\n");
+      out.write("                                });\r\n");
       out.write("\r\n");
-      out.write("                            $(\"#btnDesconto\").click(function () {\r\n");
-      out.write("                                var d = $(\"#descInsert\").val();\r\n");
-      out.write("                                var t = ");
+      out.write("                                $(\"#btnDesconto\").click(function () {\r\n");
+      out.write("                                    var d = $(\"#descInsert\").val();\r\n");
+      out.write("                                    var t = ");
       out.print(p);
       out.write("\r\n");
       out.write("\r\n");
-      out.write("                                if (parseInt(d) > parseInt(t)) {\r\n");
-      out.write("                                    document.getElementById(\"alertaDesconto\").innerHTML = \"Insira um numero menor ou igual ao total de pontos\";\r\n");
-      out.write("                                } else {\r\n");
-      out.write("                                    document.location.href = \"cpfdesconto.jsp?apply=\" + d + \"&total=\" +");
+      out.write("                                    if (parseInt(d) > parseInt(t)) {\r\n");
+      out.write("                                        document.getElementById(\"alertaDesconto\").innerHTML = \"Insira um numero menor ou igual ao total de pontos\";\r\n");
+      out.write("                                    } else {\r\n");
+      out.write("                                        document.location.href = \"cpfdesconto.jsp?apply=\" + d + \"&total=\" +");
       out.print(totalItens);
       out.write(";\r\n");
       out.write("\r\n");
-      out.write("                                }\r\n");
-      out.write("                            });\r\n");
+      out.write("                                    }\r\n");
+      out.write("                                });\r\n");
       out.write("\r\n");
-      out.write("                            $(\"#btnGerente\").click(function () {\r\n");
-      out.write("                                var desc = $(\"#numGerente\").val();\r\n");
+      out.write("                                $(\"#eraseCart\").click(function () {\r\n");
+      out.write("                                    document.location.href = \"eraseCart.jsp\";\r\n");
       out.write("\r\n");
-      out.write("                                document.location.href = \"gerenteDesconto.jsp?apply=\" + desc;\r\n");
+      out.write("                                });\r\n");
       out.write("\r\n");
-      out.write("                            });\r\n");
+      out.write("                                $(\"#btnGerente\").click(function () {\r\n");
+      out.write("                                    var desc = $(\"#numGerente\").val();\r\n");
       out.write("\r\n");
-      out.write("                            $(\"#btnCPF\").click(function () {\r\n");
-      out.write("                                var cpf = $(\"#numCPF\").val();\r\n");
+      out.write("                                    var fdesconto = parseFloat(desc);\r\n");
       out.write("\r\n");
-      out.write("                                document.location.href = \"clienteConsulta.jsp?cpf=\" + cpf;\r\n");
-      out.write("                            });\r\n");
+      out.write("                                    if (fdesconto > 50) {\r\n");
+      out.write("                                        alert(\"O desconto do Gerente não pode Ultrapassar 50%\");\r\n");
+      out.write("                                    } else {\r\n");
+      out.write("                                        document.location.href = \"gerenteDesconto.jsp?apply=\" + desc;\r\n");
       out.write("\r\n");
-      out.write("                            $(document).on('keypress', ':input:not(text):not([type=submit])', function (e) {\r\n");
-      out.write("                                if (e.which == 13)\r\n");
-      out.write("                                    e.preventDefault();\r\n");
-      out.write("                            });\r\n");
+      out.write("                                    }\r\n");
       out.write("\r\n");
-      out.write("                            $(\"#btnVoltar\").click(function () {\r\n");
-      out.write("                                document.location.href = \"index.jsp\";\r\n");
-      out.write("                            })\r\n");
+      out.write("                                });\r\n");
       out.write("\r\n");
-      out.write("                            jQuery('input[type=\"number\"]').focusout(function (event) {\r\n");
-      out.write("                                var cod = $(this).attr(\"id\");\r\n");
-      out.write("                                var qtd = $(this).val();\r\n");
-      out.write("                                var keycode = '13';\r\n");
-      out.write("                                if (keycode == '13') {\r\n");
-      out.write("                                    document.location.href = \"carrinho.jsp?change=\" + cod + \"&qtd=\" + qtd;\r\n");
-      out.write("            ");
+      out.write("                                $(\"#btnCPF\").click(function () {\r\n");
+      out.write("                                    var cpf = $(\"#numCPF\").val();\r\n");
+      out.write("\r\n");
+      out.write("                                    document.location.href = \"clienteConsulta.jsp?cpf=\" + cpf;\r\n");
+      out.write("                                });\r\n");
+      out.write("\r\n");
+      out.write("                                $(document).on('keypress', ':input:not(text):not([type=submit])', function (e) {\r\n");
+      out.write("                                    if (e.which == 13)\r\n");
+      out.write("                                        e.preventDefault();\r\n");
+      out.write("                                });\r\n");
+      out.write("\r\n");
+      out.write("                                $(\"#btnVoltar\").click(function () {\r\n");
+      out.write("                                    document.location.href = \"index.jsp\";\r\n");
+      out.write("                                })\r\n");
+      out.write("\r\n");
+      out.write("                                jQuery('input[type=\"number\"]').focusout(function (event) {\r\n");
+      out.write("                                    var cod = $(this).attr(\"id\");\r\n");
+      out.write("                                    var qtd = $(this).val();\r\n");
+      out.write("                                    if(parseInt(qtd) > parseInt($(this).attr(\"max\"))){\r\n");
+      out.write("                                    alert(\"Quantidade maior que disponivel no estoque (\" + $(this).attr(\"max\") + \" Itens)\");\r\n");
+      out.write("                                    \r\n");
+      out.write("                                    $(this).val($(this).attr(\"max\"));\r\n");
+      out.write("                                    document.location.href = \"carrinho.jsp?change=\" + cod + \"&qtd=\" + $(this).attr(\"max\");\r\n");
+      out.write("                                    \r\n");
+      out.write("                                    }else{\r\n");
+      out.write("                                     document.location.href = \"carrinho.jsp?change=\" + cod + \"&qtd=\" + qtd;\r\n");
+      out.write("\r\n");
+      out.write("    ");
+                
+    try{
+    String change = request.getParameter("change");
 
-                                    String change = request.getParameter("change");
-                                    
-                                    String qtd = request.getParameter("qtd");
-                                    
-                                    if (qtd == ""){
-                                        
-                                    }else{
-                                    int nQtd = 0;
-                                    if (change != null) {
-                                        if (cart.contains(change)) {
-                                            int n = cart.indexOf(change);
-                                            if (n != -1) {
-                                                cartQtd.set(n, Integer.parseInt(qtd));
-                                                response.sendRedirect("carrinho.jsp?nchange=ok");
-                                            }
-                                        }
-                                    }
-                                    }
+        String qtd = request.getParameter("qtd");
 
-            
+        if (qtd == "") {
+
+        } else {
+            int nQtd = 0;
+            if (change != null) {
+                if (cart.contains(change)) {
+                    int n = cart.indexOf(change);
+                    if (n != -1) {
+                        cartQtd.set(n, Integer.parseInt(qtd));
+                        response.sendRedirect("carrinho.jsp?nchange=ok");
+                        
+                        
+                    }
+                }
+            }
+        }
+    }catch(Exception e2){
+    }
+    
       out.write("\r\n");
-      out.write("                                }\r\n");
       out.write("\r\n");
-      out.write("                            });\r\n");
+      out.write("}  } );\r\n");
+      out.write("                                $(\"#btnFin\").click(function () {\r\n");
       out.write("\r\n");
-      out.write("                            $(\"#btnFin\").click(function () {\r\n");
-      out.write("                                \r\n");
-      out.write("                                \r\n");
-      out.write("                            \r\n");
-      out.write("                                var cpf = document.getElementById(\"cpfIn\").value;\r\n");
       out.write("\r\n");
-      out.write("                                var desconto = ");
+      out.write("\r\n");
+      out.write("                                    var cpf = document.getElementById(\"cpfIn\").value;\r\n");
+      out.write("\r\n");
+      out.write("                                    var desconto = ");
       out.print(iDesc);
       out.write("\r\n");
       out.write("\r\n");
-      out.write("                                if (cpf != \"\")\r\n");
-      out.write("                                    document.location.href = \"closeCart.jsp?cpf=\" + cpf + \"&desc=\" + desconto + \"&total=\" +");
+      out.write("                                    if (cpf != \"\")\r\n");
+      out.write("                                        document.location.href = \"closeCart.jsp?cpf=\" + cpf + \"&desc=\" + desconto + \"&total=\" +");
       out.print(totalItens);
       out.write("\r\n");
-      out.write("                                else\r\n");
-      out.write("                                    document.location.href = \"closeCart.jsp?desc=\" + desconto + \"&total=\" +");
+      out.write("                                    else\r\n");
+      out.write("                                        document.location.href = \"closeCart.jsp?desc=\" + desconto + \"&total=\" +");
       out.print(totalItens);
       out.write("\r\n");
-      out.write("                            });\r\n");
+      out.write("                                });\r\n");
       out.write("\r\n");
-      out.write("                            $(\"#cadNewCli\").click(function () {\r\n");
-      out.write("                                document.location.href = \"cadcliente.jsp\";\r\n");
-      out.write("                            });\r\n");
+      out.write("                                $(\"#cadNewCli\").click(function () {\r\n");
+      out.write("                                    document.location.href = \"cadcliente.jsp\";\r\n");
+      out.write("                                });\r\n");
       out.write("\r\n");
-      out.write("                            $(\"#btnConvenio\").click(function () {\r\n");
-      out.write("                                var nome = document.getElementById(\"numConv\").value;\r\n");
+      out.write("                                $(\"#btnConvenio\").click(function () {\r\n");
+      out.write("                                    var desc = document.getElementById(\"numConv\").value;\r\n");
       out.write("\r\n");
-      out.write("                                if (nome != \"\") {\r\n");
-      out.write("                                    document.location.href = \"convenioDesconto.jsp?nome=\" + nome;\r\n");
-      out.write("                                }\r\n");
-      out.write("                            });\r\n");
-      out.write("                            \r\n");
-      out.write("                            $(\"#useConve\").click(function (){\r\n");
-      out.write("                                document.location.href = \"gerenteDesconto.jsp?apply=\" + ");
-      out.print(conv);
-      out.write(";\r\n");
-      out.write("                            });\r\n");
-      out.write("        </script>\r\n");
-      out.write("    </body>\r\n");
+      out.write("                                    if (desc != \"\") {\r\n");
+      out.write("                                        document.location.href = \"gerenteDesconto.jsp?apply=\" + desc;\r\n");
+      out.write("                                    }\r\n");
+      out.write("                                });\r\n");
+      out.write("</script>\r\n");
+      out.write("</body>\r\n");
       out.write("</html>\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
