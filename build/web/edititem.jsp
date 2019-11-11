@@ -18,7 +18,29 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>SmartPharmacy</title>
+        <script>
+            function Buscar() {
+                // Declare variables
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("buscar");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("tabela");
+                tr = table.getElementsByTagName("tr");
 
+                // Loop through all table rows, and hide those who don't match the search query
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[1];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+        </script>
         <style>
             table{
                 border-collapse: collapse;
@@ -52,10 +74,11 @@
     </head>
 
     <body><br/>
-        <div style="margin: 40px;padding: 10px; background-color: #f8f9fa;border-radius: 10px;">    
+        <div style="margin: 20px;padding: 5px; background-color: #f8f9fa;border-radius: 10px;">    
             <h2 style="color: red;padding: 10px;"><b>Lista </b>de Produtos</h2>
-            <div class="table-responsive col-md-12">
-                <table class="table table-striped" cellspacing="0" cellpadding="0">
+            <input class="form-control my-0 py-1 red-border" id="buscar" onkeyup="Buscar()" type="text" placeholder="Digite o nome do produto" aria-label="Search"><br/>
+            <div class="table-responsive col-md-12" style=" overflow: auto; max-height: 220px;">
+                <table class="table table-striped" cellspacing="0" cellpadding="0" id="tabela">
                     <thead>
                         <tr>
                             <th>Código</th>
@@ -157,7 +180,7 @@
                     </div>
                     <div class="form-group col-md-2">
                         <label for="cadQtd">Quantidade</label>
-                        <input type="text" class="form-control" required="" id="inputPreco"  name="cadQtd" value="<%=prod.getQtd_prod()%>">
+                        <input type="text" class="form-control" required="" id="inputPreco"  name="cadQtd" value="<%=prod.getQtd_prod()%>" onkeypress="$(this).mask('00000000')">
                     </div>
                     <div class="form-group col-md-2">
                         <label for="cadPreco">Preço</label>
