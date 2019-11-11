@@ -26,6 +26,9 @@
         String codigoCompra = String.valueOf(lista.get(0).getCodigo());
         String data = lista.get(0).getDataCompra();
         String cpf = lista.get(0).getCpf();
+        if(cpf == null){
+            cpf = "não informado";
+        }
         String qtdTotalProd = String.valueOf(lista.get(0).getQtdTotal());
         String txt ="";
         String vendedor =(String) session.getAttribute("usuario");
@@ -73,7 +76,7 @@
             document.add(new Paragraph("Pontuação Final: "+ ponto));
             document.add(new Paragraph(" "));
             document.add(new Paragraph("Quantidade Total de Produtos: " + qtdTotalProd));
-            document.add(new Paragraph("Total Desconto: " + desconto));
+            document.add(new Paragraph("Total de Desconto: " +String.format("%.2f",desconto)));
             document.add(new Paragraph("Total da Compra: " +totalCompra));
             document.add(new Paragraph(" "));
             document.add(new Paragraph("Produtos: "));
