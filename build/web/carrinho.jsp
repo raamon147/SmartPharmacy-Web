@@ -273,9 +273,9 @@
 <script src="JS/popper.min.js" ></script>
 <script src="JS/bootstrap.min.js"></script>
 <script src="JS/jquery.mask.min.js"></script>
-    <%                
-    try{
-    String change = request.getParameter("change");
+<%
+    try {
+        String change = request.getParameter("change");
 
         String qtd = request.getParameter("qtd");
 
@@ -289,15 +289,14 @@
                     if (n != -1) {
                         cartQtd.set(n, Integer.parseInt(qtd));
                         response.sendRedirect("carrinho.jsp?nchange=ok");
-                        
-                        
+
                     }
                 }
             }
         }
-    }catch(Exception e2){
+    } catch (Exception e2) {
     }
-    %>
+%>
 <script>
 
                                 $(document).ready(function () {
@@ -360,44 +359,40 @@
                                 })
 
                                 jQuery('input[type="number"]').focusout(function (event) {
-                                    var cod = $(this).attr("id");
-                                    var qtd = $(this).val();
-                                    if(parseInt(qtd) > parseInt($(this).attr("max"))){
-                                    alert("Quantidade maior que disponivel no estoque (" + $(this).attr("max") + " Itens)");
-                                    
-                                    $(this).val($(this).attr("max"));
-                                    document.location.href = "carrinho.jsp?change=" + cod + "&qtd=" + $(this).attr("max");
-                                    
-                                    }else{
-                                     document.location.href = "carrinho.jsp?change=" + cod + "&qtd=" + qtd;
+                                var cod = $(this).attr("id");
+                                        var qtd = $(this).val();
+                                        if (parseInt(qtd) > parseInt($(this).attr("max"))) {
+                                alert("Quantidade maior que disponivel no estoque (" + $(this).attr("max") + " Itens)");
+                                        $(this).val($(this).attr("max"));
+                                        document.location.href = "carrinho.jsp?change=" + cod + "&qtd=" + $(this).attr("max");
+                                } else if (parseInt(qtd) < parseInt($(this).attr("min"))){
+                                $(this).val($(this).attr("min"));
+                                document.location.href = "carrinho.jsp?change=" + cod + "&qtd=" + $(this).attr("min");
+                                }
+                                 else{
+                                document.location.href = "carrinho.jsp?change=" + cod + "&qtd=" + qtd;
+                                }
+                                });
+                                        $("#btnFin").click(function () {
 
 
 
-}  } );
-                                $("#btnFin").click(function () {
+                                var cpf = document.getElementById("cpfIn").value;
+                                        var desconto = <%=iDesc%>
 
-
-
-                                    var cpf = document.getElementById("cpfIn").value;
-
-                                    var desconto = <%=iDesc%>
-
-                                    if (cpf != "")
+                                if (cpf != "")
                                         document.location.href = "closeCart.jsp?cpf=" + cpf + "&desc=" + desconto + "&total=" +<%=totalItens%>
-                                    else
+                                else
                                         document.location.href = "closeCart.jsp?desc=" + desconto + "&total=" +<%=totalItens%>
                                 });
-
-                                $("#cadNewCli").click(function () {
-                                    document.location.href = "cadcliente.jsp";
+                                        $("#cadNewCli").click(function () {
+                                document.location.href = "cadcliente.jsp";
                                 });
-
-                                $("#btnConvenio").click(function () {
-                                    var desc = document.getElementById("numConv").value;
-
-                                    if (desc != "") {
-                                        document.location.href = "gerenteDesconto.jsp?apply=" + desc;
-                                    }
+                                        $("#btnConvenio").click(function () {
+                                var desc = document.getElementById("numConv").value;
+                                        if (desc != "") {
+                                document.location.href = "gerenteDesconto.jsp?apply=" + desc;
+                                }
                                 });
 </script>
 </body>
